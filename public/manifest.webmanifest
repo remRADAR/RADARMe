@@ -1,0 +1,19 @@
+{
+  "name": "RADARMe — The Artist Operating System",
+  "short_name": "RADARMe",
+  "description": "A premium operating system for music artists, by RADARCharts.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/favicon.webp",
+      "sizes": "any",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}
