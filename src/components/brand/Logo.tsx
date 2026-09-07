@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import radarmeLogo from "@/assets/radarme-official.webp.asset.json";
+
+const radarmeLogo = "/favicon.webp";
 
 type Props = {
   className?: string;
@@ -34,7 +35,7 @@ export function RadarMark({ size = 28, animated = false }: { size?: number; anim
       style={{ width: size, height: size }}
     >
       <img
-        src={radarmeLogo.url}
+        src={radarmeLogo}
         alt="RADARMe"
         width={size}
         height={size}
