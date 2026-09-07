@@ -20,47 +20,39 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-40"
+      className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-signal bg-field"
       aria-label="Primary"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="mx-auto max-w-screen-md px-3 pb-3 pt-1">
-        <div className="glass elev-2 relative flex h-16 items-center justify-around rounded-full px-2">
-          {items.map((item) => {
-            const active =
-              item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
+      <div className="mx-auto grid max-w-screen-md grid-cols-3">
+        {items.map((item) => {
+          const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.to}
+              to={item.to}
+              aria-current={active ? "page" : undefined}
+              className={cn(
+                "group relative flex min-h-16 items-center justify-center gap-2 border-r-2 border-signal px-2 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors duration-200 last:border-r-0",
+                "focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-flare",
+                active
+                  ? "bg-signal text-field"
+                  : "bg-field text-signal hover:bg-signal hover:text-field",
+              )}
+            >
+              <Icon size={18} strokeWidth={2.5} aria-hidden />
+              <span className="max-w-[7.5rem] truncate text-center">{item.label}</span>
+              <span
+                aria-hidden
                 className={cn(
-                  "group relative flex h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-full",
-                  "transition-colors duration-200",
-                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                  "absolute inset-x-0 bottom-0 h-1 bg-flare transition-transform duration-200",
+                  active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                 )}
-              >
-                <span
-                  className={cn(
-                    "absolute inset-1 rounded-full transition-opacity duration-200",
-                    active ? "bg-surface-2 opacity-100" : "opacity-0",
-                  )}
-                  aria-hidden
-                />
-                <Icon size={20} className="relative" aria-hidden />
-                <span className="relative truncate text-[11px] font-medium tracking-wide">
-                  {item.label}
-                </span>
-                {active && (
-                  <span
-                    aria-hidden
-                    className="absolute -top-1 h-0.5 w-6 rounded-full bg-gold"
-                  />
-                )}
-              </Link>
-            );
-          })}
-        </div>
+              />
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );

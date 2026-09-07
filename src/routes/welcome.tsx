@@ -42,40 +42,28 @@ function Welcome() {
         }}
       >
         <div className="flex flex-1 flex-col items-center justify-center text-center">
-          <div className="relative animate-in fade-in-0 zoom-in-95 duration-700">
-            <RadarMark size={112} animated />
+          <div className="relative">
+            <RadarMark size={112} />
             <span
               aria-hidden
-              className="absolute inset-0 -z-10 animate-radar-pulse rounded-full"
-              style={{ boxShadow: "0 0 60px 8px color-mix(in oklab, var(--gold) 25%, transparent)" }}
+              className="absolute inset-0 -z-10"
+              style={{
+                boxShadow: "0 0 60px 8px color-mix(in oklab, var(--gold) 25%, transparent)",
+              }}
             />
           </div>
 
-          <p
-            className="mt-8 text-[11px] uppercase tracking-[0.32em] text-gold animate-in fade-in-0 slide-in-from-bottom-2 duration-700"
-            style={{ animationDelay: "120ms", animationFillMode: "backwards" }}
-          >
-            by RADARCharts
-          </p>
-          <h1
-            className="mt-3 font-display text-[42px] font-semibold leading-[1.05] tracking-tight animate-in fade-in-0 slide-in-from-bottom-3 duration-700"
-            style={{ animationDelay: "220ms", animationFillMode: "backwards" }}
-          >
+          <p className="mt-8 text-[11px] uppercase tracking-[0.32em] text-gold">by RADARCharts</p>
+          <h1 className="mt-3 font-display text-[42px] font-semibold leading-[1.05] tracking-tight">
             RADAR<span className="text-gold">Me</span>
           </h1>
-          <p
-            className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted-foreground animate-in fade-in-0 slide-in-from-bottom-4 duration-700"
-            style={{ animationDelay: "320ms", animationFillMode: "backwards" }}
-          >
-            The operating system for the modern music artist. Signals, growth
-            and community — engineered around your career.
+          <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted-foreground">
+            The operating system for the modern music artist. Signals, growth and community —
+            engineered around your career.
           </p>
         </div>
 
-        <div
-          className="mt-6 space-y-3 animate-in fade-in-0 slide-in-from-bottom-6 duration-700"
-          style={{ animationDelay: "460ms", animationFillMode: "backwards" }}
-        >
+        <div className="mt-6 space-y-3">
           <Button asChild variant="gold" size="lg" className="w-full">
             <Link to="/auth/register">
               <Sparkles size={16} /> Create your account
@@ -87,8 +75,7 @@ function Welcome() {
             </Link>
           </Button>
           <p className="pt-3 text-center text-[11px] leading-relaxed text-muted-foreground">
-            By continuing you agree to the RADARCharts Terms and acknowledge
-            our Privacy Policy.
+            By continuing you agree to the RADARCharts Terms and acknowledge our Privacy Policy.
           </p>
         </div>
       </div>

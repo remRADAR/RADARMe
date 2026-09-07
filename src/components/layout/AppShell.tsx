@@ -3,7 +3,6 @@ import { useRouterState } from "@tanstack/react-router";
 import { TopBar } from "./TopBar";
 import { BottomNav } from "./BottomNav";
 import { FloatingActionButton } from "./FloatingActionButton";
-import { Splash } from "./Splash";
 
 /**
  * Global app frame. Mobile-first, expands to a centered column on tablet+.
@@ -20,14 +19,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="relative min-h-dvh bg-background text-foreground">
-      <Splash />
       {!isImmersive && <TopBar />}
       <main
-        className={
-          isImmersive
-            ? "w-full"
-            : "mx-auto w-full max-w-screen-md px-4 pt-4"
-        }
+        className={isImmersive ? "w-full" : "mx-auto w-full max-w-screen-md px-4 pt-4"}
         style={{
           paddingBottom: isImmersive
             ? "env(safe-area-inset-bottom)"

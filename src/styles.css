@@ -13,6 +13,12 @@
  */
 
 @theme inline {
+  --color-field: var(--radar-field);
+  --color-signal: var(--radar-signal);
+  --color-flare: var(--radar-flare);
+  --color-radar-border: var(--radar-border);
+  --font-radar-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-radar-mono: "Space Mono", ui-monospace, SFMono-Regular, monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -71,6 +77,13 @@
 
 /* Dark = default. Applied on <html> at boot. */
 :root {
+  --radar-field: #050505;
+  --radar-signal: #f7f7f2;
+  --radar-flare: #ffffff;
+  --radar-border: #f7f7f2;
+  --radar-radius: 0px;
+  --radar-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --radar-ease-slam: cubic-bezier(0.16, 1, 0.3, 1);
   --radius: 0.875rem;
 
   --background: oklch(0.13 0 0);
