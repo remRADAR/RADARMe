@@ -18,7 +18,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     pathname.startsWith("/onboarding");
 
   return (
-    <div className="relative min-h-dvh bg-background text-foreground">
+    <div className="relative min-h-dvh bg-transparent text-foreground">
       {!isImmersive && <TopBar />}
       <main
         className={isImmersive ? "w-full" : "mx-auto w-full max-w-screen-md px-4 pt-4"}

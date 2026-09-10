@@ -20,11 +20,11 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-signal bg-field"
+      className="radar-footer fixed inset-x-0 bottom-0 z-40"
       aria-label="Primary"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="mx-auto grid max-w-screen-md grid-cols-3">
+      <div className="mx-auto grid max-w-screen-md min-w-0 grid-cols-3">
         {items.map((item) => {
           const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
           const Icon = item.icon;
@@ -34,11 +34,11 @@ export function BottomNav() {
               to={item.to}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "group relative flex min-h-16 items-center justify-center gap-2 border-r-2 border-signal px-2 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors duration-200 last:border-r-0",
+                "group relative flex min-h-16 min-w-0 items-center justify-center gap-2 border-r border-[var(--hairline)] px-2 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] whitespace-nowrap transition-[color,background-color,transform] duration-200 last:border-r-0",
                 "focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-flare",
                 active
-                  ? "bg-signal text-field"
-                  : "bg-field text-signal hover:bg-signal hover:text-field",
+                  ? "bg-gold text-gold-foreground shadow-[0_-8px_24px_-18px_var(--gold)]"
+                  : "text-muted-foreground hover:bg-surface-2 hover:text-foreground active:scale-[0.98]",
               )}
             >
               <Icon size={18} strokeWidth={2.5} aria-hidden />

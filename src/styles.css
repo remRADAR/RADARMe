@@ -190,17 +190,18 @@
     border-color: var(--color-border);
   }
 
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    text-size-adjust: 100%;
-    overscroll-behavior-y: none;
-  }
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
+}
 
   html {
     scroll-behavior: smooth;
@@ -441,4 +442,118 @@
 /* Tap highlight cleanup for premium feel */
 a, button {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* RADARCharts atmosphere and interaction layer.
+ * Uses CSS gradients rather than an authenticated Drive URL so the shell stays
+ * portable across Vite, preview, and production deployments. A future local
+ * image can be layered in through --radar-atmosphere-image without code changes.
+ */
+:root {
+  --radar-atmosphere-image: none;
+  --radar-transition: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body {
+  position: relative;
+  min-height: 100dvh;
+  background-color: var(--radar-field);
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(180deg, oklch(0.05 0 0 / 0.12), oklch(0.05 0 0 / 0.82) 78%, var(--radar-field)),
+    radial-gradient(ellipse at 50% -14%, oklch(0.78 0.13 85 / 0.16), transparent 48%),
+    radial-gradient(ellipse at 92% 40%, oklch(0.72 0.02 0 / 0.08), transparent 34%),
+    var(--radar-atmosphere-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: linear-gradient(oklch(1 0 0 / 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.014) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.radar-glass-nav {
+  background: color-mix(in oklab, var(--background) 74%, transparent);
+  border-bottom: 1px solid var(--hairline);
+  box-shadow: 0 8px 28px -24px oklch(0 0 0 / 0.9);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+}
+
+.radar-footer {
+  background: color-mix(in oklab, var(--background) 82%, transparent);
+  border-top: 1px solid var(--hairline);
+  box-shadow: 0 -12px 32px -28px oklch(0 0 0 / 0.9);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+}
+
+/* Keep navigation chrome single-line and prevent long UI tokens from widening
+ * the viewport. Body copy retains its normal readable wrapping behavior. */
+nav,
+nav a,
+nav span,
+button,
+[role="button"] {
+  min-width: 0;
+}
+
+nav a,
+nav span {
+  white-space: nowrap;
+}
+
+.interactive-card {
+  transition: transform 200ms var(--radar-transition), box-shadow 200ms var(--radar-transition), border-color 200ms var(--radar-transition), background-color 200ms var(--radar-transition);
+  will-change: transform;
+}
+
+.interactive-card:hover {
+  transform: scale(1.015);
+  border-color: oklch(1 0 0 / 0.16);
+  box-shadow: 0 12px 34px -18px oklch(0 0 0 / 0.85), 0 0 0 1px oklch(1 0 0 / 0.05) inset;
+}
+
+.interactive-card:active { transform: scale(0.99); transition-duration: 80ms; }
+.interactive-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.route-transition {
+  min-height: 100%;
+  animation: route-enter 320ms var(--radar-transition) both;
+}
+
+@keyframes route-enter {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 767px) {
+  body::before { background-attachment: scroll; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { background-attachment: scroll; }
+  .route-transition,
+  .interactive-card { animation: none !important; transition: none !important; }
+  .interactive-card:hover,
+  .interactive-card:active { transform: none; }
 }
