@@ -9,7 +9,8 @@ export const Route = createFileRoute("/hub/consultation")({
       { title: "Consultation Booking — RADARMe" },
       {
         name: "description",
-        content: "Book 1:1 sessions with A&R, marketing and industry strategists on the RADARMe roster.",
+        content:
+          "Book 1:1 sessions with A&R, marketing and industry strategists on the RADARMe roster.",
       },
     ],
   }),
@@ -51,8 +52,12 @@ function ConsultationPage() {
       icon={<CalendarCheck size={22} />}
       actions={
         <>
-          <Button variant="gold" size="sm">Browse all experts</Button>
-          <Button variant="secondary" size="sm">My bookings</Button>
+          <Button variant="gold" size="sm">
+            Browse all experts
+          </Button>
+          <Button variant="secondary" size="sm">
+            My bookings
+          </Button>
         </>
       }
     >
@@ -63,7 +68,10 @@ function ConsultationPage() {
             <Card key={e.name} className="p-4">
               <div className="flex items-start gap-3">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-surface-2 font-display text-base font-semibold text-gold hairline">
-                  {e.name.split(" ").map((s) => s[0]).join("")}
+                  {e.name
+                    .split(" ")
+                    .map((s) => s[0])
+                    .join("")}
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-2">

@@ -39,7 +39,8 @@ function SpotlightPage() {
                 <h3 className="font-display text-lg font-semibold">{s.name}</h3>
                 <p className="text-[12px] text-muted-foreground">Based in {s.city}</p>
                 <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-muted-foreground">
-                  The producer reshaping club music with West African rhythm, one 128 BPM loop at a time.
+                  The producer reshaping club music with West African rhythm, one 128 BPM loop at a
+                  time.
                 </p>
               </div>
             </article>

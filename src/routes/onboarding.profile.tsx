@@ -39,7 +39,8 @@ function ProfileRoute() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
-    if (displayName.trim().length < 2) return setError("Your artist name needs at least 2 characters.");
+    if (displayName.trim().length < 2)
+      return setError("Your artist name needs at least 2 characters.");
     const uname = username.trim().toLowerCase();
     if (!/^[a-z0-9_.]{3,24}$/.test(uname))
       return setError("Username must be 3–24 chars — letters, numbers, . or _");
@@ -56,7 +57,11 @@ function ProfileRoute() {
     <AuthLayout
       backTo="/auth/verify"
       eyebrow="Step 1 of 2"
-      title={<>Create your <span className="text-gold">profile</span></>}
+      title={
+        <>
+          Create your <span className="text-gold">profile</span>
+        </>
+      }
       subtitle="How the RADARNetwork will find and recognise you."
     >
       <div className="mb-6">
@@ -110,7 +115,13 @@ function ProfileRoute() {
         </div>
         <FormError>{error}</FormError>
         <Button type="submit" variant="gold" size="lg" className="mt-2 w-full" disabled={busy}>
-          {busy ? "Saving…" : (<>Continue <ArrowRight size={16} /></>)}
+          {busy ? (
+            "Saving…"
+          ) : (
+            <>
+              Continue <ArrowRight size={16} />
+            </>
+          )}
         </Button>
       </form>
     </AuthLayout>

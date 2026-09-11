@@ -1,12 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export type OrderStatus =
-  | "pending"
-  | "in_review"
-  | "processing"
-  | "delivered"
-  | "cancelled";
+export type OrderStatus = "pending" | "in_review" | "processing" | "delivered" | "cancelled";
 
 const STATUS_META: Record<OrderStatus, { label: string; tone: string }> = {
   pending: { label: "Pending", tone: "bg-surface-2 text-muted-foreground" },

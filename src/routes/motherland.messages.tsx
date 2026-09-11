@@ -7,7 +7,10 @@ export const Route = createFileRoute("/motherland/messages")({
   head: () => ({
     meta: [
       { title: "Messages — MOTHERLand" },
-      { name: "description", content: "Private, warm conversations with the women you create alongside." },
+      {
+        name: "description",
+        content: "Private, warm conversations with the women you create alongside.",
+      },
     ],
   }),
   component: MessagesPage,
@@ -16,7 +19,13 @@ export const Route = createFileRoute("/motherland/messages")({
 const THREADS = [
   { name: "Isla Moreno", last: "Sending the vocal stems now ✨", time: "2m", unread: 2 },
   { name: "Nadia Vasquez", last: "Loved the pitch. Let's refine tomorrow.", time: "1h", unread: 0 },
-  { name: "Producers' brunch", last: "Kemi: bringing pastries!", time: "3h", unread: 5, group: true },
+  {
+    name: "Producers' brunch",
+    last: "Kemi: bringing pastries!",
+    time: "3h",
+    unread: 5,
+    group: true,
+  },
   { name: "Fatima Diallo", last: "Session confirmed for Friday.", time: "Yesterday", unread: 0 },
   { name: "Amara Okonkwo", last: "That kick pattern was insane 🔥", time: "2d", unread: 0 },
 ];

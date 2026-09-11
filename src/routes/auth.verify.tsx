@@ -83,10 +83,15 @@ function VerifyRoute() {
     <AuthLayout
       backTo="/auth/register"
       eyebrow="One more step"
-      title={<>Verify your <span className="text-gold">email</span></>}
+      title={
+        <>
+          Verify your <span className="text-gold">email</span>
+        </>
+      }
       subtitle={
         <>
-          We sent a 6-digit code to <span className="text-foreground">{session?.email}</span>. Enter it below to activate your account.
+          We sent a 6-digit code to <span className="text-foreground">{session?.email}</span>. Enter
+          it below to activate your account.
         </>
       }
     >
@@ -101,7 +106,9 @@ function VerifyRoute() {
           {digits.map((d, i) => (
             <input
               key={i}
-              ref={(el) => { refs.current[i] = el; }}
+              ref={(el) => {
+                refs.current[i] = el;
+              }}
               value={d}
               onChange={(e) => setAt(i, e.target.value)}
               onKeyDown={(e) => onKey(i, e)}
@@ -113,7 +120,9 @@ function VerifyRoute() {
               className={[
                 "h-14 w-11 rounded-2xl bg-surface-2 text-center font-display text-xl font-semibold",
                 "hairline transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring",
-                d ? "text-foreground shadow-[inset_0_0_0_1px_var(--gold)]" : "text-muted-foreground",
+                d
+                  ? "text-foreground shadow-[inset_0_0_0_1px_var(--gold)]"
+                  : "text-muted-foreground",
               ].join(" ")}
             />
           ))}
@@ -128,16 +137,18 @@ function VerifyRoute() {
           disabled={!complete || busy}
           onClick={submit}
         >
-          {busy ? "Verifying…" : (<>Verify email <ArrowRight size={16} /></>)}
+          {busy ? (
+            "Verifying…"
+          ) : (
+            <>
+              Verify email <ArrowRight size={16} />
+            </>
+          )}
         </Button>
 
         <div className="text-center text-sm text-muted-foreground">
           Didn't get it?{" "}
-          <button
-            type="button"
-            onClick={resend}
-            className="text-gold hover:underline"
-          >
+          <button type="button" onClick={resend} className="text-gold hover:underline">
             Resend code
           </button>
           {resentAt && (

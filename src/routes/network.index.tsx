@@ -48,17 +48,17 @@ type Sect = {
 };
 
 const sections: Sect[] = [
-  { to: "/network/magazine",   label: "Magazine",         icon: <BookOpen size={16} /> },
-  { to: "/network/articles",   label: "Release Articles", icon: <Newspaper size={16} /> },
-  { to: "/network/spotlight",  label: "Artist Spotlight", icon: <Star size={16} /> },
-  { to: "/network/discovery",  label: "Discovery",        icon: <Compass size={16} /> },
-  { to: "/network/playlists",  label: "Playlists",        icon: <ListMusic size={16} /> },
-  { to: "/network/tv",         label: "RADAR TV",         icon: <Tv size={16} /> },
-  { to: "/network/videos",     label: "Video Library",    icon: <Film size={16} /> },
-  { to: "/network/interviews", label: "Interviews",       icon: <Mic2 size={16} /> },
-  { to: "/network/artists",    label: "Artist Profiles",  icon: <UserRound size={16} /> },
-  { to: "/network/bookmarks",  label: "Bookmarks",        icon: <Bookmark size={16} /> },
-  { to: "/network/search",     label: "Search",           icon: <Search size={16} /> },
+  { to: "/network/magazine", label: "Magazine", icon: <BookOpen size={16} /> },
+  { to: "/network/articles", label: "Release Articles", icon: <Newspaper size={16} /> },
+  { to: "/network/spotlight", label: "Artist Spotlight", icon: <Star size={16} /> },
+  { to: "/network/discovery", label: "Discovery", icon: <Compass size={16} /> },
+  { to: "/network/playlists", label: "Playlists", icon: <ListMusic size={16} /> },
+  { to: "/network/tv", label: "RADAR TV", icon: <Tv size={16} /> },
+  { to: "/network/videos", label: "Video Library", icon: <Film size={16} /> },
+  { to: "/network/interviews", label: "Interviews", icon: <Mic2 size={16} /> },
+  { to: "/network/artists", label: "Artist Profiles", icon: <UserRound size={16} /> },
+  { to: "/network/bookmarks", label: "Bookmarks", icon: <Bookmark size={16} /> },
+  { to: "/network/search", label: "Search", icon: <Search size={16} /> },
 ];
 
 function NetworkHome() {
@@ -74,11 +74,13 @@ function NetworkHome() {
           RADARNetwork · Issue 12
         </p>
         <h1 className="relative mt-2 font-display text-[34px] font-semibold leading-[1.02] tracking-tight sm:text-5xl">
-          The stories<br />shaping the sound.
+          The stories
+          <br />
+          shaping the sound.
         </h1>
         <p className="relative mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-          Long-form journalism, artist spotlights, curated playlists and RADAR TV — the
-          editorial ecosystem behind the artists on RADARCharts.
+          Long-form journalism, artist spotlights, curated playlists and RADAR TV — the editorial
+          ecosystem behind the artists on RADARCharts.
         </p>
       </div>
 
@@ -125,25 +127,28 @@ function NetworkHome() {
 
         <EditorialSection title="This week on RADAR TV">
           <div className="grid grid-cols-2 gap-3">
-            {["Live at ON THE RADAR", "In studio · Amaarae", "Tour diary · Kigali", "The Producer Room"].map(
-              (t, i) => (
-                <Link
-                  key={t}
-                  to="/network/tv"
-                  className="group block overflow-hidden rounded-2xl hairline glass-reflect"
-                >
-                  <Cover seed={t} label={i === 0 ? "Live" : "Ep."} aspect="16/10" />
-                  <div className="p-3">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Episode {i + 1}
-                    </p>
-                    <p className="mt-0.5 line-clamp-2 font-display text-[13px] font-semibold leading-snug">
-                      {t}
-                    </p>
-                  </div>
-                </Link>
-              ),
-            )}
+            {[
+              "Live at ON THE RADAR",
+              "In studio · Amaarae",
+              "Tour diary · Kigali",
+              "The Producer Room",
+            ].map((t, i) => (
+              <Link
+                key={t}
+                to="/network/tv"
+                className="group block overflow-hidden rounded-2xl hairline glass-reflect"
+              >
+                <Cover seed={t} label={i === 0 ? "Live" : "Ep."} aspect="16/10" />
+                <div className="p-3">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                    Episode {i + 1}
+                  </p>
+                  <p className="mt-0.5 line-clamp-2 font-display text-[13px] font-semibold leading-snug">
+                    {t}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </EditorialSection>
       </div>

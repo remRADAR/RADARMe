@@ -4,11 +4,11 @@ This package makes the remRADAR opening clip reusable in another web app, landin
 
 ## Assets to copy
 
-| File | Purpose | Size | Format |
-|---|---|---:|---|
-| `remradar-opening.webm` | Primary browser delivery | 942 KB | VP9, 1080×1920, 30 fps, 8 seconds |
-| `remradar-opening.mp4` | Safari/iOS and fallback delivery | 1.62 MB | H.264, 1080×1920, 30 fps, 8 seconds |
-| `remradar-opening-poster.jpg` | Immediate visual fallback and reduced-motion image | 127 KB | JPEG, 1080×1920 |
+| File                          | Purpose                                            |    Size | Format                              |
+| ----------------------------- | -------------------------------------------------- | ------: | ----------------------------------- |
+| `remradar-opening.webm`       | Primary browser delivery                           |  942 KB | VP9, 1080×1920, 30 fps, 8 seconds   |
+| `remradar-opening.mp4`        | Safari/iOS and fallback delivery                   | 1.62 MB | H.264, 1080×1920, 30 fps, 8 seconds |
+| `remradar-opening-poster.jpg` | Immediate visual fallback and reduced-motion image |  127 KB | JPEG, 1080×1920                     |
 
 The source files are available in this repository at `public/media/welcome/`.
 
@@ -133,59 +133,63 @@ body.remradar-welcome-active {
 
 ```html
 <script>
-(() => {
-  const gate = document.getElementById('remradar-welcome');
-  const video = gate?.querySelector('video');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const DISPLAY_MS = 8000;
-  const EXIT_MS = 1200;
-  let dismissed = false;
-  let displayTimer;
-  let exitTimer;
+  (() => {
+    const gate = document.getElementById("remradar-welcome");
+    const video = gate?.querySelector("video");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const DISPLAY_MS = 8000;
+    const EXIT_MS = 1200;
+    let dismissed = false;
+    let displayTimer;
+    let exitTimer;
 
-  if (!gate) return;
+    if (!gate) return;
 
-  document.documentElement.classList.add('remradar-welcome-active');
-  document.body.classList.add('remradar-welcome-active');
+    document.documentElement.classList.add("remradar-welcome-active");
+    document.body.classList.add("remradar-welcome-active");
 
-  const dismiss = () => {
-    if (dismissed) return;
-    dismissed = true;
-    window.clearTimeout(displayTimer);
-    window.clearTimeout(exitTimer);
-    gate.classList.add('is-exiting');
+    const dismiss = () => {
+      if (dismissed) return;
+      dismissed = true;
+      window.clearTimeout(displayTimer);
+      window.clearTimeout(exitTimer);
+      gate.classList.add("is-exiting");
 
-    exitTimer = window.setTimeout(() => {
-      gate.remove();
-      document.documentElement.classList.remove('remradar-welcome-active');
-      document.body.classList.remove('remradar-welcome-active');
-    }, EXIT_MS);
-  };
+      exitTimer = window.setTimeout(() => {
+        gate.remove();
+        document.documentElement.classList.remove("remradar-welcome-active");
+        document.body.classList.remove("remradar-welcome-active");
+      }, EXIT_MS);
+    };
 
-  if (reducedMotion) {
-    window.setTimeout(dismiss, 550);
-    return;
-  }
+    if (reducedMotion) {
+      window.setTimeout(dismiss, 550);
+      return;
+    }
 
-  displayTimer = window.setTimeout(dismiss, DISPLAY_MS);
-  video?.addEventListener('ended', dismiss, { once: true });
-  video?.addEventListener('error', () => {
-    // Keep the poster visible briefly if the video cannot be decoded.
-    window.setTimeout(dismiss, 650);
-  }, { once: true });
+    displayTimer = window.setTimeout(dismiss, DISPLAY_MS);
+    video?.addEventListener("ended", dismiss, { once: true });
+    video?.addEventListener(
+      "error",
+      () => {
+        // Keep the poster visible briefly if the video cannot be decoded.
+        window.setTimeout(dismiss, 650);
+      },
+      { once: true },
+    );
 
-  const play = () => {
-    if (!video || dismissed) return;
-    video.play().catch(() => {
-      window.setTimeout(dismiss, 850);
-    });
-  };
+    const play = () => {
+      if (!video || dismissed) return;
+      video.play().catch(() => {
+        window.setTimeout(dismiss, 850);
+      });
+    };
 
-  if (video) {
-    video.addEventListener('loadedmetadata', play, { once: true });
-    play();
-  }
-})();
+    if (video) {
+      video.addEventListener("loadedmetadata", play, { once: true });
+      play();
+    }
+  })();
 </script>
 ```
 

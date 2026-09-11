@@ -2,7 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Receipt, UploadCloud, ListMusic, Megaphone, PenLine, CalendarCheck } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/radar";
-import { ServicePage, SectionHeader, OrderRow, OrderList, type OrderStatus } from "@/components/hub";
+import {
+  ServicePage,
+  SectionHeader,
+  OrderRow,
+  OrderList,
+  type OrderStatus,
+} from "@/components/hub";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/hub/orders")({
@@ -28,7 +34,7 @@ const ORDERS: Order[] = [
   {
     icon: UploadCloud,
     title: "Album distribution",
-    subtitle: "\"Nightlines\" · 9 tracks",
+    subtitle: '"Nightlines" · 9 tracks',
     amount: "$29.00",
     status: "processing",
     date: "Today",
@@ -86,7 +92,11 @@ function OrdersPage() {
       title="Everything you've ordered."
       description="Track status, download deliverables and re-order services from a single place."
       icon={<Receipt size={22} />}
-      actions={<Button variant="secondary" size="sm">Download all invoices</Button>}
+      actions={
+        <Button variant="secondary" size="sm">
+          Download all invoices
+        </Button>
+      }
     >
       <section className="flex gap-2 overflow-x-auto pb-1">
         {FILTERS.map((f) => (

@@ -26,7 +26,10 @@ export function IntelPage({
 }) {
   return (
     <div className="relative min-h-dvh animate-page-in">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] overflow-hidden"
+      >
         <div
           className="absolute -left-24 -top-24 h-[380px] w-[380px] rounded-full opacity-60 blur-3xl animate-hero-drift-a"
           style={{ background: "var(--gradient-radial-gold)" }}

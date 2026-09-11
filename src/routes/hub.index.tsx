@@ -62,10 +62,30 @@ const CATEGORIES: Category[] = [
     desc: "Release, pitch, promote",
     icon: <Briefcase size={16} />,
     links: [
-      { to: "/hub/distribution",   label: "Distribution",     hint: "Ship your music",       icon: <UploadCloud size={16} /> },
-      { to: "/hub/playlist-pitch", label: "Playlist Pitch",   hint: "Editorial + curators",  icon: <ListMusic size={16} /> },
-      { to: "/hub/marketing",      label: "Marketing",        hint: "Reach new listeners",   icon: <Megaphone size={16} /> },
-      { to: "/hub/editorial",      label: "Editorial",        hint: "Long-form + press",     icon: <PenLine size={16} /> },
+      {
+        to: "/hub/distribution",
+        label: "Distribution",
+        hint: "Ship your music",
+        icon: <UploadCloud size={16} />,
+      },
+      {
+        to: "/hub/playlist-pitch",
+        label: "Playlist Pitch",
+        hint: "Editorial + curators",
+        icon: <ListMusic size={16} />,
+      },
+      {
+        to: "/hub/marketing",
+        label: "Marketing",
+        hint: "Reach new listeners",
+        icon: <Megaphone size={16} />,
+      },
+      {
+        to: "/hub/editorial",
+        label: "Editorial",
+        hint: "Long-form + press",
+        icon: <PenLine size={16} />,
+      },
     ],
   },
   {
@@ -74,10 +94,30 @@ const CATEGORIES: Category[] = [
     desc: "Money, orders, bookings",
     icon: <Coins size={16} />,
     links: [
-      { to: "/hub/wallet",       label: "Wallet",       hint: "Balance & payouts",    icon: <WalletIcon size={16} /> },
-      { to: "/hub/referrals",    label: "RADAR Coins",  hint: "Referral rewards",     icon: <Gift size={16} /> },
-      { to: "/hub/orders",       label: "Invoices",     hint: "Orders & receipts",    icon: <Receipt size={16} /> },
-      { to: "/hub/consultation", label: "Bookings",     hint: "1:1 sessions",         icon: <CalendarCheck size={16} /> },
+      {
+        to: "/hub/wallet",
+        label: "Wallet",
+        hint: "Balance & payouts",
+        icon: <WalletIcon size={16} />,
+      },
+      {
+        to: "/hub/referrals",
+        label: "RADAR Coins",
+        hint: "Referral rewards",
+        icon: <Gift size={16} />,
+      },
+      {
+        to: "/hub/orders",
+        label: "Invoices",
+        hint: "Orders & receipts",
+        icon: <Receipt size={16} />,
+      },
+      {
+        to: "/hub/consultation",
+        label: "Bookings",
+        hint: "1:1 sessions",
+        icon: <CalendarCheck size={16} />,
+      },
     ],
   },
   {
@@ -86,10 +126,30 @@ const CATEGORIES: Category[] = [
     desc: "Plan, analyse, consult",
     icon: <TrendingUp size={16} />,
     links: [
-      { to: "/hub/career-planner", label: "Career Planner", hint: "Quarterly roadmap",  icon: <CalendarClock size={16} /> },
-      { to: "/hub/marketing",      label: "Campaigns",      hint: "Active promotions",  icon: <Megaphone size={16} /> },
-      { to: "/hub/consultation",   label: "Consultation",   hint: "Expert advice",      icon: <CalendarCheck size={16} /> },
-      { to: "/hub/support",        label: "Creator Support", hint: "Help centre",       icon: <LifeBuoy size={16} /> },
+      {
+        to: "/hub/career-planner",
+        label: "Career Planner",
+        hint: "Quarterly roadmap",
+        icon: <CalendarClock size={16} />,
+      },
+      {
+        to: "/hub/marketing",
+        label: "Campaigns",
+        hint: "Active promotions",
+        icon: <Megaphone size={16} />,
+      },
+      {
+        to: "/hub/consultation",
+        label: "Consultation",
+        hint: "Expert advice",
+        icon: <CalendarCheck size={16} />,
+      },
+      {
+        to: "/hub/support",
+        label: "Creator Support",
+        hint: "Help centre",
+        icon: <LifeBuoy size={16} />,
+      },
     ],
   },
 ];
@@ -111,7 +171,8 @@ function HubHome() {
           Your business engine.
         </h1>
         <p className="relative mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-          Every service you need to run your artist career — grouped, focused, one clear action at a time.
+          Every service you need to run your artist career — grouped, focused, one clear action at a
+          time.
         </p>
       </header>
 

@@ -86,15 +86,7 @@ function ProfilePage() {
   );
 }
 
-function Row({
-  icon,
-  label,
-  hint,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  hint: string;
-}) {
+function Row({ icon, label, hint }: { icon: React.ReactNode; label: string; hint: string }) {
   return (
     <li>
       <Link

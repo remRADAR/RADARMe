@@ -7,13 +7,23 @@ export const Route = createFileRoute("/network/search")({
   head: () => ({
     meta: [
       { title: "Search — RADARNetwork" },
-      { name: "description", content: "Search articles, videos, playlists and artist profiles across RADARNetwork." },
+      {
+        name: "description",
+        content: "Search articles, videos, playlists and artist profiles across RADARNetwork.",
+      },
     ],
   }),
   component: NetworkSearchPage,
 });
 
-const trending = ["Amaarae", "Amapiano", "Sync deals", "Tour diary", "Odumodublvck", "Producer picks"];
+const trending = [
+  "Amaarae",
+  "Amapiano",
+  "Sync deals",
+  "Tour diary",
+  "Odumodublvck",
+  "Producer picks",
+];
 const categories = ["Articles", "Videos", "Playlists", "Artists", "Interviews"];
 
 function NetworkSearchPage() {

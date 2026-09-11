@@ -9,9 +9,9 @@ export const Route = createFileRoute("/intelligence/goals")({
 
 const goals = [
   { g: "Reach 200K monthly listeners", pct: 64 },
-  { g: "Land 3 editorial playlists",   pct: 33 },
-  { g: "Book 5 collaborations",        pct: 80 },
-  { g: "Grow email list to 5,000",     pct: 42 },
+  { g: "Land 3 editorial playlists", pct: 33 },
+  { g: "Book 5 collaborations", pct: 80 },
+  { g: "Grow email list to 5,000", pct: 42 },
 ];
 
 function Goals() {

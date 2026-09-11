@@ -29,7 +29,12 @@ const TIERS: PricingTierData[] = [
     price: "$9",
     cadence: "release",
     tagline: "One track, unlimited stores.",
-    features: ["Distribution to 150+ DSPs", "Keep 100% royalties", "Basic analytics", "ISRC included"],
+    features: [
+      "Distribution to 150+ DSPs",
+      "Keep 100% royalties",
+      "Basic analytics",
+      "ISRC included",
+    ],
   },
   {
     name: "Album",
@@ -94,10 +99,7 @@ function DistributionPage() {
         <SectionHeader title="Delivered to" />
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {DSPS.map((d) => (
-            <div
-              key={d}
-              className="flex items-center gap-2 rounded-xl bg-surface p-3 hairline"
-            >
+            <div key={d} className="flex items-center gap-2 rounded-xl bg-surface p-3 hairline">
               <span className="grid h-6 w-6 place-items-center rounded-full bg-surface-2 text-gold">
                 <Music2 size={12} />
               </span>
@@ -115,7 +117,8 @@ function DistributionPage() {
           <div>
             <h3 className="text-sm font-semibold">Rights protection included</h3>
             <p className="mt-1 text-xs text-muted-foreground">
-              Content ID enrollment, takedown support and split-royalty automation ship with every plan.
+              Content ID enrollment, takedown support and split-royalty automation ship with every
+              plan.
             </p>
           </div>
         </div>

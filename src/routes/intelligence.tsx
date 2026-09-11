@@ -6,7 +6,8 @@ export const Route = createFileRoute("/intelligence")({
       { title: "RADAR Intelligence — RADARMe" },
       {
         name: "description",
-        content: "RADAR Intelligence — the immersive AI-powered career operating system inside RADARMe.",
+        content:
+          "RADAR Intelligence — the immersive AI-powered career operating system inside RADARMe.",
       },
     ],
   }),

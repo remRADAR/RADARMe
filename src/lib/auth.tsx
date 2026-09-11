@@ -94,16 +94,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       hydrated,
       async signIn(email) {
         await delay(650);
-        const next: Session = session?.email === email
-          ? { ...session }
-          : {
-              id: crypto.randomUUID(),
-              email,
-              verified: true,
-              createdAt: Date.now(),
-              profile: null,
-              onboardedAt: null,
-            };
+        const next: Session =
+          session?.email === email
+            ? { ...session }
+            : {
+                id: crypto.randomUUID(),
+                email,
+                verified: true,
+                createdAt: Date.now(),
+                profile: null,
+                onboardedAt: null,
+              };
         update(next);
         return next;
       },

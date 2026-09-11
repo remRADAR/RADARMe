@@ -21,8 +21,7 @@ export const Route = createFileRoute("/motherland/")({
       { title: "MOTHERLand — RADARMe" },
       {
         name: "description",
-        content:
-          "MOTHERLand — a premium ecosystem dedicated to empowering female creatives.",
+        content: "MOTHERLand — a premium ecosystem dedicated to empowering female creatives.",
       },
     ],
   }),
@@ -30,15 +29,60 @@ export const Route = createFileRoute("/motherland/")({
 });
 
 const MODULES = [
-  { to: "/motherland/feed", label: "Creative Feed", desc: "Work from women you follow", icon: Sparkles },
-  { to: "/motherland/mentorship", label: "Mentorship", desc: "1:1 with industry mothers", icon: HeartHandshake },
-  { to: "/motherland/learning", label: "Learning Centre", desc: "Craft, business & voice", icon: GraduationCap },
-  { to: "/motherland/events", label: "Events", desc: "Live rooms, meetups, showcases", icon: CalendarHeart },
-  { to: "/motherland/challenges", label: "Challenges", desc: "Monthly creative sprints", icon: Flame },
-  { to: "/motherland/recognition", label: "Recognition", desc: "Awards, features, spotlights", icon: Trophy },
-  { to: "/motherland/discovery", label: "Creative Discovery", desc: "Find kindred artists", icon: Search },
-  { to: "/motherland/messages", label: "Messages", desc: "Private, warm conversations", icon: MessagesSquare },
-  { to: "/motherland/notifications", label: "Notifications", desc: "Signals from the sisterhood", icon: BellDot },
+  {
+    to: "/motherland/feed",
+    label: "Creative Feed",
+    desc: "Work from women you follow",
+    icon: Sparkles,
+  },
+  {
+    to: "/motherland/mentorship",
+    label: "Mentorship",
+    desc: "1:1 with industry mothers",
+    icon: HeartHandshake,
+  },
+  {
+    to: "/motherland/learning",
+    label: "Learning Centre",
+    desc: "Craft, business & voice",
+    icon: GraduationCap,
+  },
+  {
+    to: "/motherland/events",
+    label: "Events",
+    desc: "Live rooms, meetups, showcases",
+    icon: CalendarHeart,
+  },
+  {
+    to: "/motherland/challenges",
+    label: "Challenges",
+    desc: "Monthly creative sprints",
+    icon: Flame,
+  },
+  {
+    to: "/motherland/recognition",
+    label: "Recognition",
+    desc: "Awards, features, spotlights",
+    icon: Trophy,
+  },
+  {
+    to: "/motherland/discovery",
+    label: "Creative Discovery",
+    desc: "Find kindred artists",
+    icon: Search,
+  },
+  {
+    to: "/motherland/messages",
+    label: "Messages",
+    desc: "Private, warm conversations",
+    icon: MessagesSquare,
+  },
+  {
+    to: "/motherland/notifications",
+    label: "Notifications",
+    desc: "Signals from the sisterhood",
+    icon: BellDot,
+  },
 ] as const;
 
 const HIGHLIGHTS = [
@@ -62,9 +106,7 @@ function MotherlandHome() {
           style={{ background: "var(--gradient-rose-wash)" }}
         />
         <div className="relative">
-          <span className="text-[10px] uppercase tracking-[0.24em] text-rose">
-            Community pulse
-          </span>
+          <span className="text-[10px] uppercase tracking-[0.24em] text-rose">Community pulse</span>
           <p className="mt-2 font-display text-xl leading-snug">
             2,418 women are creating with you this week.
           </p>
@@ -102,7 +144,10 @@ function MotherlandHome() {
       <MotherSection
         title="Sisterhood highlights"
         trailing={
-          <Link to="/motherland/feed" className="inline-flex items-center gap-1 text-[11px] text-rose">
+          <Link
+            to="/motherland/feed"
+            className="inline-flex items-center gap-1 text-[11px] text-rose"
+          >
             Open feed <ArrowRight size={12} />
           </Link>
         }

@@ -8,11 +8,11 @@ export const Route = createFileRoute("/intelligence/timeline")({
 });
 
 const events = [
-  { date: "2024", label: "First single released",   done: true },
+  { date: "2024", label: "First single released", done: true },
   { date: "2025", label: "1,000 monthly listeners", done: true },
-  { date: "2025", label: "First tour · 3 cities",   done: true },
-  { date: "2026", label: "100K monthly listeners",  done: true },
-  { date: "2026", label: "Editorial playlist add",  done: false },
+  { date: "2025", label: "First tour · 3 cities", done: true },
+  { date: "2026", label: "100K monthly listeners", done: true },
+  { date: "2026", label: "Editorial playlist add", done: false },
   { date: "2027", label: "First international tour", done: false },
 ];
 
@@ -34,7 +34,9 @@ function Timeline() {
                 <Circle size={10} className="text-muted-foreground" />
               )}
             </span>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">{e.date}</p>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              {e.date}
+            </p>
             <p className="font-display text-[15px] font-semibold leading-tight">{e.label}</p>
           </li>
         ))}

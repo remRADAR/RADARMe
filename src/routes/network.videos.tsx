@@ -6,7 +6,11 @@ export const Route = createFileRoute("/network/videos")({
   head: () => ({
     meta: [
       { title: "Video Library — RADARNetwork" },
-      { name: "description", content: "The full RADARNetwork video library — visualizers, live cuts and behind-the-scenes." },
+      {
+        name: "description",
+        content:
+          "The full RADARNetwork video library — visualizers, live cuts and behind-the-scenes.",
+      },
     ],
   }),
   component: VideoLibrary,
@@ -43,7 +47,9 @@ function VideoLibrary() {
             type="button"
             aria-pressed={i === 0}
             className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] font-medium hairline ${
-              i === 0 ? "bg-gold text-gold-foreground" : "bg-surface text-foreground hover:bg-surface-2"
+              i === 0
+                ? "bg-gold text-gold-foreground"
+                : "bg-surface text-foreground hover:bg-surface-2"
             }`}
           >
             {f}
@@ -54,7 +60,10 @@ function VideoLibrary() {
       <EditorialSection title="Latest">
         <div className="grid grid-cols-2 gap-3">
           {videos.map((v) => (
-            <article key={v.title} className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect">
+            <article
+              key={v.title}
+              className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect"
+            >
               <div className="relative">
                 <Cover seed={v.title} aspect="16/10" />
                 <span className="absolute bottom-2 right-2 rounded-md bg-black/60 px-1.5 py-0.5 text-[10px] font-medium text-white backdrop-blur">

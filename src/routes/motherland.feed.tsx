@@ -7,7 +7,10 @@ export const Route = createFileRoute("/motherland/feed")({
   head: () => ({
     meta: [
       { title: "Creative Feed — MOTHERLand" },
-      { name: "description", content: "Work, thoughts and moments from women creating across RADARMe." },
+      {
+        name: "description",
+        content: "Work, thoughts and moments from women creating across RADARMe.",
+      },
     ],
   }),
   component: FeedPage,
@@ -54,7 +57,11 @@ function FeedPage() {
       title="Creative feed."
       description="A calm scroll. No metrics obsession, no follower race — just work being made by women you trust."
       icon={<Sparkles size={22} />}
-      actions={<Button variant="secondary" size="sm">Share something</Button>}
+      actions={
+        <Button variant="secondary" size="sm">
+          Share something
+        </Button>
+      }
     >
       <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
         {FILTERS.map((f, i) => (
@@ -110,13 +117,25 @@ function FeedPage() {
                 </div>
               )}
               <footer className="mt-3 flex items-center gap-4 text-[11px] text-muted-foreground">
-                <button type="button" aria-label={`Like — ${p.likes} likes`} className="inline-flex items-center gap-1 hover:text-rose">
+                <button
+                  type="button"
+                  aria-label={`Like — ${p.likes} likes`}
+                  className="inline-flex items-center gap-1 hover:text-rose"
+                >
                   <Heart size={13} /> {p.likes}
                 </button>
-                <button type="button" aria-label={`Comment — ${p.comments} comments`} className="inline-flex items-center gap-1 hover:text-foreground">
+                <button
+                  type="button"
+                  aria-label={`Comment — ${p.comments} comments`}
+                  className="inline-flex items-center gap-1 hover:text-foreground"
+                >
                   <MessageCircle size={13} /> {p.comments}
                 </button>
-                <button type="button" aria-label="Save post" className="ml-auto inline-flex items-center gap-1 hover:text-foreground">
+                <button
+                  type="button"
+                  aria-label="Save post"
+                  className="ml-auto inline-flex items-center gap-1 hover:text-foreground"
+                >
                   <Bookmark size={13} /> Save
                 </button>
               </footer>

@@ -14,20 +14,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:
-          "bg-foreground text-background hover:opacity-90 elev-1",
-        gold:
-          "bg-gold text-gold-foreground hover:brightness-110 ring-gold",
-        secondary:
-          "bg-surface-2 text-foreground hairline hover:bg-[var(--surface-3)]",
-        ghost:
-          "bg-transparent text-foreground hover:bg-surface-2",
-        outline:
-          "bg-transparent text-foreground hairline hover:bg-surface-2",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:brightness-110",
-        link:
-          "bg-transparent text-gold underline-offset-4 hover:underline rounded-none px-0",
+        primary: "bg-foreground text-background hover:opacity-90 elev-1",
+        gold: "bg-gold text-gold-foreground hover:brightness-110 ring-gold",
+        secondary: "bg-surface-2 text-foreground hairline hover:bg-[var(--surface-3)]",
+        ghost: "bg-transparent text-foreground hover:bg-surface-2",
+        outline: "bg-transparent text-foreground hairline hover:bg-surface-2",
+        destructive: "bg-destructive text-destructive-foreground hover:brightness-110",
+        link: "bg-transparent text-gold underline-offset-4 hover:underline rounded-none px-0",
       },
       size: {
         sm: "h-9 px-4 text-sm",
@@ -41,8 +34,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 

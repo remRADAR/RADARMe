@@ -33,13 +33,12 @@ export function ErrorState({
         <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
       </div>
       <div className="pt-1">
-        {action ?? (
-          onRetry && (
+        {action ??
+          (onRetry && (
             <Button variant="secondary" size="sm" onClick={onRetry}>
               Try again
             </Button>
-          )
-        )}
+          ))}
       </div>
     </div>
   );

@@ -13,13 +13,36 @@ export const Route = createFileRoute("/motherland/discovery")({
   component: DiscoveryPage,
 });
 
-const TAGS = ["Ambient", "Afro-house", "Neo-soul", "Indie folk", "Experimental", "Latin pop", "Jazz"];
+const TAGS = [
+  "Ambient",
+  "Afro-house",
+  "Neo-soul",
+  "Indie folk",
+  "Experimental",
+  "Latin pop",
+  "Jazz",
+];
 
 const PEOPLE = [
-  { name: "Nour Haddad", role: "Cellist & composer", city: "Beirut", note: "Cinematic strings, film scoring" },
-  { name: "Ada Bergström", role: "Bedroom pop", city: "Stockholm", note: "Warm lo-fi, hushed vocals" },
+  {
+    name: "Nour Haddad",
+    role: "Cellist & composer",
+    city: "Beirut",
+    note: "Cinematic strings, film scoring",
+  },
+  {
+    name: "Ada Bergström",
+    role: "Bedroom pop",
+    city: "Stockholm",
+    note: "Warm lo-fi, hushed vocals",
+  },
   { name: "Kemi Adebayo", role: "DJ & selector", city: "London", note: "Late night broken beat" },
-  { name: "Camila Rojas", role: "Guitarist", city: "Mexico City", note: "Nylon strings, bolero revival" },
+  {
+    name: "Camila Rojas",
+    role: "Guitarist",
+    city: "Mexico City",
+    note: "Nylon strings, bolero revival",
+  },
 ];
 
 function DiscoveryPage() {
@@ -50,7 +73,10 @@ function DiscoveryPage() {
       <MotherSection title="You might resonate with">
         <div className="grid grid-cols-1 gap-2">
           {PEOPLE.map((p) => (
-            <div key={p.name} className="flex items-center gap-3 rounded-2xl bg-surface p-4 hairline elev-1">
+            <div
+              key={p.name}
+              className="flex items-center gap-3 rounded-2xl bg-surface p-4 hairline elev-1"
+            >
               <Avatar name={p.name} />
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm font-semibold">{p.name}</div>
@@ -59,7 +85,9 @@ function DiscoveryPage() {
                 </div>
                 <div className="truncate text-[11px] text-foreground/70">{p.note}</div>
               </div>
-              <Button size="sm" variant="secondary">Follow</Button>
+              <Button size="sm" variant="secondary">
+                Follow
+              </Button>
             </div>
           ))}
         </div>

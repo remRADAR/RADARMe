@@ -13,12 +13,12 @@ export const Route = createFileRoute("/network/artists")({
 });
 
 const artists = [
-  { name: "Amaarae",         city: "Accra · Atlanta",  followers: "482K", verified: true },
-  { name: "Odumodublvck",    city: "Abuja",            followers: "610K", verified: true },
-  { name: "Yuki Tanabe",     city: "Tokyo",            followers: "39K",  verified: false },
-  { name: "PinkPantheress",  city: "London",           followers: "2.4M", verified: true },
-  { name: "Mereba",          city: "Atlanta",          followers: "180K", verified: true },
-  { name: "Cruel Santino",   city: "Lagos",            followers: "410K", verified: true },
+  { name: "Amaarae", city: "Accra · Atlanta", followers: "482K", verified: true },
+  { name: "Odumodublvck", city: "Abuja", followers: "610K", verified: true },
+  { name: "Yuki Tanabe", city: "Tokyo", followers: "39K", verified: false },
+  { name: "PinkPantheress", city: "London", followers: "2.4M", verified: true },
+  { name: "Mereba", city: "Atlanta", followers: "180K", verified: true },
+  { name: "Cruel Santino", city: "Lagos", followers: "410K", verified: true },
 ];
 
 function ArtistProfiles() {
@@ -32,7 +32,10 @@ function ArtistProfiles() {
       <EditorialSection title="On RADAR">
         <div className="grid grid-cols-2 gap-3">
           {artists.map((a) => (
-            <article key={a.name} className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect">
+            <article
+              key={a.name}
+              className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect"
+            >
               <Cover seed={"artist-" + a.name} aspect="1/1" />
               <div className="p-3">
                 <div className="flex items-center gap-1">

@@ -58,7 +58,11 @@ function RegisterRoute() {
     <AuthLayout
       backTo="/welcome"
       eyebrow="Join RADARMe"
-      title={<>Create your <span className="text-gold">artist</span> account</>}
+      title={
+        <>
+          Create your <span className="text-gold">artist</span> account
+        </>
+      }
       subtitle="Your career, on radar."
       footer={
         <>
@@ -122,7 +126,9 @@ function RegisterRoute() {
                 />
               ))}
             </div>
-            <span className="text-[11px] text-muted-foreground">{password ? strength.label : ""}</span>
+            <span className="text-[11px] text-muted-foreground">
+              {password ? strength.label : ""}
+            </span>
           </div>
         </div>
 
@@ -149,7 +155,13 @@ function RegisterRoute() {
 
         <FormError>{error}</FormError>
         <Button type="submit" variant="gold" size="lg" className="mt-2 w-full" disabled={busy}>
-          {busy ? "Creating account…" : (<>Continue <ArrowRight size={16} /></>)}
+          {busy ? (
+            "Creating account…"
+          ) : (
+            <>
+              Continue <ArrowRight size={16} />
+            </>
+          )}
         </Button>
       </form>
     </AuthLayout>

@@ -31,7 +31,8 @@ export const walletService = {
   async requestPayout(amount: number): Promise<WalletTransaction> {
     const balance = computeBalance();
     if (amount <= 0) throw new ServiceError("Amount must be positive", "WALLET_INVALID_AMOUNT");
-    if (amount > balance.available) throw new ServiceError("Insufficient funds", "WALLET_INSUFFICIENT");
+    if (amount > balance.available)
+      throw new ServiceError("Insufficient funds", "WALLET_INSUFFICIENT");
     const t: WalletTransaction = {
       id: makeId("tx"),
       type: "payout",

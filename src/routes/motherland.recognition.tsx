@@ -6,14 +6,21 @@ export const Route = createFileRoute("/motherland/recognition")({
   head: () => ({
     meta: [
       { title: "Recognition — MOTHERLand" },
-      { name: "description", content: "Awards, features and spotlights for women shaping the sound of now." },
+      {
+        name: "description",
+        content: "Awards, features and spotlights for women shaping the sound of now.",
+      },
     ],
   }),
   component: RecognitionPage,
 });
 
 const SPOTLIGHTS = [
-  { name: "Amara Okonkwo", role: "Producer of the month", note: "Afro-house pack streamed 240k times in a week" },
+  {
+    name: "Amara Okonkwo",
+    role: "Producer of the month",
+    note: "Afro-house pack streamed 240k times in a week",
+  },
   { name: "Isla Moreno", role: "Songwriter feature", note: "Editorial cover · The Softest Season" },
   { name: "Yuki Tanabe", role: "Live artist spotlight", note: "Sold-out Tokyo residency" },
 ];
@@ -51,7 +58,10 @@ function RecognitionPage() {
       <MotherSection title="Open awards & grants">
         <div className="grid grid-cols-1 gap-2">
           {AWARDS.map((a) => (
-            <div key={a.title} className="flex items-center gap-3 rounded-2xl bg-surface p-4 hairline elev-1">
+            <div
+              key={a.title}
+              className="flex items-center gap-3 rounded-2xl bg-surface p-4 hairline elev-1"
+            >
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-rose-soft text-rose">
                 <Award size={16} />
               </span>

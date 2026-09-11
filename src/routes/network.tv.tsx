@@ -6,7 +6,10 @@ export const Route = createFileRoute("/network/tv")({
   head: () => ({
     meta: [
       { title: "RADAR TV — RADARNetwork" },
-      { name: "description", content: "RADAR TV — live shows, sessions and originals from RADARNetwork." },
+      {
+        name: "description",
+        content: "RADAR TV — live shows, sessions and originals from RADARNetwork.",
+      },
     ],
   }),
   component: RadarTVPage,
@@ -30,7 +33,10 @@ function RadarTVPage() {
       <EditorialSection title="Featured" hint="Fresh this week">
         <div className="space-y-4">
           {shows.map((s) => (
-            <article key={s.title} className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect">
+            <article
+              key={s.title}
+              className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect"
+            >
               <div className="relative">
                 <Cover seed={s.title} aspect="16/9" />
                 <span className="absolute left-3 top-3 rounded-full bg-black/50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">

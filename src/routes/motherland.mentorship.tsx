@@ -7,17 +7,48 @@ export const Route = createFileRoute("/motherland/mentorship")({
   head: () => ({
     meta: [
       { title: "Mentorship — MOTHERLand" },
-      { name: "description", content: "1:1 guidance from women who have walked the path in music, business and art." },
+      {
+        name: "description",
+        content: "1:1 guidance from women who have walked the path in music, business and art.",
+      },
     ],
   }),
   component: MentorshipPage,
 });
 
 const MENTORS = [
-  { name: "Nadia Vasquez", role: "A&R · Universal Latin", focus: "Songwriting, positioning", rating: 4.9, price: "$120 / hr", slots: 3 },
-  { name: "Fatima Diallo", role: "Founder · Studio Baya", focus: "Independent business, sync", rating: 5.0, price: "$180 / hr", slots: 1 },
-  { name: "Leah Osei", role: "Touring vocalist", focus: "Live performance, stamina", rating: 4.8, price: "$95 / hr", slots: 5 },
-  { name: "Sun-Mi Park", role: "Music supervisor", focus: "Film & TV placements", rating: 4.9, price: "$150 / hr", slots: 2 },
+  {
+    name: "Nadia Vasquez",
+    role: "A&R · Universal Latin",
+    focus: "Songwriting, positioning",
+    rating: 4.9,
+    price: "$120 / hr",
+    slots: 3,
+  },
+  {
+    name: "Fatima Diallo",
+    role: "Founder · Studio Baya",
+    focus: "Independent business, sync",
+    rating: 5.0,
+    price: "$180 / hr",
+    slots: 1,
+  },
+  {
+    name: "Leah Osei",
+    role: "Touring vocalist",
+    focus: "Live performance, stamina",
+    rating: 4.8,
+    price: "$95 / hr",
+    slots: 5,
+  },
+  {
+    name: "Sun-Mi Park",
+    role: "Music supervisor",
+    focus: "Film & TV placements",
+    rating: 4.9,
+    price: "$150 / hr",
+    slots: 2,
+  },
 ];
 
 function MentorshipPage() {
@@ -34,11 +65,18 @@ function MentorshipPage() {
           2 sessions completed. Next check-in in 12 days.
         </p>
         <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
-          <div className="h-full rounded-full" style={{ width: "40%", background: "var(--rose)" }} />
+          <div
+            className="h-full rounded-full"
+            style={{ width: "40%", background: "var(--rose)" }}
+          />
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
-          <Button variant="secondary" size="sm">My mentors</Button>
-          <Button variant="ghost" size="sm">Session history</Button>
+          <Button variant="secondary" size="sm">
+            My mentors
+          </Button>
+          <Button variant="ghost" size="sm">
+            Session history
+          </Button>
         </div>
       </Card>
 
@@ -56,7 +94,9 @@ function MentorshipPage() {
                     </span>
                   </div>
                   <div className="truncate text-[11px] text-muted-foreground">{m.role}</div>
-                  <div className="mt-1 truncate text-[11px] text-foreground/80">Focus: {m.focus}</div>
+                  <div className="mt-1 truncate text-[11px] text-foreground/80">
+                    Focus: {m.focus}
+                  </div>
                 </div>
                 <div className="text-right">
                   <div className="font-display text-sm font-semibold">{m.price}</div>
@@ -66,7 +106,9 @@ function MentorshipPage() {
                 </div>
               </div>
               <div className="mt-3 flex gap-2">
-                <Button size="sm" variant="secondary">View profile</Button>
+                <Button size="sm" variant="secondary">
+                  View profile
+                </Button>
                 <Button size="sm">
                   <Calendar size={13} /> Book session
                 </Button>

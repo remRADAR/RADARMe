@@ -22,7 +22,10 @@ export const Route = createFileRoute("/intelligence/")({
   head: () => ({
     meta: [
       { title: "RADAR Intelligence — Command Deck" },
-      { name: "description", content: "The command deck for your artist career, powered by RADAR Intelligence." },
+      {
+        name: "description",
+        content: "The command deck for your artist career, powered by RADAR Intelligence.",
+      },
     ],
   }),
   component: IntelHome,
@@ -44,20 +47,66 @@ type Nav = {
 };
 
 const modules: Nav[] = [
-  { to: "/intelligence/planner",         label: "Career Planner",     hint: "Quarterly roadmap", icon: <CalendarClock size={16} /> },
-  { to: "/intelligence/goals",           label: "Goal Tracker",       hint: "This month",        icon: <Target size={16} /> },
-  { to: "/intelligence/chat",            label: "AI Conversation",    hint: "Ask anything",      icon: <MessagesSquare size={16} /> },
-  { to: "/intelligence/recommendations", label: "Recommendations",    hint: "Curated for you",   icon: <Lightbulb size={16} /> },
-  { to: "/intelligence/knowledge",       label: "Knowledge Centre",   hint: "Playbooks",         icon: <Library size={16} /> },
-  { to: "/intelligence/timeline",        label: "Career Timeline",    hint: "Your story",        icon: <History size={16} /> },
-  { to: "/intelligence/insights",        label: "Insights",           hint: "Signals & trends",  icon: <LineChart size={16} /> },
-  { to: "/intelligence/opportunities",   label: "Opportunity Centre", hint: "Open matches",      icon: <Briefcase size={16} /> },
+  {
+    to: "/intelligence/planner",
+    label: "Career Planner",
+    hint: "Quarterly roadmap",
+    icon: <CalendarClock size={16} />,
+  },
+  {
+    to: "/intelligence/goals",
+    label: "Goal Tracker",
+    hint: "This month",
+    icon: <Target size={16} />,
+  },
+  {
+    to: "/intelligence/chat",
+    label: "AI Conversation",
+    hint: "Ask anything",
+    icon: <MessagesSquare size={16} />,
+  },
+  {
+    to: "/intelligence/recommendations",
+    label: "Recommendations",
+    hint: "Curated for you",
+    icon: <Lightbulb size={16} />,
+  },
+  {
+    to: "/intelligence/knowledge",
+    label: "Knowledge Centre",
+    hint: "Playbooks",
+    icon: <Library size={16} />,
+  },
+  {
+    to: "/intelligence/timeline",
+    label: "Career Timeline",
+    hint: "Your story",
+    icon: <History size={16} />,
+  },
+  {
+    to: "/intelligence/insights",
+    label: "Insights",
+    hint: "Signals & trends",
+    icon: <LineChart size={16} />,
+  },
+  {
+    to: "/intelligence/opportunities",
+    label: "Opportunity Centre",
+    hint: "Open matches",
+    icon: <Briefcase size={16} />,
+  },
 ];
 
 function IntelHome() {
   const hour = new Date().getHours();
   const greeting =
-    hour < 5 ? "Working late" : hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+    hour < 5
+      ? "Working late"
+      : hour < 12
+        ? "Good morning"
+        : hour < 18
+          ? "Good afternoon"
+          : "Good evening";
 
   const briefs: {
     kind: "action" | "deadline" | "suggestion";
@@ -69,9 +118,34 @@ function IntelHome() {
       | "/intelligence/recommendations";
     cta: string;
   }[] = [
-    { kind: "action",     to: "/hub/playlist-pitch",           cta: "Complete pitch", text: <>You have <span className="text-gold">one campaign</span> that needs your attention — finish your Spotify pitch.</> },
-    { kind: "deadline",   to: "/intelligence/planner",          cta: "Open planner",   text: <>Your next milestone is due in <span className="text-gold">3 days</span> — press release for "Feather".</> },
-    { kind: "suggestion", to: "/intelligence/recommendations",  cta: "See match",      text: <>New collaboration match: an Accra-based producer who fits your last two singles.</> },
+    {
+      kind: "action",
+      to: "/hub/playlist-pitch",
+      cta: "Complete pitch",
+      text: (
+        <>
+          You have <span className="text-gold">one campaign</span> that needs your attention —
+          finish your Spotify pitch.
+        </>
+      ),
+    },
+    {
+      kind: "deadline",
+      to: "/intelligence/planner",
+      cta: "Open planner",
+      text: (
+        <>
+          Your next milestone is due in <span className="text-gold">3 days</span> — press release
+          for "Feather".
+        </>
+      ),
+    },
+    {
+      kind: "suggestion",
+      to: "/intelligence/recommendations",
+      cta: "See match",
+      text: <>New collaboration match: an Accra-based producer who fits your last two singles.</>,
+    },
   ];
 
   return (
@@ -83,7 +157,8 @@ function IntelHome() {
       hideBack
     >
       {/* Proactive greeting */}
-      <div className="rounded-3xl p-5 hairline glass-reflect"
+      <div
+        className="rounded-3xl p-5 hairline glass-reflect"
         style={{
           background:
             "linear-gradient(180deg, color-mix(in oklab, var(--surface) 60%, transparent), color-mix(in oklab, var(--surface) 20%, transparent))",
@@ -91,16 +166,16 @@ function IntelHome() {
         }}
       >
         <p className="text-[10px] uppercase tracking-[0.28em] text-gold">Today's brief</p>
-        <p className="mt-2 font-display text-2xl font-semibold leading-tight">
-          {greeting}, REM.
-        </p>
+        <p className="mt-2 font-display text-2xl font-semibold leading-tight">{greeting}, REM.</p>
         <p className="mt-1 text-[14px] leading-relaxed text-muted-foreground">
-          You're up <span className="text-foreground">+24.6%</span> this month. Here's what I'd focus on next.
+          You're up <span className="text-foreground">+24.6%</span> this month. Here's what I'd
+          focus on next.
         </p>
 
         <ul className="mt-4 space-y-2">
           {briefs.map((b, i) => {
-            const Icon = b.kind === "action" ? AlertCircle : b.kind === "deadline" ? Clock : CheckCircle2;
+            const Icon =
+              b.kind === "action" ? AlertCircle : b.kind === "deadline" ? Clock : CheckCircle2;
             return (
               <li key={i}>
                 <Link

@@ -8,7 +8,10 @@ export const Route = createFileRoute("/hub/support")({
   head: () => ({
     meta: [
       { title: "Support Centre — RADARMe" },
-      { name: "description", content: "Guides, live chat and priority support for RADARMe artists." },
+      {
+        name: "description",
+        content: "Guides, live chat and priority support for RADARMe artists.",
+      },
     ],
   }),
   component: SupportPage,
@@ -75,10 +78,7 @@ function SupportPage() {
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             return (
-              <li
-                key={f.q}
-                style={{ borderTop: i === 0 ? "none" : "1px solid var(--hairline)" }}
-              >
+              <li key={f.q} style={{ borderTop: i === 0 ? "none" : "1px solid var(--hairline)" }}>
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}

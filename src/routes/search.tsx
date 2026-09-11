@@ -45,15 +45,20 @@ type Cat = {
 };
 
 const CATEGORIES: Cat[] = [
-  { to: "/network/artists",             label: "Artists",       hint: "Profiles & rosters",   icon: UserRound },
-  { to: "/network/discovery",           label: "Songs",         hint: "New music",            icon: Music2 },
-  { to: "/network/magazine",            label: "Articles",      hint: "Editorial & press",    icon: Newspaper },
-  { to: "/hub",                          label: "Services",      hint: "RADARHub",             icon: Briefcase },
-  { to: "/motherland",                  label: "Communities",   hint: "MOTHERLand",           icon: Users },
-  { to: "/network/playlists",           label: "Playlists",     hint: "Official & curator",   icon: ListMusic },
-  { to: "/network/videos",              label: "Videos",        hint: "RADAR TV & library",   icon: Film },
-  { to: "/motherland/events",           label: "Events",        hint: "Live & meetups",       icon: CalendarHeart },
-  { to: "/intelligence/opportunities",  label: "Opportunities", hint: "Briefs & sync",        icon: Compass },
+  { to: "/network/artists", label: "Artists", hint: "Profiles & rosters", icon: UserRound },
+  { to: "/network/discovery", label: "Songs", hint: "New music", icon: Music2 },
+  { to: "/network/magazine", label: "Articles", hint: "Editorial & press", icon: Newspaper },
+  { to: "/hub", label: "Services", hint: "RADARHub", icon: Briefcase },
+  { to: "/motherland", label: "Communities", hint: "MOTHERLand", icon: Users },
+  { to: "/network/playlists", label: "Playlists", hint: "Official & curator", icon: ListMusic },
+  { to: "/network/videos", label: "Videos", hint: "RADAR TV & library", icon: Film },
+  { to: "/motherland/events", label: "Events", hint: "Live & meetups", icon: CalendarHeart },
+  {
+    to: "/intelligence/opportunities",
+    label: "Opportunities",
+    hint: "Briefs & sync",
+    icon: Compass,
+  },
 ];
 
 function SearchPage() {
@@ -94,7 +99,9 @@ function SearchPage() {
                 <Icon size={16} />
               </span>
               <span className="min-w-0">
-                <span className="block truncate text-[12px] font-semibold leading-tight">{label}</span>
+                <span className="block truncate text-[12px] font-semibold leading-tight">
+                  {label}
+                </span>
                 <span className="block truncate text-[10px] text-muted-foreground">{hint}</span>
               </span>
             </Link>
@@ -103,7 +110,9 @@ function SearchPage() {
       </section>
 
       <p className="pt-4 text-center text-xs text-muted-foreground">
-        {q ? `No live index yet — “${q}” will resolve when backend search lands.` : "Universal search index arrives with backend integration."}
+        {q
+          ? `No live index yet — “${q}” will resolve when backend search lands.`
+          : "Universal search index arrives with backend integration."}
       </p>
     </div>
   );

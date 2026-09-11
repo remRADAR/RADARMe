@@ -13,13 +13,7 @@ export type PricingTierData = {
   featured?: boolean;
 };
 
-export function PricingTier({
-  tier,
-  onSelect,
-}: {
-  tier: PricingTierData;
-  onSelect?: () => void;
-}) {
+export function PricingTier({ tier, onSelect }: { tier: PricingTierData; onSelect?: () => void }) {
   return (
     <div
       className={cn(
@@ -38,9 +32,7 @@ export function PricingTier({
       <p className="mt-1 text-xs text-muted-foreground">{tier.tagline}</p>
       <div className="mt-4 flex items-baseline gap-1">
         <span className="font-display text-3xl font-semibold">{tier.price}</span>
-        {tier.cadence && (
-          <span className="text-xs text-muted-foreground">/ {tier.cadence}</span>
-        )}
+        {tier.cadence && <span className="text-xs text-muted-foreground">/ {tier.cadence}</span>}
       </div>
       <ul className="mt-4 space-y-2 text-sm">
         {tier.features.map((f) => (

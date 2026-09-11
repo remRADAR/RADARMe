@@ -53,8 +53,12 @@ function EditorialPage() {
       icon={<PenLine size={22} />}
       actions={
         <>
-          <Button variant="gold" size="sm">Pitch a story</Button>
-          <Button variant="secondary" size="sm">Editorial calendar</Button>
+          <Button variant="gold" size="sm">
+            Pitch a story
+          </Button>
+          <Button variant="secondary" size="sm">
+            Editorial calendar
+          </Button>
         </>
       }
     >
@@ -85,7 +89,8 @@ function EditorialPage() {
       <section className="rounded-2xl bg-surface p-5 hairline elev-1">
         <h3 className="font-display text-lg font-semibold">Bespoke campaigns</h3>
         <p className="mt-1 text-sm text-muted-foreground">
-          Need something more? Our editors design custom rollouts around album cycles, tours and brand partnerships.
+          Need something more? Our editors design custom rollouts around album cycles, tours and
+          brand partnerships.
         </p>
         <Button variant="gold" size="sm" className="mt-3">
           Request a brief

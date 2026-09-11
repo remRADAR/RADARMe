@@ -7,16 +7,37 @@ export const Route = createFileRoute("/motherland/challenges")({
   head: () => ({
     meta: [
       { title: "Challenges — MOTHERLand" },
-      { name: "description", content: "Monthly creative sprints designed to move you gently forward." },
+      {
+        name: "description",
+        content: "Monthly creative sprints designed to move you gently forward.",
+      },
     ],
   }),
   component: ChallengesPage,
 });
 
 const CHALLENGES = [
-  { title: "One verse a day", desc: "Write 30 verses in 30 mornings.", days: "14 days left", participants: 428, tag: "Songwriting" },
-  { title: "Room tone", desc: "Record the ambience of a place you love. Layer it into a track.", days: "5 days left", participants: 96, tag: "Production" },
-  { title: "First time on camera", desc: "Post one performance video. Any quality.", days: "21 days left", participants: 212, tag: "Confidence" },
+  {
+    title: "One verse a day",
+    desc: "Write 30 verses in 30 mornings.",
+    days: "14 days left",
+    participants: 428,
+    tag: "Songwriting",
+  },
+  {
+    title: "Room tone",
+    desc: "Record the ambience of a place you love. Layer it into a track.",
+    days: "5 days left",
+    participants: 96,
+    tag: "Production",
+  },
+  {
+    title: "First time on camera",
+    desc: "Post one performance video. Any quality.",
+    days: "21 days left",
+    participants: 212,
+    tag: "Confidence",
+  },
 ];
 
 function ChallengesPage() {
@@ -28,14 +49,21 @@ function ChallengesPage() {
       icon={<Flame size={22} />}
     >
       <Card className="p-5">
-        <span className="text-[10px] uppercase tracking-[0.22em] text-rose">Your current sprint</span>
+        <span className="text-[10px] uppercase tracking-[0.22em] text-rose">
+          Your current sprint
+        </span>
         <p className="mt-2 font-display text-lg leading-snug">One verse a day — day 16 of 30.</p>
         <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
-          <div className="h-full rounded-full" style={{ width: "53%", background: "var(--rose)" }} />
+          <div
+            className="h-full rounded-full"
+            style={{ width: "53%", background: "var(--rose)" }}
+          />
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           <Button size="sm">Log today</Button>
-          <Button size="sm" variant="secondary">See streak</Button>
+          <Button size="sm" variant="secondary">
+            See streak
+          </Button>
         </div>
       </Card>
 

@@ -8,9 +8,21 @@ export const Route = createFileRoute("/intelligence/planner")({
 });
 
 const quarters = [
-  { q: "Q3 · 2026", theme: "Release momentum", items: ["Drop single #3", "Pitch to 12 curators", "Book 2 sessions"] },
-  { q: "Q4 · 2026", theme: "Audience deepening", items: ["EP announcement", "First US show", "Grow superfans 3×"] },
-  { q: "Q1 · 2027", theme: "Tour + sync",       items: ["6-city African tour", "Sync brief roundup", "Documentary short"] },
+  {
+    q: "Q3 · 2026",
+    theme: "Release momentum",
+    items: ["Drop single #3", "Pitch to 12 curators", "Book 2 sessions"],
+  },
+  {
+    q: "Q4 · 2026",
+    theme: "Audience deepening",
+    items: ["EP announcement", "First US show", "Grow superfans 3×"],
+  },
+  {
+    q: "Q1 · 2027",
+    theme: "Tour + sync",
+    items: ["6-city African tour", "Sync brief roundup", "Documentary short"],
+  },
 ];
 
 function Planner() {

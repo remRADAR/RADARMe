@@ -22,8 +22,7 @@ export const Route = createFileRoute("/")({
       { title: "RADARHub — RADARMe" },
       {
         name: "description",
-        content:
-          "Your RADARHub — the command center of your artist career in RADARMe.",
+        content: "Your RADARHub — the command center of your artist career in RADARMe.",
       },
     ],
   }),
@@ -47,10 +46,31 @@ function Index() {
           <span className="text-[11px] text-muted-foreground">Your next move</span>
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <QuickAction to="/hub/distribution" icon={<UploadCloud size={18} />} label="Upload Music" hint="New release" />
-          <QuickAction to="/hub" icon={<Briefcase size={18} />} label="Book Service" hint="RADARHub" />
-          <QuickAction to="/intelligence/opportunities" icon={<Compass size={18} />} label="Find Opportunities" hint="Open matches" />
-          <QuickAction to="/intelligence/chat" icon={<Sparkles size={18} />} label="Ask RADAR" hint="AI manager" gold />
+          <QuickAction
+            to="/hub/distribution"
+            icon={<UploadCloud size={18} />}
+            label="Upload Music"
+            hint="New release"
+          />
+          <QuickAction
+            to="/hub"
+            icon={<Briefcase size={18} />}
+            label="Book Service"
+            hint="RADARHub"
+          />
+          <QuickAction
+            to="/intelligence/opportunities"
+            icon={<Compass size={18} />}
+            label="Find Opportunities"
+            hint="Open matches"
+          />
+          <QuickAction
+            to="/intelligence/chat"
+            icon={<Sparkles size={18} />}
+            label="Ask RADAR"
+            hint="AI manager"
+            gold
+          />
         </div>
       </section>
 
@@ -63,12 +83,49 @@ function Index() {
           <span className="text-[11px] text-gold">Personalised</span>
         </div>
         <ul className="space-y-2">
-          <RecItem to="/network/playlists" kind="Playlist" title="Sunday Bloom · Afro-alté" hint="Curated for your sound" icon={<ListMusic size={16} />} />
-          <RecItem to="/hub/playlist-pitch" kind="Service" title="Pitch to editorial playlists" hint="Boost your next release" icon={<Briefcase size={16} />} />
-          <RecItem to="/network/spotlight" kind="Artist" title="Yuki Tanabe · Rising" hint="Featured this week" icon={<Star size={16} />} />
-          <RecItem to="/motherland/events" kind="Event" title="Open Studio · Lagos" kicker="Aug 2" hint="MOTHERLand meetup" icon={<CalendarHeart size={16} />} />
-          <RecItem to="/motherland" kind="Community" title="Join the Alté Circle" hint="12 new members this week" icon={<Users size={16} />} />
-          <RecItem to="/network/magazine" kind="Article" title="The diaspora sound, rewritten" hint="14 min read · Issue 12" icon={<Newspaper size={16} />} />
+          <RecItem
+            to="/network/playlists"
+            kind="Playlist"
+            title="Sunday Bloom · Afro-alté"
+            hint="Curated for your sound"
+            icon={<ListMusic size={16} />}
+          />
+          <RecItem
+            to="/hub/playlist-pitch"
+            kind="Service"
+            title="Pitch to editorial playlists"
+            hint="Boost your next release"
+            icon={<Briefcase size={16} />}
+          />
+          <RecItem
+            to="/network/spotlight"
+            kind="Artist"
+            title="Yuki Tanabe · Rising"
+            hint="Featured this week"
+            icon={<Star size={16} />}
+          />
+          <RecItem
+            to="/motherland/events"
+            kind="Event"
+            title="Open Studio · Lagos"
+            kicker="Aug 2"
+            hint="MOTHERLand meetup"
+            icon={<CalendarHeart size={16} />}
+          />
+          <RecItem
+            to="/motherland"
+            kind="Community"
+            title="Join the Alté Circle"
+            hint="12 new members this week"
+            icon={<Users size={16} />}
+          />
+          <RecItem
+            to="/network/magazine"
+            kind="Article"
+            title="The diaspora sound, rewritten"
+            hint="14 min read · Issue 12"
+            icon={<Newspaper size={16} />}
+          />
         </ul>
       </section>
     </div>
@@ -82,11 +139,7 @@ function QuickAction({
   hint,
   gold,
 }: {
-  to:
-    | "/hub/distribution"
-    | "/hub"
-    | "/intelligence/opportunities"
-    | "/intelligence/chat";
+  to: "/hub/distribution" | "/hub" | "/intelligence/opportunities" | "/intelligence/chat";
   icon: React.ReactNode;
   label: string;
   hint: string;
@@ -145,15 +198,22 @@ function RecItem({
         </span>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">{kind}</span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
+              {kind}
+            </span>
             {kicker && (
-              <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">· {kicker}</span>
+              <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                · {kicker}
+              </span>
             )}
           </div>
           <p className="mt-0.5 truncate text-[13px] font-semibold leading-tight">{title}</p>
           <p className="truncate text-[11px] text-muted-foreground">{hint}</p>
         </div>
-        <ArrowUpRight size={14} className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        <ArrowUpRight
+          size={14}
+          className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
       </Link>
     </li>
   );

@@ -12,14 +12,14 @@ The highest-value interaction surface is the home announcement carousel because 
 
 ## Evidence classification
 
-| Finding | Classification | Evidence |
-|---|---|---|
-| `AnnouncementRibbon` uses a timeout-based carousel with manual swipe and pagination | FACT | `src/components/home/AnnouncementRibbon.tsx:174-205,245-259` |
-| The carousel previously continued automatic rotation under `prefers-reduced-motion: reduce` | FACT | The prior effect gated only `paused` and `count`; reduced motion was handled only in CSS for the entry animation |
-| Carousel pagination buttons were approximately 6px high and therefore below a 44px touch target | FACT | The prior button class was `h-1.5` with width set inline |
-| Parent `onBlur` could release the pause while focus moved between carousel descendants | INFERENCE | `onBlur` was attached to the section and unconditionally set `paused` to false |
-| No true media player or external audio engine is present in the inspected home interaction path | FACT | Source search found the home dashboard and announcement carousel, but no audio/video player implementation |
-| LCP, CLS, and INP are not measured in this environment | UNKNOWN | No browser trace or Lighthouse run was available during this pass |
+| Finding                                                                                         | Classification | Evidence                                                                                                         |
+| ----------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `AnnouncementRibbon` uses a timeout-based carousel with manual swipe and pagination             | FACT           | `src/components/home/AnnouncementRibbon.tsx:174-205,245-259`                                                     |
+| The carousel previously continued automatic rotation under `prefers-reduced-motion: reduce`     | FACT           | The prior effect gated only `paused` and `count`; reduced motion was handled only in CSS for the entry animation |
+| Carousel pagination buttons were approximately 6px high and therefore below a 44px touch target | FACT           | The prior button class was `h-1.5` with width set inline                                                         |
+| Parent `onBlur` could release the pause while focus moved between carousel descendants          | INFERENCE      | `onBlur` was attached to the section and unconditionally set `paused` to false                                   |
+| No true media player or external audio engine is present in the inspected home interaction path | FACT           | Source search found the home dashboard and announcement carousel, but no audio/video player implementation       |
+| LCP, CLS, and INP are not measured in this environment                                          | UNKNOWN        | No browser trace or Lighthouse run was available during this pass                                                |
 
 ## Architecture map
 

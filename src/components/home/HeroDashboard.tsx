@@ -96,8 +96,7 @@ export function HeroDashboard() {
         <div
           className="absolute inset-x-0 bottom-0 h-24"
           style={{
-            background:
-              "linear-gradient(to bottom, transparent, var(--background))",
+            background: "linear-gradient(to bottom, transparent, var(--background))",
           }}
         />
       </div>
@@ -110,8 +109,7 @@ export function HeroDashboard() {
             background:
               "linear-gradient(180deg, color-mix(in oklab, var(--surface) 55%, transparent), color-mix(in oklab, var(--surface) 20%, transparent))",
             backdropFilter: "blur(28px) saturate(150%)",
-            boxShadow:
-              "0 1px 0 0 oklch(1 0 0 / 0.06) inset, 0 30px 60px -30px oklch(0 0 0 / 0.55)",
+            boxShadow: "0 1px 0 0 oklch(1 0 0 / 0.06) inset, 0 30px 60px -30px oklch(0 0 0 / 0.55)",
             border: "1px solid oklch(1 0 0 / 0.05)",
           }}
         >
@@ -138,8 +136,8 @@ export function HeroDashboard() {
               <span className="text-muted-foreground"> · {role}</span>
             </p>
             <p className="mt-2 max-w-[34ch] text-[13px] leading-relaxed text-muted-foreground">
-              Your career is trending upward this month. Momentum is building
-              across three active campaigns.
+              Your career is trending upward this month. Momentum is building across three active
+              campaigns.
             </p>
           </div>
 
@@ -189,9 +187,8 @@ export function HeroDashboard() {
                 </span>
               </div>
               <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-foreground/90">
-                Your listeners in Lagos grew{" "}
-                <span className="text-gold">+38%</span> this week — a great
-                moment to pitch a local playlist.
+                Your listeners in Lagos grew <span className="text-gold">+38%</span> this week — a
+                great moment to pitch a local playlist.
               </p>
             </div>
             <ArrowUpRight
@@ -245,9 +242,7 @@ function HeroStat({
         <span className="text-[10px] uppercase tracking-[0.2em]">{label}</span>
       </div>
       <div className="mt-1.5 flex items-baseline gap-1.5">
-        <span className="font-display text-xl font-semibold tabular-nums">
-          {value}
-        </span>
+        <span className="font-display text-xl font-semibold tabular-nums">{value}</span>
         <span className="text-[10px] text-gold">{trend}</span>
       </div>
     </div>

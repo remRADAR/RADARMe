@@ -40,7 +40,9 @@ function NotificationsPage() {
   return (
     <div className="space-y-6 pt-2">
       <section className="animate-in fade-in-0 slide-in-from-bottom-2 duration-500">
-        <p className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Notifications</p>
+        <p className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+          Notifications
+        </p>
         <h1 className="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl">
           On your radar.
         </h1>

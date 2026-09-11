@@ -39,7 +39,15 @@ function ForgotRoute() {
     <AuthLayout
       backTo="/auth/login"
       eyebrow="Reset access"
-      title={sent ? <>Check your <span className="text-gold">inbox</span></> : "Forgot your password?"}
+      title={
+        sent ? (
+          <>
+            Check your <span className="text-gold">inbox</span>
+          </>
+        ) : (
+          "Forgot your password?"
+        )
+      }
       subtitle={
         sent
           ? `We've sent a reset link to ${email}. It may take a minute to arrive.`
@@ -83,7 +91,13 @@ function ForgotRoute() {
           </div>
           <FormError>{error}</FormError>
           <Button type="submit" variant="gold" size="lg" className="w-full" disabled={busy}>
-            {busy ? "Sending…" : (<>Send reset link <ArrowRight size={16} /></>)}
+            {busy ? (
+              "Sending…"
+            ) : (
+              <>
+                Send reset link <ArrowRight size={16} />
+              </>
+            )}
           </Button>
         </form>
       )}

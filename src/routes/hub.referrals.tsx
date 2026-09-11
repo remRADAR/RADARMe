@@ -7,7 +7,10 @@ export const Route = createFileRoute("/hub/referrals")({
   head: () => ({
     meta: [
       { title: "Referral Centre — RADARMe" },
-      { name: "description", content: "Invite artists to RADARMe and earn credits for every sign-up." },
+      {
+        name: "description",
+        content: "Invite artists to RADARMe and earn credits for every sign-up.",
+      },
     ],
   }),
   component: ReferralsPage,
@@ -47,7 +50,9 @@ function ReferralsPage() {
           <Button variant="gold" size="sm">
             <Share2 size={14} /> Share link
           </Button>
-          <Button variant="secondary" size="sm">Invite by email</Button>
+          <Button variant="secondary" size="sm">
+            Invite by email
+          </Button>
         </div>
       </Card>
 

@@ -6,17 +6,30 @@ export const Route = createFileRoute("/network/magazine")({
   head: () => ({
     meta: [
       { title: "Magazine — RADARNetwork" },
-      { name: "description", content: "The RADARNetwork magazine — long-form journalism from the music world." },
+      {
+        name: "description",
+        content: "The RADARNetwork magazine — long-form journalism from the music world.",
+      },
     ],
   }),
   component: MagazinePage,
 });
 
 const features = [
-  { title: "The artists rewriting the sound of the diaspora", author: "Amara Okafor", read: "14 min", tag: "Cover Story" },
+  {
+    title: "The artists rewriting the sound of the diaspora",
+    author: "Amara Okafor",
+    read: "14 min",
+    tag: "Cover Story",
+  },
   { title: "Inside the studios of Lagos", author: "Tunde Bello", read: "9 min", tag: "Portfolio" },
   { title: "How TikTok changed A&R forever", author: "Sam Reyes", read: "7 min", tag: "Essay" },
-  { title: "The economics of an independent tour", author: "Nadia Hart", read: "11 min", tag: "Business" },
+  {
+    title: "The economics of an independent tour",
+    author: "Nadia Hart",
+    read: "11 min",
+    tag: "Business",
+  },
   { title: "Producer notebooks · Vol. 3", author: "REM Editorial", read: "6 min", tag: "Craft" },
   { title: "A field guide to sync deals", author: "Priya Mehta", read: "8 min", tag: "Explainer" },
 ];
@@ -38,8 +51,8 @@ function MagazinePage() {
               The artists rewriting the sound of the diaspora
             </h2>
             <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
-              From Lagos to São Paulo, a long-form portrait of 14 artists shaping global music
-              from the outside in.
+              From Lagos to São Paulo, a long-form portrait of 14 artists shaping global music from
+              the outside in.
             </p>
             <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               By Amara Okafor · Photography by Ade Adekola

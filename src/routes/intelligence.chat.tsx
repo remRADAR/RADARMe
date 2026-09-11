@@ -12,9 +12,15 @@ export const Route = createFileRoute("/intelligence/chat")({
 type Msg = { role: "you" | "ai"; text: string };
 
 const seed: Msg[] = [
-  { role: "ai", text: "Good evening — you're up 24.6% this month. Want to double down on Lagos or scale to a new city?" },
+  {
+    role: "ai",
+    text: "Good evening — you're up 24.6% this month. Want to double down on Lagos or scale to a new city?",
+  },
   { role: "you", text: "What's the fastest way to land an editorial playlist?" },
-  { role: "ai", text: "Three moves this week: (1) pitch Afro RADAR via RADARHub, (2) tag two curators in your release rollout, (3) ship a stripped acoustic cut as a follow-up." },
+  {
+    role: "ai",
+    text: "Three moves this week: (1) pitch Afro RADAR via RADARHub, (2) tag two curators in your release rollout, (3) ship a stripped acoustic cut as a follow-up.",
+  },
 ];
 
 function Chat() {
@@ -22,7 +28,11 @@ function Chat() {
   const [text, setText] = useState("");
   const send = () => {
     if (!text.trim()) return;
-    setMsgs((m) => [...m, { role: "you", text }, { role: "ai", text: "Placeholder response — RADAR Intelligence would answer here." }]);
+    setMsgs((m) => [
+      ...m,
+      { role: "you", text },
+      { role: "ai", text: "Placeholder response — RADAR Intelligence would answer here." },
+    ]);
     setText("");
   };
   return (
@@ -37,9 +47,7 @@ function Chat() {
           <div
             key={i}
             className={`max-w-[85%] rounded-2xl px-4 py-3 text-[14px] leading-relaxed hairline ${
-              m.role === "ai"
-                ? "bg-surface glass-reflect"
-                : "ml-auto bg-gold text-gold-foreground"
+              m.role === "ai" ? "bg-surface glass-reflect" : "ml-auto bg-gold text-gold-foreground"
             }`}
           >
             {m.role === "ai" && (

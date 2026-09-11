@@ -8,12 +8,12 @@ export const Route = createFileRoute("/intelligence/knowledge")({
 });
 
 const collections = [
-  { name: "Release Playbook",  count: 12, hint: "From single to campaign" },
-  { name: "Playlist Pitching", count: 8,  hint: "What actually gets replies" },
-  { name: "Touring 101",       count: 15, hint: "First 6 cities" },
-  { name: "Money & Rights",    count: 9,  hint: "Splits, sync, royalties" },
-  { name: "Brand & Story",     count: 7,  hint: "Positioning for artists" },
-  { name: "Growth Loops",      count: 11, hint: "Superfans, not followers" },
+  { name: "Release Playbook", count: 12, hint: "From single to campaign" },
+  { name: "Playlist Pitching", count: 8, hint: "What actually gets replies" },
+  { name: "Touring 101", count: 15, hint: "First 6 cities" },
+  { name: "Money & Rights", count: 9, hint: "Splits, sync, royalties" },
+  { name: "Brand & Story", count: 7, hint: "Positioning for artists" },
+  { name: "Growth Loops", count: 11, hint: "Superfans, not followers" },
 ];
 
 function Knowledge() {

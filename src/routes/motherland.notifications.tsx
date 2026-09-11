@@ -6,17 +6,30 @@ export const Route = createFileRoute("/motherland/notifications")({
   head: () => ({
     meta: [
       { title: "Notifications — MOTHERLand" },
-      { name: "description", content: "Signals from the sisterhood — soft, meaningful, never noisy." },
+      {
+        name: "description",
+        content: "Signals from the sisterhood — soft, meaningful, never noisy.",
+      },
     ],
   }),
   component: MotherNotifications,
 });
 
 const ITEMS = [
-  { icon: HeartHandshake, title: "Nadia accepted your mentorship request", time: "12m", unread: true },
+  {
+    icon: HeartHandshake,
+    title: "Nadia accepted your mentorship request",
+    time: "12m",
+    unread: true,
+  },
   { icon: Sparkles, title: "Isla shared a new demo in the feed", time: "1h", unread: true },
   { icon: CalendarHeart, title: "Listening room starts in 30 minutes", time: "2h", unread: true },
-  { icon: Trophy, title: "You were nominated for Producer's Circle", time: "Yesterday", unread: false },
+  {
+    icon: Trophy,
+    title: "You were nominated for Producer's Circle",
+    time: "Yesterday",
+    unread: false,
+  },
   { icon: Heart, title: "14 women saved your last release", time: "2d", unread: false },
 ];
 

@@ -8,10 +8,10 @@ export const Route = createFileRoute("/intelligence/insights")({
 });
 
 const insights = [
-  { k: "Fastest-growing city",  v: "Lagos, NG",   d: "+38% listeners this week" },
-  { k: "Best day to release",   v: "Friday",      d: "Based on your last 6 drops" },
-  { k: "Top follower age",      v: "18–24",       d: "62% of new followers" },
-  { k: "Signal spike",          v: "TikTok",      d: "+4× saves in 48 hours" },
+  { k: "Fastest-growing city", v: "Lagos, NG", d: "+38% listeners this week" },
+  { k: "Best day to release", v: "Friday", d: "Based on your last 6 drops" },
+  { k: "Top follower age", v: "18–24", d: "62% of new followers" },
+  { k: "Signal spike", v: "TikTok", d: "+4× saves in 48 hours" },
 ];
 
 function Insights() {

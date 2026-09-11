@@ -9,7 +9,8 @@ export const Route = createFileRoute("/hub/career-planner")({
       { title: "Career Planner — RADARMe" },
       {
         name: "description",
-        content: "Plan your artist career quarter by quarter with milestones, goals and AI-assisted timelines.",
+        content:
+          "Plan your artist career quarter by quarter with milestones, goals and AI-assisted timelines.",
       },
     ],
   }),
@@ -43,7 +44,9 @@ function CareerPlannerPage() {
           <Button variant="gold" size="sm">
             <Sparkles size={14} /> Generate my plan
           </Button>
-          <Button variant="secondary" size="sm">Add milestone</Button>
+          <Button variant="secondary" size="sm">
+            Add milestone
+          </Button>
         </>
       }
     >
@@ -60,10 +63,7 @@ function CareerPlannerPage() {
               </div>
               <div className="mt-2 font-display text-xl font-semibold">{g.target}</div>
               <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
-                <div
-                  className="h-full rounded-full bg-gold"
-                  style={{ width: `${g.progress}%` }}
-                />
+                <div className="h-full rounded-full bg-gold" style={{ width: `${g.progress}%` }} />
               </div>
               <div className="mt-1 text-[11px] text-muted-foreground">{g.progress}% to target</div>
             </Card>

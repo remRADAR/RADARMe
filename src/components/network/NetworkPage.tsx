@@ -50,9 +50,7 @@ export function NetworkPage({
             <h1 className="font-display text-[32px] font-semibold leading-[1.05] tracking-tight sm:text-4xl">
               {title}
             </h1>
-            <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
-              {kicker}
-            </p>
+            <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">{kicker}</p>
           </div>
         </div>
 
@@ -105,10 +103,7 @@ export function Cover({
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) % 360;
   return (
-    <div
-      className="relative w-full overflow-hidden rounded-2xl"
-      style={{ aspectRatio: aspect }}
-    >
+    <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: aspect }}>
       <div
         className="absolute inset-0"
         style={{

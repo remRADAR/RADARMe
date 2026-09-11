@@ -104,15 +104,7 @@ function Group({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function Row({
-  icon,
-  label,
-  hint,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  hint: string;
-}) {
+function Row({ icon, label, hint }: { icon: React.ReactNode; label: string; hint: string }) {
   return (
     <li>
       <button

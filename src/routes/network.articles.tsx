@@ -38,8 +38,12 @@ function ReleaseArticlesPage() {
             >
               <Cover seed={r.title} label={r.type} aspect="1/1" />
               <div className="p-3">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{r.date}</p>
-                <p className="mt-0.5 font-display text-[14px] font-semibold leading-tight">{r.title}</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  {r.date}
+                </p>
+                <p className="mt-0.5 font-display text-[14px] font-semibold leading-tight">
+                  {r.title}
+                </p>
                 <p className="text-[12px] text-muted-foreground">{r.artist}</p>
               </div>
             </article>

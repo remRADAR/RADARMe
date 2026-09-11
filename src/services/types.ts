@@ -57,13 +57,7 @@ export interface WalletTransaction {
 }
 
 // ---------- Orders ----------
-export type OrderStatus =
-  | "draft"
-  | "pending"
-  | "in_review"
-  | "active"
-  | "completed"
-  | "cancelled";
+export type OrderStatus = "draft" | "pending" | "in_review" | "active" | "completed" | "cancelled";
 
 export interface Order {
   id: ID;
@@ -98,12 +92,7 @@ export interface ReferralEntry {
 }
 
 // ---------- Articles ----------
-export type ArticleCategory =
-  | "magazine"
-  | "release"
-  | "spotlight"
-  | "interview"
-  | "opportunity";
+export type ArticleCategory = "magazine" | "release" | "spotlight" | "interview" | "opportunity";
 
 export interface Article {
   id: ID;
@@ -139,12 +128,7 @@ export interface CommunityEvent {
 
 // ---------- Notifications ----------
 export type NotificationKind =
-  | "system"
-  | "release"
-  | "order"
-  | "community"
-  | "opportunity"
-  | "wallet";
+  "system" | "release" | "order" | "community" | "opportunity" | "wallet";
 
 export interface AppNotification {
   id: ID;

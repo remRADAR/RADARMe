@@ -18,8 +18,18 @@ export const Route = createFileRoute("/onboarding/artist")({
 
 const ROLES = ["Artist", "Producer", "DJ", "Songwriter", "Band", "Manager"];
 const GENRES = [
-  "Afrobeats", "Amapiano", "Hip-Hop", "R&B", "Pop", "House",
-  "Techno", "Drill", "Dancehall", "Alté", "Jazz", "Indie",
+  "Afrobeats",
+  "Amapiano",
+  "Hip-Hop",
+  "R&B",
+  "Pop",
+  "House",
+  "Techno",
+  "Drill",
+  "Dancehall",
+  "Alté",
+  "Jazz",
+  "Indie",
 ];
 
 function ArtistRoute() {
@@ -36,11 +46,7 @@ function ArtistRoute() {
 
   function toggleGenre(g: string) {
     setGenres((prev) =>
-      prev.includes(g)
-        ? prev.filter((x) => x !== g)
-        : prev.length >= 5
-          ? prev
-          : [...prev, g],
+      prev.includes(g) ? prev.filter((x) => x !== g) : prev.length >= 5 ? prev : [...prev, g],
     );
   }
 
@@ -62,7 +68,11 @@ function ArtistRoute() {
     <AuthLayout
       backTo="/onboarding/profile"
       eyebrow="Step 2 of 2"
-      title={<>Tune your <span className="text-gold">radar</span></>}
+      title={
+        <>
+          Tune your <span className="text-gold">radar</span>
+        </>
+      }
       subtitle="Help us understand your sound. You can change any of this later."
     >
       <div className="mb-6">
@@ -135,14 +145,14 @@ function ArtistRoute() {
 
         <FormError>{error}</FormError>
 
-        <Button
-          variant="gold"
-          size="lg"
-          className="w-full"
-          onClick={finish}
-          disabled={busy}
-        >
-          {busy ? "Finalising…" : (<><Sparkles size={16} /> Enter RADARMe</>)}
+        <Button variant="gold" size="lg" className="w-full" onClick={finish} disabled={busy}>
+          {busy ? (
+            "Finalising…"
+          ) : (
+            <>
+              <Sparkles size={16} /> Enter RADARMe
+            </>
+          )}
         </Button>
       </div>
     </AuthLayout>

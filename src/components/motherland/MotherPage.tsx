@@ -49,9 +49,7 @@ export function MotherPage({
         </div>
 
         <div className="relative mt-6 flex items-start gap-4 animate-bloom-in">
-          <span
-            className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-rose-soft text-rose hairline"
-          >
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-rose-soft text-rose hairline">
             {icon}
           </span>
           <div className="min-w-0 flex-1">
@@ -99,7 +97,13 @@ export function MotherSection({
   );
 }
 
-export function Avatar({ name, tone = "rose" }: { name: string; tone?: "rose" | "bloom" | "neutral" }) {
+export function Avatar({
+  name,
+  tone = "rose",
+}: {
+  name: string;
+  tone?: "rose" | "bloom" | "neutral";
+}) {
   const initials = name
     .split(" ")
     .map((w) => w[0])
@@ -110,8 +114,8 @@ export function Avatar({ name, tone = "rose" }: { name: string; tone?: "rose" | 
     tone === "rose"
       ? "bg-rose-soft text-rose"
       : tone === "bloom"
-      ? "bg-surface-3 text-foreground"
-      : "bg-surface-2 text-muted-foreground";
+        ? "bg-surface-3 text-foreground"
+        : "bg-surface-2 text-muted-foreground";
   return (
     <span
       className={`grid h-10 w-10 shrink-0 place-items-center rounded-full font-display text-xs font-semibold hairline ${bg}`}

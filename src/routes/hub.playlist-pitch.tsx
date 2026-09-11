@@ -59,7 +59,8 @@ function PlaylistPitchPage() {
             <div className="flex-1">
               <h3 className="text-sm font-semibold">Craft a stronger pitch</h3>
               <p className="mt-1 text-xs text-muted-foreground">
-                RADAR Intelligence writes tailored pitch notes for each curator based on your track's audio DNA.
+                RADAR Intelligence writes tailored pitch notes for each curator based on your
+                track's audio DNA.
               </p>
               <Button variant="gold" size="sm" className="mt-3">
                 Generate pitch
@@ -86,7 +87,9 @@ function PlaylistPitchPage() {
               <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 {c.tag}
               </span>
-              <Button variant="secondary" size="sm">Pitch</Button>
+              <Button variant="secondary" size="sm">
+                Pitch
+              </Button>
             </li>
           ))}
         </ul>

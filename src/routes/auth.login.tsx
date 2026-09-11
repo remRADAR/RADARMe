@@ -9,7 +9,10 @@ export const Route = createFileRoute("/auth/login")({
   head: () => ({
     meta: [
       { title: "Sign in — RADARMe" },
-      { name: "description", content: "Sign in to RADARMe to access your artist operating system." },
+      {
+        name: "description",
+        content: "Sign in to RADARMe to access your artist operating system.",
+      },
     ],
   }),
   component: LoginRoute,
@@ -47,7 +50,11 @@ function LoginRoute() {
     <AuthLayout
       backTo="/welcome"
       eyebrow="Welcome back"
-      title={<>Sign in to <span className="text-gold">RADARMe</span></>}
+      title={
+        <>
+          Sign in to <span className="text-gold">RADARMe</span>
+        </>
+      }
       subtitle="Pick up right where you left off."
       footer={
         <>
@@ -105,7 +112,13 @@ function LoginRoute() {
         </div>
         <FormError>{error}</FormError>
         <Button type="submit" variant="gold" size="lg" className="mt-2 w-full" disabled={busy}>
-          {busy ? "Signing in…" : (<>Sign in <ArrowRight size={16} /></>)}
+          {busy ? (
+            "Signing in…"
+          ) : (
+            <>
+              Sign in <ArrowRight size={16} />
+            </>
+          )}
         </Button>
       </form>
     </AuthLayout>

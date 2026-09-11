@@ -14,7 +14,11 @@ export const communityService = {
     return delay([...posts].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)));
   },
 
-  async createPost(input: { authorId: ID; authorName: string; body: string }): Promise<CommunityPost> {
+  async createPost(input: {
+    authorId: ID;
+    authorName: string;
+    body: string;
+  }): Promise<CommunityPost> {
     if (!input.body.trim()) throw new ServiceError("Post body required", "COMMUNITY_EMPTY");
     const post: CommunityPost = {
       id: makeId("post"),

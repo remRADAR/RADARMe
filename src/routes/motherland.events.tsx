@@ -14,10 +14,36 @@ export const Route = createFileRoute("/motherland/events")({
 });
 
 const EVENTS = [
-  { title: "Listening room: unreleased demos", host: "Isla Moreno", when: "Tonight · 8pm CET", type: "online", going: 84 },
-  { title: "Producers' brunch — Brooklyn", host: "MOTHERLand NYC", when: "Sat 26 · 11am EST", type: "irl", going: 22, city: "Brooklyn, NY" },
-  { title: "Showcase: 6 new voices", host: "RADAR Editorial", when: "Aug 4 · 7pm BST", type: "online", going: 312 },
-  { title: "Retreat: Songwriting in Ojai", host: "The Softest Season", when: "Sep 12–15", type: "irl", going: 14, city: "Ojai, CA" },
+  {
+    title: "Listening room: unreleased demos",
+    host: "Isla Moreno",
+    when: "Tonight · 8pm CET",
+    type: "online",
+    going: 84,
+  },
+  {
+    title: "Producers' brunch — Brooklyn",
+    host: "MOTHERLand NYC",
+    when: "Sat 26 · 11am EST",
+    type: "irl",
+    going: 22,
+    city: "Brooklyn, NY",
+  },
+  {
+    title: "Showcase: 6 new voices",
+    host: "RADAR Editorial",
+    when: "Aug 4 · 7pm BST",
+    type: "online",
+    going: 312,
+  },
+  {
+    title: "Retreat: Songwriting in Ojai",
+    host: "The Softest Season",
+    when: "Sep 12–15",
+    type: "irl",
+    going: 14,
+    city: "Ojai, CA",
+  },
 ];
 
 function EventsPage() {
@@ -29,8 +55,12 @@ function EventsPage() {
       icon={<CalendarHeart size={22} />}
       actions={
         <>
-          <Button size="sm" variant="secondary">Upcoming</Button>
-          <Button size="sm" variant="ghost">Hosted by me</Button>
+          <Button size="sm" variant="secondary">
+            Upcoming
+          </Button>
+          <Button size="sm" variant="ghost">
+            Hosted by me
+          </Button>
         </>
       }
     >
@@ -47,9 +77,7 @@ function EventsPage() {
                   <div className="mt-0.5 text-[11px] text-muted-foreground">
                     {e.host} · {e.when}
                   </div>
-                  {e.city && (
-                    <div className="mt-0.5 text-[11px] text-foreground/70">{e.city}</div>
-                  )}
+                  {e.city && <div className="mt-0.5 text-[11px] text-foreground/70">{e.city}</div>}
                 </div>
               </div>
               <div className="mt-3 flex items-center justify-between">
@@ -57,7 +85,9 @@ function EventsPage() {
                   <Users size={12} /> {e.going} attending
                 </span>
                 <div className="flex gap-2">
-                  <Button size="sm" variant="ghost">Details</Button>
+                  <Button size="sm" variant="ghost">
+                    Details
+                  </Button>
                   <Button size="sm">RSVP</Button>
                 </div>
               </div>

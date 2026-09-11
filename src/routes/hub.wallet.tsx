@@ -7,15 +7,30 @@ export const Route = createFileRoute("/hub/wallet")({
   head: () => ({
     meta: [
       { title: "Wallet — RADARMe" },
-      { name: "description", content: "Balance, earnings and payouts across every RADARMe service." },
+      {
+        name: "description",
+        content: "Balance, earnings and payouts across every RADARMe service.",
+      },
     ],
   }),
   component: WalletPage,
 });
 
 const TXNS = [
-  { kind: "in", title: "Royalties · June", note: "Streaming payout", amount: "+$248.20", date: "Jul 2" },
-  { kind: "out", title: "Playlist Pitch", note: "Momentum plan", amount: "-$49.00", date: "Jun 28" },
+  {
+    kind: "in",
+    title: "Royalties · June",
+    note: "Streaming payout",
+    amount: "+$248.20",
+    date: "Jul 2",
+  },
+  {
+    kind: "out",
+    title: "Playlist Pitch",
+    note: "Momentum plan",
+    amount: "-$49.00",
+    date: "Jun 28",
+  },
   { kind: "in", title: "Referral bonus", note: "3 sign-ups", date: "Jun 22", amount: "+$30.00" },
   { kind: "out", title: "Distribution", note: "Album release", amount: "-$29.00", date: "Jun 14" },
 ];
@@ -64,7 +79,9 @@ function WalletPage() {
             <li key={i} className="flex items-center gap-3 px-4 py-3.5">
               <span
                 className={`grid h-9 w-9 shrink-0 place-items-center rounded-full ${
-                  t.kind === "in" ? "bg-emerald-500/15 text-emerald-400" : "bg-surface-2 text-muted-foreground"
+                  t.kind === "in"
+                    ? "bg-emerald-500/15 text-emerald-400"
+                    : "bg-surface-2 text-muted-foreground"
                 }`}
               >
                 {t.kind === "in" ? <ArrowDownRight size={14} /> : <ArrowUpRight size={14} />}

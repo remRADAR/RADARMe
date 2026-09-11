@@ -15,8 +15,7 @@ export const Route = createFileRoute("/hub/marketing")({
       { title: "Marketing Services — RADARMe" },
       {
         name: "description",
-        content:
-          "Grow your fanbase with targeted marketing campaigns run by the RADARMe team.",
+        content: "Grow your fanbase with targeted marketing campaigns run by the RADARMe team.",
       },
     ],
   }),
@@ -60,8 +59,12 @@ function MarketingPage() {
       icon={<Megaphone size={22} />}
       actions={
         <>
-          <Button variant="gold" size="sm">Start a campaign</Button>
-          <Button variant="secondary" size="sm">Talk to a strategist</Button>
+          <Button variant="gold" size="sm">
+            Start a campaign
+          </Button>
+          <Button variant="secondary" size="sm">
+            Talk to a strategist
+          </Button>
         </>
       }
     >

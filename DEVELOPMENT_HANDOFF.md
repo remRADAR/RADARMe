@@ -50,7 +50,7 @@ The navigation remains a semantic `nav` with real links, `aria-current`, visible
 - `npm run build`: **PASSED** after generating the five-tab route tree.
 - `npx tsc --noEmit`: **PASSED**.
 - Focused ESLint on all changed source files: **PASSED**.
-- `npm run lint`: **FAILED / PRE-EXISTING FORMAT DEBT** with 443 existing Prettier errors across unrelated files; no changed-file errors remain.
+- `npm run lint`: **PASSED** after the repository-wide Prettier cleanup.
 - Browser QA: pending.
 
 ## Files/Components Changed

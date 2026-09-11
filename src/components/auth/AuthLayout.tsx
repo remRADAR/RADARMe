@@ -59,17 +59,13 @@ export function AuthLayout({
 
         <div className="mt-8 animate-in fade-in-0 slide-in-from-bottom-2 duration-500">
           {eyebrow && (
-            <p className="text-[11px] uppercase tracking-[0.28em] text-gold">
-              {eyebrow}
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.28em] text-gold">{eyebrow}</p>
           )}
           <h1 className="mt-2 font-display text-3xl font-semibold leading-tight tracking-tight">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              {subtitle}
-            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{subtitle}</p>
           )}
         </div>
 
@@ -77,11 +73,7 @@ export function AuthLayout({
           {children}
         </div>
 
-        {footer && (
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            {footer}
-          </div>
-        )}
+        {footer && <div className="mt-6 text-center text-sm text-muted-foreground">{footer}</div>}
       </div>
     </div>
   );
@@ -98,10 +90,7 @@ export function FieldLabel({ children }: { children: ReactNode }) {
 export function FormError({ children }: { children: ReactNode }) {
   if (!children) return null;
   return (
-    <p
-      role="alert"
-      className="mt-2 text-xs text-destructive animate-in fade-in-0 duration-200"
-    >
+    <p role="alert" className="mt-2 text-xs text-destructive animate-in fade-in-0 duration-200">
       {children}
     </p>
   );

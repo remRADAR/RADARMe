@@ -26,7 +26,11 @@ function BookmarksPage() {
           icon={<Bookmark size={22} />}
           title="Nothing saved yet"
           description="Tap the bookmark on any article, video or playlist to keep it here."
-          action={<Button variant="secondary" size="sm">Browse magazine</Button>}
+          action={
+            <Button variant="secondary" size="sm">
+              Browse magazine
+            </Button>
+          }
         />
       </EditorialSection>
     </NetworkPage>
