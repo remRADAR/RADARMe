@@ -9,121 +9,74 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WelcomeRouteImport } from './routes/welcome'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as SearchRouteImport } from './routes/search'
-import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as NetworkRouteImport } from './routes/network'
-import { Route as MotherlandRouteImport } from './routes/motherland'
-import { Route as IntelligenceRouteImport } from './routes/intelligence'
-import { Route as HubRouteImport } from './routes/hub'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as NetworkIndexRouteImport } from './routes/network.index'
-import { Route as MotherlandIndexRouteImport } from './routes/motherland.index'
-import { Route as IntelligenceIndexRouteImport } from './routes/intelligence.index'
-import { Route as HubIndexRouteImport } from './routes/hub.index'
-import { Route as OnboardingProfileRouteImport } from './routes/onboarding.profile'
-import { Route as OnboardingArtistRouteImport } from './routes/onboarding.artist'
-import { Route as NetworkVideosRouteImport } from './routes/network.videos'
-import { Route as NetworkTvRouteImport } from './routes/network.tv'
-import { Route as NetworkSpotlightRouteImport } from './routes/network.spotlight'
-import { Route as NetworkSearchRouteImport } from './routes/network.search'
-import { Route as NetworkPlaylistsRouteImport } from './routes/network.playlists'
-import { Route as NetworkMagazineRouteImport } from './routes/network.magazine'
-import { Route as NetworkInterviewsRouteImport } from './routes/network.interviews'
-import { Route as NetworkDiscoveryRouteImport } from './routes/network.discovery'
-import { Route as NetworkBookmarksRouteImport } from './routes/network.bookmarks'
-import { Route as NetworkArtistsRouteImport } from './routes/network.artists'
-import { Route as NetworkArticlesRouteImport } from './routes/network.articles'
-import { Route as MotherlandRecognitionRouteImport } from './routes/motherland.recognition'
-import { Route as MotherlandNotificationsRouteImport } from './routes/motherland.notifications'
-import { Route as MotherlandMessagesRouteImport } from './routes/motherland.messages'
-import { Route as MotherlandMentorshipRouteImport } from './routes/motherland.mentorship'
-import { Route as MotherlandLearningRouteImport } from './routes/motherland.learning'
-import { Route as MotherlandFeedRouteImport } from './routes/motherland.feed'
-import { Route as MotherlandEventsRouteImport } from './routes/motherland.events'
-import { Route as MotherlandDiscoveryRouteImport } from './routes/motherland.discovery'
-import { Route as MotherlandChallengesRouteImport } from './routes/motherland.challenges'
-import { Route as IntelligenceTimelineRouteImport } from './routes/intelligence.timeline'
-import { Route as IntelligenceRecommendationsRouteImport } from './routes/intelligence.recommendations'
-import { Route as IntelligencePlannerRouteImport } from './routes/intelligence.planner'
-import { Route as IntelligenceOpportunitiesRouteImport } from './routes/intelligence.opportunities'
-import { Route as IntelligenceKnowledgeRouteImport } from './routes/intelligence.knowledge'
-import { Route as IntelligenceInsightsRouteImport } from './routes/intelligence.insights'
-import { Route as IntelligenceGoalsRouteImport } from './routes/intelligence.goals'
-import { Route as IntelligenceChatRouteImport } from './routes/intelligence.chat'
-import { Route as HubWalletRouteImport } from './routes/hub.wallet'
-import { Route as HubSupportRouteImport } from './routes/hub.support'
-import { Route as HubReferralsRouteImport } from './routes/hub.referrals'
-import { Route as HubPlaylistPitchRouteImport } from './routes/hub.playlist-pitch'
-import { Route as HubOrdersRouteImport } from './routes/hub.orders'
-import { Route as HubMarketingRouteImport } from './routes/hub.marketing'
-import { Route as HubEditorialRouteImport } from './routes/hub.editorial'
-import { Route as HubDistributionRouteImport } from './routes/hub.distribution'
-import { Route as HubConsultationRouteImport } from './routes/hub.consultation'
-import { Route as HubCareerPlannerRouteImport } from './routes/hub.career-planner'
-import { Route as AuthVerifyRouteImport } from './routes/auth.verify'
-import { Route as AuthRegisterRouteImport } from './routes/auth.register'
-import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as HubRouteImport } from './routes/hub'
+import { Route as IntelligenceRouteImport } from './routes/intelligence'
+import { Route as MarketRouteImport } from './routes/market'
+import { Route as MediaRouteImport } from './routes/media'
+import { Route as MotherlandRouteImport } from './routes/motherland'
+import { Route as NetworkRouteImport } from './routes/network'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RadarmusicRouteImport } from './routes/radarmusic'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthRegisterRouteImport } from './routes/auth.register'
+import { Route as AuthVerifyRouteImport } from './routes/auth.verify'
+import { Route as HubIndexRouteImport } from './routes/hub.index'
+import { Route as HubCareerPlannerRouteImport } from './routes/hub.career-planner'
+import { Route as HubConsultationRouteImport } from './routes/hub.consultation'
+import { Route as HubDistributionRouteImport } from './routes/hub.distribution'
+import { Route as HubEditorialRouteImport } from './routes/hub.editorial'
+import { Route as HubMarketingRouteImport } from './routes/hub.marketing'
+import { Route as HubOrdersRouteImport } from './routes/hub.orders'
+import { Route as HubPlaylistPitchRouteImport } from './routes/hub.playlist-pitch'
+import { Route as HubReferralsRouteImport } from './routes/hub.referrals'
+import { Route as HubSupportRouteImport } from './routes/hub.support'
+import { Route as HubWalletRouteImport } from './routes/hub.wallet'
+import { Route as IntelligenceIndexRouteImport } from './routes/intelligence.index'
+import { Route as IntelligenceChatRouteImport } from './routes/intelligence.chat'
+import { Route as IntelligenceGoalsRouteImport } from './routes/intelligence.goals'
+import { Route as IntelligenceInsightsRouteImport } from './routes/intelligence.insights'
+import { Route as IntelligenceKnowledgeRouteImport } from './routes/intelligence.knowledge'
+import { Route as IntelligenceOpportunitiesRouteImport } from './routes/intelligence.opportunities'
+import { Route as IntelligencePlannerRouteImport } from './routes/intelligence.planner'
+import { Route as IntelligenceRecommendationsRouteImport } from './routes/intelligence.recommendations'
+import { Route as IntelligenceTimelineRouteImport } from './routes/intelligence.timeline'
+import { Route as MotherlandIndexRouteImport } from './routes/motherland.index'
+import { Route as MotherlandChallengesRouteImport } from './routes/motherland.challenges'
+import { Route as MotherlandDiscoveryRouteImport } from './routes/motherland.discovery'
+import { Route as MotherlandEventsRouteImport } from './routes/motherland.events'
+import { Route as MotherlandFeedRouteImport } from './routes/motherland.feed'
+import { Route as MotherlandLearningRouteImport } from './routes/motherland.learning'
+import { Route as MotherlandMentorshipRouteImport } from './routes/motherland.mentorship'
+import { Route as MotherlandMessagesRouteImport } from './routes/motherland.messages'
+import { Route as MotherlandNotificationsRouteImport } from './routes/motherland.notifications'
+import { Route as MotherlandRecognitionRouteImport } from './routes/motherland.recognition'
+import { Route as NetworkIndexRouteImport } from './routes/network.index'
+import { Route as NetworkArticlesRouteImport } from './routes/network.articles'
+import { Route as NetworkArtistsRouteImport } from './routes/network.artists'
+import { Route as NetworkBookmarksRouteImport } from './routes/network.bookmarks'
+import { Route as NetworkDiscoveryRouteImport } from './routes/network.discovery'
+import { Route as NetworkInterviewsRouteImport } from './routes/network.interviews'
+import { Route as NetworkMagazineRouteImport } from './routes/network.magazine'
+import { Route as NetworkPlaylistsRouteImport } from './routes/network.playlists'
+import { Route as NetworkSearchRouteImport } from './routes/network.search'
+import { Route as NetworkSpotlightRouteImport } from './routes/network.spotlight'
+import { Route as NetworkTvRouteImport } from './routes/network.tv'
+import { Route as NetworkVideosRouteImport } from './routes/network.videos'
+import { Route as OnboardingArtistRouteImport } from './routes/onboarding.artist'
+import { Route as OnboardingProfileRouteImport } from './routes/onboarding.profile'
 
-const WelcomeRoute = WelcomeRouteImport.update({
-  id: '/welcome',
-  path: '/welcome',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SearchRoute = SearchRouteImport.update({
-  id: '/search',
-  path: '/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotificationsRoute = NotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NetworkRoute = NetworkRouteImport.update({
-  id: '/network',
-  path: '/network',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MotherlandRoute = MotherlandRouteImport.update({
-  id: '/motherland',
-  path: '/motherland',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IntelligenceRoute = IntelligenceRouteImport.update({
-  id: '/intelligence',
-  path: '/intelligence',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HubRoute = HubRouteImport.update({
-  id: '/hub',
-  path: '/hub',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -131,155 +84,174 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const HubRoute = HubRouteImport.update({
+  id: '/hub',
+  path: '/hub',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NetworkIndexRoute = NetworkIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => NetworkRoute,
+const IntelligenceRoute = IntelligenceRouteImport.update({
+  id: '/intelligence',
+  path: '/intelligence',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const MotherlandIndexRoute = MotherlandIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => MotherlandRoute,
+const MarketRoute = MarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const IntelligenceIndexRoute = IntelligenceIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => IntelligenceRoute,
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotherlandRoute = MotherlandRouteImport.update({
+  id: '/motherland',
+  path: '/motherland',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NetworkRoute = NetworkRouteImport.update({
+  id: '/network',
+  path: '/network',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RadarmusicRoute = RadarmusicRouteImport.update({
+  id: '/radarmusic',
+  path: '/radarmusic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthForgotRoute = AuthForgotRouteImport.update({
+  id: '/forgot',
+  path: '/forgot',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthVerifyRoute = AuthVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => AuthRoute,
 } as any)
 const HubIndexRoute = HubIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => HubRoute,
 } as any)
-const OnboardingProfileRoute = OnboardingProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => OnboardingRoute,
+const HubCareerPlannerRoute = HubCareerPlannerRouteImport.update({
+  id: '/career-planner',
+  path: '/career-planner',
+  getParentRoute: () => HubRoute,
 } as any)
-const OnboardingArtistRoute = OnboardingArtistRouteImport.update({
-  id: '/artist',
-  path: '/artist',
-  getParentRoute: () => OnboardingRoute,
+const HubConsultationRoute = HubConsultationRouteImport.update({
+  id: '/consultation',
+  path: '/consultation',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkVideosRoute = NetworkVideosRouteImport.update({
-  id: '/videos',
-  path: '/videos',
-  getParentRoute: () => NetworkRoute,
+const HubDistributionRoute = HubDistributionRouteImport.update({
+  id: '/distribution',
+  path: '/distribution',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkTvRoute = NetworkTvRouteImport.update({
-  id: '/tv',
-  path: '/tv',
-  getParentRoute: () => NetworkRoute,
+const HubEditorialRoute = HubEditorialRouteImport.update({
+  id: '/editorial',
+  path: '/editorial',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkSpotlightRoute = NetworkSpotlightRouteImport.update({
-  id: '/spotlight',
-  path: '/spotlight',
-  getParentRoute: () => NetworkRoute,
+const HubMarketingRoute = HubMarketingRouteImport.update({
+  id: '/marketing',
+  path: '/marketing',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkSearchRoute = NetworkSearchRouteImport.update({
-  id: '/search',
-  path: '/search',
-  getParentRoute: () => NetworkRoute,
+const HubOrdersRoute = HubOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkPlaylistsRoute = NetworkPlaylistsRouteImport.update({
-  id: '/playlists',
-  path: '/playlists',
-  getParentRoute: () => NetworkRoute,
+const HubPlaylistPitchRoute = HubPlaylistPitchRouteImport.update({
+  id: '/playlist-pitch',
+  path: '/playlist-pitch',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkMagazineRoute = NetworkMagazineRouteImport.update({
-  id: '/magazine',
-  path: '/magazine',
-  getParentRoute: () => NetworkRoute,
+const HubReferralsRoute = HubReferralsRouteImport.update({
+  id: '/referrals',
+  path: '/referrals',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkInterviewsRoute = NetworkInterviewsRouteImport.update({
-  id: '/interviews',
-  path: '/interviews',
-  getParentRoute: () => NetworkRoute,
+const HubSupportRoute = HubSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkDiscoveryRoute = NetworkDiscoveryRouteImport.update({
-  id: '/discovery',
-  path: '/discovery',
-  getParentRoute: () => NetworkRoute,
+const HubWalletRoute = HubWalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => HubRoute,
 } as any)
-const NetworkBookmarksRoute = NetworkBookmarksRouteImport.update({
-  id: '/bookmarks',
-  path: '/bookmarks',
-  getParentRoute: () => NetworkRoute,
-} as any)
-const NetworkArtistsRoute = NetworkArtistsRouteImport.update({
-  id: '/artists',
-  path: '/artists',
-  getParentRoute: () => NetworkRoute,
-} as any)
-const NetworkArticlesRoute = NetworkArticlesRouteImport.update({
-  id: '/articles',
-  path: '/articles',
-  getParentRoute: () => NetworkRoute,
-} as any)
-const MotherlandRecognitionRoute = MotherlandRecognitionRouteImport.update({
-  id: '/recognition',
-  path: '/recognition',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandNotificationsRoute = MotherlandNotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandMessagesRoute = MotherlandMessagesRouteImport.update({
-  id: '/messages',
-  path: '/messages',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandMentorshipRoute = MotherlandMentorshipRouteImport.update({
-  id: '/mentorship',
-  path: '/mentorship',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandLearningRoute = MotherlandLearningRouteImport.update({
-  id: '/learning',
-  path: '/learning',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandFeedRoute = MotherlandFeedRouteImport.update({
-  id: '/feed',
-  path: '/feed',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandEventsRoute = MotherlandEventsRouteImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandDiscoveryRoute = MotherlandDiscoveryRouteImport.update({
-  id: '/discovery',
-  path: '/discovery',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const MotherlandChallengesRoute = MotherlandChallengesRouteImport.update({
-  id: '/challenges',
-  path: '/challenges',
-  getParentRoute: () => MotherlandRoute,
-} as any)
-const IntelligenceTimelineRoute = IntelligenceTimelineRouteImport.update({
-  id: '/timeline',
-  path: '/timeline',
+const IntelligenceIndexRoute = IntelligenceIndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => IntelligenceRoute,
 } as any)
-const IntelligenceRecommendationsRoute =
-  IntelligenceRecommendationsRouteImport.update({
-    id: '/recommendations',
-    path: '/recommendations',
-    getParentRoute: () => IntelligenceRoute,
-  } as any)
-const IntelligencePlannerRoute = IntelligencePlannerRouteImport.update({
-  id: '/planner',
-  path: '/planner',
+const IntelligenceChatRoute = IntelligenceChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceGoalsRoute = IntelligenceGoalsRouteImport.update({
+  id: '/goals',
+  path: '/goals',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceInsightsRoute = IntelligenceInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceKnowledgeRoute = IntelligenceKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
   getParentRoute: () => IntelligenceRoute,
 } as any)
 const IntelligenceOpportunitiesRoute =
@@ -288,95 +260,141 @@ const IntelligenceOpportunitiesRoute =
     path: '/opportunities',
     getParentRoute: () => IntelligenceRoute,
   } as any)
-const IntelligenceKnowledgeRoute = IntelligenceKnowledgeRouteImport.update({
-  id: '/knowledge',
-  path: '/knowledge',
+const IntelligencePlannerRoute = IntelligencePlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
   getParentRoute: () => IntelligenceRoute,
 } as any)
-const IntelligenceInsightsRoute = IntelligenceInsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
+const IntelligenceRecommendationsRoute =
+  IntelligenceRecommendationsRouteImport.update({
+    id: '/recommendations',
+    path: '/recommendations',
+    getParentRoute: () => IntelligenceRoute,
+  } as any)
+const IntelligenceTimelineRoute = IntelligenceTimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
   getParentRoute: () => IntelligenceRoute,
 } as any)
-const IntelligenceGoalsRoute = IntelligenceGoalsRouteImport.update({
-  id: '/goals',
-  path: '/goals',
-  getParentRoute: () => IntelligenceRoute,
+const MotherlandIndexRoute = MotherlandIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const IntelligenceChatRoute = IntelligenceChatRouteImport.update({
-  id: '/chat',
-  path: '/chat',
-  getParentRoute: () => IntelligenceRoute,
+const MotherlandChallengesRoute = MotherlandChallengesRouteImport.update({
+  id: '/challenges',
+  path: '/challenges',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubWalletRoute = HubWalletRouteImport.update({
-  id: '/wallet',
-  path: '/wallet',
-  getParentRoute: () => HubRoute,
+const MotherlandDiscoveryRoute = MotherlandDiscoveryRouteImport.update({
+  id: '/discovery',
+  path: '/discovery',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubSupportRoute = HubSupportRouteImport.update({
-  id: '/support',
-  path: '/support',
-  getParentRoute: () => HubRoute,
+const MotherlandEventsRoute = MotherlandEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubReferralsRoute = HubReferralsRouteImport.update({
-  id: '/referrals',
-  path: '/referrals',
-  getParentRoute: () => HubRoute,
+const MotherlandFeedRoute = MotherlandFeedRouteImport.update({
+  id: '/feed',
+  path: '/feed',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubPlaylistPitchRoute = HubPlaylistPitchRouteImport.update({
-  id: '/playlist-pitch',
-  path: '/playlist-pitch',
-  getParentRoute: () => HubRoute,
+const MotherlandLearningRoute = MotherlandLearningRouteImport.update({
+  id: '/learning',
+  path: '/learning',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubOrdersRoute = HubOrdersRouteImport.update({
-  id: '/orders',
-  path: '/orders',
-  getParentRoute: () => HubRoute,
+const MotherlandMentorshipRoute = MotherlandMentorshipRouteImport.update({
+  id: '/mentorship',
+  path: '/mentorship',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubMarketingRoute = HubMarketingRouteImport.update({
-  id: '/marketing',
-  path: '/marketing',
-  getParentRoute: () => HubRoute,
+const MotherlandMessagesRoute = MotherlandMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubEditorialRoute = HubEditorialRouteImport.update({
-  id: '/editorial',
-  path: '/editorial',
-  getParentRoute: () => HubRoute,
+const MotherlandNotificationsRoute = MotherlandNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubDistributionRoute = HubDistributionRouteImport.update({
-  id: '/distribution',
-  path: '/distribution',
-  getParentRoute: () => HubRoute,
+const MotherlandRecognitionRoute = MotherlandRecognitionRouteImport.update({
+  id: '/recognition',
+  path: '/recognition',
+  getParentRoute: () => MotherlandRoute,
 } as any)
-const HubConsultationRoute = HubConsultationRouteImport.update({
-  id: '/consultation',
-  path: '/consultation',
-  getParentRoute: () => HubRoute,
+const NetworkIndexRoute = NetworkIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NetworkRoute,
 } as any)
-const HubCareerPlannerRoute = HubCareerPlannerRouteImport.update({
-  id: '/career-planner',
-  path: '/career-planner',
-  getParentRoute: () => HubRoute,
+const NetworkArticlesRoute = NetworkArticlesRouteImport.update({
+  id: '/articles',
+  path: '/articles',
+  getParentRoute: () => NetworkRoute,
 } as any)
-const AuthVerifyRoute = AuthVerifyRouteImport.update({
-  id: '/verify',
-  path: '/verify',
-  getParentRoute: () => AuthRoute,
+const NetworkArtistsRoute = NetworkArtistsRouteImport.update({
+  id: '/artists',
+  path: '/artists',
+  getParentRoute: () => NetworkRoute,
 } as any)
-const AuthRegisterRoute = AuthRegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => AuthRoute,
+const NetworkBookmarksRoute = NetworkBookmarksRouteImport.update({
+  id: '/bookmarks',
+  path: '/bookmarks',
+  getParentRoute: () => NetworkRoute,
 } as any)
-const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => AuthRoute,
+const NetworkDiscoveryRoute = NetworkDiscoveryRouteImport.update({
+  id: '/discovery',
+  path: '/discovery',
+  getParentRoute: () => NetworkRoute,
 } as any)
-const AuthForgotRoute = AuthForgotRouteImport.update({
-  id: '/forgot',
-  path: '/forgot',
-  getParentRoute: () => AuthRoute,
+const NetworkInterviewsRoute = NetworkInterviewsRouteImport.update({
+  id: '/interviews',
+  path: '/interviews',
+  getParentRoute: () => NetworkRoute,
+} as any)
+const NetworkMagazineRoute = NetworkMagazineRouteImport.update({
+  id: '/magazine',
+  path: '/magazine',
+  getParentRoute: () => NetworkRoute,
+} as any)
+const NetworkPlaylistsRoute = NetworkPlaylistsRouteImport.update({
+  id: '/playlists',
+  path: '/playlists',
+  getParentRoute: () => NetworkRoute,
+} as any)
+const NetworkSearchRoute = NetworkSearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => NetworkRoute,
+} as any)
+const NetworkSpotlightRoute = NetworkSpotlightRouteImport.update({
+  id: '/spotlight',
+  path: '/spotlight',
+  getParentRoute: () => NetworkRoute,
+} as any)
+const NetworkTvRoute = NetworkTvRouteImport.update({
+  id: '/tv',
+  path: '/tv',
+  getParentRoute: () => NetworkRoute,
+} as any)
+const NetworkVideosRoute = NetworkVideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => NetworkRoute,
+} as any)
+const OnboardingArtistRoute = OnboardingArtistRouteImport.update({
+  id: '/artist',
+  path: '/artist',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingProfileRoute = OnboardingProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => OnboardingRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -384,11 +402,14 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRouteWithChildren
   '/hub': typeof HubRouteWithChildren
   '/intelligence': typeof IntelligenceRouteWithChildren
+  '/market': typeof MarketRoute
+  '/media': typeof MediaRoute
   '/motherland': typeof MotherlandRouteWithChildren
   '/network': typeof NetworkRouteWithChildren
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/profile': typeof ProfileRoute
+  '/radarmusic': typeof RadarmusicRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -445,9 +466,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
+  '/market': typeof MarketRoute
+  '/media': typeof MediaRoute
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/profile': typeof ProfileRoute
+  '/radarmusic': typeof RadarmusicRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -507,11 +531,14 @@ export interface FileRoutesById {
   '/auth': typeof AuthRouteWithChildren
   '/hub': typeof HubRouteWithChildren
   '/intelligence': typeof IntelligenceRouteWithChildren
+  '/market': typeof MarketRoute
+  '/media': typeof MediaRoute
   '/motherland': typeof MotherlandRouteWithChildren
   '/network': typeof NetworkRouteWithChildren
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/profile': typeof ProfileRoute
+  '/radarmusic': typeof RadarmusicRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -572,11 +599,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/hub'
     | '/intelligence'
+    | '/market'
+    | '/media'
     | '/motherland'
     | '/network'
     | '/notifications'
     | '/onboarding'
     | '/profile'
+    | '/radarmusic'
     | '/search'
     | '/settings'
     | '/sitemap.xml'
@@ -633,9 +663,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/market'
+    | '/media'
     | '/notifications'
     | '/onboarding'
     | '/profile'
+    | '/radarmusic'
     | '/search'
     | '/settings'
     | '/sitemap.xml'
@@ -694,11 +727,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/hub'
     | '/intelligence'
+    | '/market'
+    | '/media'
     | '/motherland'
     | '/network'
     | '/notifications'
     | '/onboarding'
     | '/profile'
+    | '/radarmusic'
     | '/search'
     | '/settings'
     | '/sitemap.xml'
@@ -758,11 +794,14 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   HubRoute: typeof HubRouteWithChildren
   IntelligenceRoute: typeof IntelligenceRouteWithChildren
+  MarketRoute: typeof MarketRoute
+  MediaRoute: typeof MediaRoute
   MotherlandRoute: typeof MotherlandRouteWithChildren
   NetworkRoute: typeof NetworkRouteWithChildren
   NotificationsRoute: typeof NotificationsRoute
   OnboardingRoute: typeof OnboardingRouteWithChildren
   ProfileRoute: typeof ProfileRoute
+  RadarmusicRoute: typeof RadarmusicRoute
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -771,81 +810,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/welcome': {
-      id: '/welcome'
-      path: '/welcome'
-      fullPath: '/welcome'
-      preLoaderRoute: typeof WelcomeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/search': {
-      id: '/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof SearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/notifications': {
-      id: '/notifications'
-      path: '/notifications'
-      fullPath: '/notifications'
-      preLoaderRoute: typeof NotificationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/network': {
-      id: '/network'
-      path: '/network'
-      fullPath: '/network'
-      preLoaderRoute: typeof NetworkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/motherland': {
-      id: '/motherland'
-      path: '/motherland'
-      fullPath: '/motherland'
-      preLoaderRoute: typeof MotherlandRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/intelligence': {
-      id: '/intelligence'
-      path: '/intelligence'
-      fullPath: '/intelligence'
-      preLoaderRoute: typeof IntelligenceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hub': {
-      id: '/hub'
-      path: '/hub'
-      fullPath: '/hub'
-      preLoaderRoute: typeof HubRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -855,333 +824,109 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/hub': {
+      id: '/hub'
+      path: '/hub'
+      fullPath: '/hub'
+      preLoaderRoute: typeof HubRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/network/': {
-      id: '/network/'
-      path: '/'
-      fullPath: '/network/'
-      preLoaderRoute: typeof NetworkIndexRouteImport
-      parentRoute: typeof NetworkRoute
+    '/intelligence': {
+      id: '/intelligence'
+      path: '/intelligence'
+      fullPath: '/intelligence'
+      preLoaderRoute: typeof IntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/': {
-      id: '/motherland/'
-      path: '/'
-      fullPath: '/motherland/'
-      preLoaderRoute: typeof MotherlandIndexRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/market': {
+      id: '/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/intelligence/': {
-      id: '/intelligence/'
-      path: '/'
-      fullPath: '/intelligence/'
-      preLoaderRoute: typeof IntelligenceIndexRouteImport
-      parentRoute: typeof IntelligenceRoute
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/hub/': {
-      id: '/hub/'
-      path: '/'
-      fullPath: '/hub/'
-      preLoaderRoute: typeof HubIndexRouteImport
-      parentRoute: typeof HubRoute
+    '/motherland': {
+      id: '/motherland'
+      path: '/motherland'
+      fullPath: '/motherland'
+      preLoaderRoute: typeof MotherlandRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/onboarding/profile': {
-      id: '/onboarding/profile'
-      path: '/profile'
-      fullPath: '/onboarding/profile'
-      preLoaderRoute: typeof OnboardingProfileRouteImport
-      parentRoute: typeof OnboardingRoute
+    '/network': {
+      id: '/network'
+      path: '/network'
+      fullPath: '/network'
+      preLoaderRoute: typeof NetworkRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/onboarding/artist': {
-      id: '/onboarding/artist'
-      path: '/artist'
-      fullPath: '/onboarding/artist'
-      preLoaderRoute: typeof OnboardingArtistRouteImport
-      parentRoute: typeof OnboardingRoute
-    }
-    '/network/videos': {
-      id: '/network/videos'
-      path: '/videos'
-      fullPath: '/network/videos'
-      preLoaderRoute: typeof NetworkVideosRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/tv': {
-      id: '/network/tv'
-      path: '/tv'
-      fullPath: '/network/tv'
-      preLoaderRoute: typeof NetworkTvRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/spotlight': {
-      id: '/network/spotlight'
-      path: '/spotlight'
-      fullPath: '/network/spotlight'
-      preLoaderRoute: typeof NetworkSpotlightRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/search': {
-      id: '/network/search'
-      path: '/search'
-      fullPath: '/network/search'
-      preLoaderRoute: typeof NetworkSearchRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/playlists': {
-      id: '/network/playlists'
-      path: '/playlists'
-      fullPath: '/network/playlists'
-      preLoaderRoute: typeof NetworkPlaylistsRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/magazine': {
-      id: '/network/magazine'
-      path: '/magazine'
-      fullPath: '/network/magazine'
-      preLoaderRoute: typeof NetworkMagazineRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/interviews': {
-      id: '/network/interviews'
-      path: '/interviews'
-      fullPath: '/network/interviews'
-      preLoaderRoute: typeof NetworkInterviewsRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/discovery': {
-      id: '/network/discovery'
-      path: '/discovery'
-      fullPath: '/network/discovery'
-      preLoaderRoute: typeof NetworkDiscoveryRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/bookmarks': {
-      id: '/network/bookmarks'
-      path: '/bookmarks'
-      fullPath: '/network/bookmarks'
-      preLoaderRoute: typeof NetworkBookmarksRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/artists': {
-      id: '/network/artists'
-      path: '/artists'
-      fullPath: '/network/artists'
-      preLoaderRoute: typeof NetworkArtistsRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/network/articles': {
-      id: '/network/articles'
-      path: '/articles'
-      fullPath: '/network/articles'
-      preLoaderRoute: typeof NetworkArticlesRouteImport
-      parentRoute: typeof NetworkRoute
-    }
-    '/motherland/recognition': {
-      id: '/motherland/recognition'
-      path: '/recognition'
-      fullPath: '/motherland/recognition'
-      preLoaderRoute: typeof MotherlandRecognitionRouteImport
-      parentRoute: typeof MotherlandRoute
-    }
-    '/motherland/notifications': {
-      id: '/motherland/notifications'
+    '/notifications': {
+      id: '/notifications'
       path: '/notifications'
-      fullPath: '/motherland/notifications'
-      preLoaderRoute: typeof MotherlandNotificationsRouteImport
-      parentRoute: typeof MotherlandRoute
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/messages': {
-      id: '/motherland/messages'
-      path: '/messages'
-      fullPath: '/motherland/messages'
-      preLoaderRoute: typeof MotherlandMessagesRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/mentorship': {
-      id: '/motherland/mentorship'
-      path: '/mentorship'
-      fullPath: '/motherland/mentorship'
-      preLoaderRoute: typeof MotherlandMentorshipRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/learning': {
-      id: '/motherland/learning'
-      path: '/learning'
-      fullPath: '/motherland/learning'
-      preLoaderRoute: typeof MotherlandLearningRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/radarmusic': {
+      id: '/radarmusic'
+      path: '/radarmusic'
+      fullPath: '/radarmusic'
+      preLoaderRoute: typeof RadarmusicRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/feed': {
-      id: '/motherland/feed'
-      path: '/feed'
-      fullPath: '/motherland/feed'
-      preLoaderRoute: typeof MotherlandFeedRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/events': {
-      id: '/motherland/events'
-      path: '/events'
-      fullPath: '/motherland/events'
-      preLoaderRoute: typeof MotherlandEventsRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/discovery': {
-      id: '/motherland/discovery'
-      path: '/discovery'
-      fullPath: '/motherland/discovery'
-      preLoaderRoute: typeof MotherlandDiscoveryRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/motherland/challenges': {
-      id: '/motherland/challenges'
-      path: '/challenges'
-      fullPath: '/motherland/challenges'
-      preLoaderRoute: typeof MotherlandChallengesRouteImport
-      parentRoute: typeof MotherlandRoute
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/intelligence/timeline': {
-      id: '/intelligence/timeline'
-      path: '/timeline'
-      fullPath: '/intelligence/timeline'
-      preLoaderRoute: typeof IntelligenceTimelineRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/intelligence/recommendations': {
-      id: '/intelligence/recommendations'
-      path: '/recommendations'
-      fullPath: '/intelligence/recommendations'
-      preLoaderRoute: typeof IntelligenceRecommendationsRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/intelligence/planner': {
-      id: '/intelligence/planner'
-      path: '/planner'
-      fullPath: '/intelligence/planner'
-      preLoaderRoute: typeof IntelligencePlannerRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/intelligence/opportunities': {
-      id: '/intelligence/opportunities'
-      path: '/opportunities'
-      fullPath: '/intelligence/opportunities'
-      preLoaderRoute: typeof IntelligenceOpportunitiesRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/intelligence/knowledge': {
-      id: '/intelligence/knowledge'
-      path: '/knowledge'
-      fullPath: '/intelligence/knowledge'
-      preLoaderRoute: typeof IntelligenceKnowledgeRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/intelligence/insights': {
-      id: '/intelligence/insights'
-      path: '/insights'
-      fullPath: '/intelligence/insights'
-      preLoaderRoute: typeof IntelligenceInsightsRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/intelligence/goals': {
-      id: '/intelligence/goals'
-      path: '/goals'
-      fullPath: '/intelligence/goals'
-      preLoaderRoute: typeof IntelligenceGoalsRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/intelligence/chat': {
-      id: '/intelligence/chat'
-      path: '/chat'
-      fullPath: '/intelligence/chat'
-      preLoaderRoute: typeof IntelligenceChatRouteImport
-      parentRoute: typeof IntelligenceRoute
-    }
-    '/hub/wallet': {
-      id: '/hub/wallet'
-      path: '/wallet'
-      fullPath: '/hub/wallet'
-      preLoaderRoute: typeof HubWalletRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/support': {
-      id: '/hub/support'
-      path: '/support'
-      fullPath: '/hub/support'
-      preLoaderRoute: typeof HubSupportRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/referrals': {
-      id: '/hub/referrals'
-      path: '/referrals'
-      fullPath: '/hub/referrals'
-      preLoaderRoute: typeof HubReferralsRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/playlist-pitch': {
-      id: '/hub/playlist-pitch'
-      path: '/playlist-pitch'
-      fullPath: '/hub/playlist-pitch'
-      preLoaderRoute: typeof HubPlaylistPitchRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/orders': {
-      id: '/hub/orders'
-      path: '/orders'
-      fullPath: '/hub/orders'
-      preLoaderRoute: typeof HubOrdersRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/marketing': {
-      id: '/hub/marketing'
-      path: '/marketing'
-      fullPath: '/hub/marketing'
-      preLoaderRoute: typeof HubMarketingRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/editorial': {
-      id: '/hub/editorial'
-      path: '/editorial'
-      fullPath: '/hub/editorial'
-      preLoaderRoute: typeof HubEditorialRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/distribution': {
-      id: '/hub/distribution'
-      path: '/distribution'
-      fullPath: '/hub/distribution'
-      preLoaderRoute: typeof HubDistributionRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/consultation': {
-      id: '/hub/consultation'
-      path: '/consultation'
-      fullPath: '/hub/consultation'
-      preLoaderRoute: typeof HubConsultationRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/hub/career-planner': {
-      id: '/hub/career-planner'
-      path: '/career-planner'
-      fullPath: '/hub/career-planner'
-      preLoaderRoute: typeof HubCareerPlannerRouteImport
-      parentRoute: typeof HubRoute
-    }
-    '/auth/verify': {
-      id: '/auth/verify'
-      path: '/verify'
-      fullPath: '/auth/verify'
-      preLoaderRoute: typeof AuthVerifyRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/auth/register': {
-      id: '/auth/register'
-      path: '/register'
-      fullPath: '/auth/register'
-      preLoaderRoute: typeof AuthRegisterRouteImport
+    '/auth/forgot': {
+      id: '/auth/forgot'
+      path: '/forgot'
+      fullPath: '/auth/forgot'
+      preLoaderRoute: typeof AuthForgotRouteImport
       parentRoute: typeof AuthRoute
     }
     '/auth/login': {
@@ -1191,12 +936,327 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof AuthRoute
     }
-    '/auth/forgot': {
-      id: '/auth/forgot'
-      path: '/forgot'
-      fullPath: '/auth/forgot'
-      preLoaderRoute: typeof AuthForgotRouteImport
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
       parentRoute: typeof AuthRoute
+    }
+    '/auth/verify': {
+      id: '/auth/verify'
+      path: '/verify'
+      fullPath: '/auth/verify'
+      preLoaderRoute: typeof AuthVerifyRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/hub/': {
+      id: '/hub/'
+      path: '/'
+      fullPath: '/hub/'
+      preLoaderRoute: typeof HubIndexRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/career-planner': {
+      id: '/hub/career-planner'
+      path: '/career-planner'
+      fullPath: '/hub/career-planner'
+      preLoaderRoute: typeof HubCareerPlannerRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/consultation': {
+      id: '/hub/consultation'
+      path: '/consultation'
+      fullPath: '/hub/consultation'
+      preLoaderRoute: typeof HubConsultationRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/distribution': {
+      id: '/hub/distribution'
+      path: '/distribution'
+      fullPath: '/hub/distribution'
+      preLoaderRoute: typeof HubDistributionRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/editorial': {
+      id: '/hub/editorial'
+      path: '/editorial'
+      fullPath: '/hub/editorial'
+      preLoaderRoute: typeof HubEditorialRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/marketing': {
+      id: '/hub/marketing'
+      path: '/marketing'
+      fullPath: '/hub/marketing'
+      preLoaderRoute: typeof HubMarketingRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/orders': {
+      id: '/hub/orders'
+      path: '/orders'
+      fullPath: '/hub/orders'
+      preLoaderRoute: typeof HubOrdersRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/playlist-pitch': {
+      id: '/hub/playlist-pitch'
+      path: '/playlist-pitch'
+      fullPath: '/hub/playlist-pitch'
+      preLoaderRoute: typeof HubPlaylistPitchRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/referrals': {
+      id: '/hub/referrals'
+      path: '/referrals'
+      fullPath: '/hub/referrals'
+      preLoaderRoute: typeof HubReferralsRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/support': {
+      id: '/hub/support'
+      path: '/support'
+      fullPath: '/hub/support'
+      preLoaderRoute: typeof HubSupportRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/hub/wallet': {
+      id: '/hub/wallet'
+      path: '/wallet'
+      fullPath: '/hub/wallet'
+      preLoaderRoute: typeof HubWalletRouteImport
+      parentRoute: typeof HubRoute
+    }
+    '/intelligence/': {
+      id: '/intelligence/'
+      path: '/'
+      fullPath: '/intelligence/'
+      preLoaderRoute: typeof IntelligenceIndexRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/chat': {
+      id: '/intelligence/chat'
+      path: '/chat'
+      fullPath: '/intelligence/chat'
+      preLoaderRoute: typeof IntelligenceChatRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/goals': {
+      id: '/intelligence/goals'
+      path: '/goals'
+      fullPath: '/intelligence/goals'
+      preLoaderRoute: typeof IntelligenceGoalsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/insights': {
+      id: '/intelligence/insights'
+      path: '/insights'
+      fullPath: '/intelligence/insights'
+      preLoaderRoute: typeof IntelligenceInsightsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/knowledge': {
+      id: '/intelligence/knowledge'
+      path: '/knowledge'
+      fullPath: '/intelligence/knowledge'
+      preLoaderRoute: typeof IntelligenceKnowledgeRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/opportunities': {
+      id: '/intelligence/opportunities'
+      path: '/opportunities'
+      fullPath: '/intelligence/opportunities'
+      preLoaderRoute: typeof IntelligenceOpportunitiesRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/planner': {
+      id: '/intelligence/planner'
+      path: '/planner'
+      fullPath: '/intelligence/planner'
+      preLoaderRoute: typeof IntelligencePlannerRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/recommendations': {
+      id: '/intelligence/recommendations'
+      path: '/recommendations'
+      fullPath: '/intelligence/recommendations'
+      preLoaderRoute: typeof IntelligenceRecommendationsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/timeline': {
+      id: '/intelligence/timeline'
+      path: '/timeline'
+      fullPath: '/intelligence/timeline'
+      preLoaderRoute: typeof IntelligenceTimelineRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/motherland/': {
+      id: '/motherland/'
+      path: '/'
+      fullPath: '/motherland/'
+      preLoaderRoute: typeof MotherlandIndexRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/challenges': {
+      id: '/motherland/challenges'
+      path: '/challenges'
+      fullPath: '/motherland/challenges'
+      preLoaderRoute: typeof MotherlandChallengesRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/discovery': {
+      id: '/motherland/discovery'
+      path: '/discovery'
+      fullPath: '/motherland/discovery'
+      preLoaderRoute: typeof MotherlandDiscoveryRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/events': {
+      id: '/motherland/events'
+      path: '/events'
+      fullPath: '/motherland/events'
+      preLoaderRoute: typeof MotherlandEventsRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/feed': {
+      id: '/motherland/feed'
+      path: '/feed'
+      fullPath: '/motherland/feed'
+      preLoaderRoute: typeof MotherlandFeedRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/learning': {
+      id: '/motherland/learning'
+      path: '/learning'
+      fullPath: '/motherland/learning'
+      preLoaderRoute: typeof MotherlandLearningRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/mentorship': {
+      id: '/motherland/mentorship'
+      path: '/mentorship'
+      fullPath: '/motherland/mentorship'
+      preLoaderRoute: typeof MotherlandMentorshipRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/messages': {
+      id: '/motherland/messages'
+      path: '/messages'
+      fullPath: '/motherland/messages'
+      preLoaderRoute: typeof MotherlandMessagesRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/notifications': {
+      id: '/motherland/notifications'
+      path: '/notifications'
+      fullPath: '/motherland/notifications'
+      preLoaderRoute: typeof MotherlandNotificationsRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/motherland/recognition': {
+      id: '/motherland/recognition'
+      path: '/recognition'
+      fullPath: '/motherland/recognition'
+      preLoaderRoute: typeof MotherlandRecognitionRouteImport
+      parentRoute: typeof MotherlandRoute
+    }
+    '/network/': {
+      id: '/network/'
+      path: '/'
+      fullPath: '/network/'
+      preLoaderRoute: typeof NetworkIndexRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/articles': {
+      id: '/network/articles'
+      path: '/articles'
+      fullPath: '/network/articles'
+      preLoaderRoute: typeof NetworkArticlesRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/artists': {
+      id: '/network/artists'
+      path: '/artists'
+      fullPath: '/network/artists'
+      preLoaderRoute: typeof NetworkArtistsRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/bookmarks': {
+      id: '/network/bookmarks'
+      path: '/bookmarks'
+      fullPath: '/network/bookmarks'
+      preLoaderRoute: typeof NetworkBookmarksRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/discovery': {
+      id: '/network/discovery'
+      path: '/discovery'
+      fullPath: '/network/discovery'
+      preLoaderRoute: typeof NetworkDiscoveryRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/interviews': {
+      id: '/network/interviews'
+      path: '/interviews'
+      fullPath: '/network/interviews'
+      preLoaderRoute: typeof NetworkInterviewsRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/magazine': {
+      id: '/network/magazine'
+      path: '/magazine'
+      fullPath: '/network/magazine'
+      preLoaderRoute: typeof NetworkMagazineRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/playlists': {
+      id: '/network/playlists'
+      path: '/playlists'
+      fullPath: '/network/playlists'
+      preLoaderRoute: typeof NetworkPlaylistsRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/search': {
+      id: '/network/search'
+      path: '/search'
+      fullPath: '/network/search'
+      preLoaderRoute: typeof NetworkSearchRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/spotlight': {
+      id: '/network/spotlight'
+      path: '/spotlight'
+      fullPath: '/network/spotlight'
+      preLoaderRoute: typeof NetworkSpotlightRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/tv': {
+      id: '/network/tv'
+      path: '/tv'
+      fullPath: '/network/tv'
+      preLoaderRoute: typeof NetworkTvRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/network/videos': {
+      id: '/network/videos'
+      path: '/videos'
+      fullPath: '/network/videos'
+      preLoaderRoute: typeof NetworkVideosRouteImport
+      parentRoute: typeof NetworkRoute
+    }
+    '/onboarding/artist': {
+      id: '/onboarding/artist'
+      path: '/artist'
+      fullPath: '/onboarding/artist'
+      preLoaderRoute: typeof OnboardingArtistRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/profile': {
+      id: '/onboarding/profile'
+      path: '/profile'
+      fullPath: '/onboarding/profile'
+      preLoaderRoute: typeof OnboardingProfileRouteImport
+      parentRoute: typeof OnboardingRoute
     }
   }
 }
@@ -1357,11 +1417,14 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   HubRoute: HubRouteWithChildren,
   IntelligenceRoute: IntelligenceRouteWithChildren,
+  MarketRoute: MarketRoute,
+  MediaRoute: MediaRoute,
   MotherlandRoute: MotherlandRouteWithChildren,
   NetworkRoute: NetworkRouteWithChildren,
   NotificationsRoute: NotificationsRoute,
   OnboardingRoute: OnboardingRouteWithChildren,
   ProfileRoute: ProfileRoute,
+  RadarmusicRoute: RadarmusicRoute,
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

@@ -2,77 +2,71 @@
 
 ## Current State
 
-RADARMe is a React 19 / TanStack Start prototype with deterministic mock services, shared RADAR components, route transitions, responsive navigation, and a home announcement carousel. The repository was clean before this pass.
+RADARMe is a React 19 / TanStack Start prototype with deterministic mock services, shared RADAR components, route transitions, and a canvas-first five-destination ecosystem shell. The primary navigation now exposes Home, RADARMusic, Motherland, Market, and Media through real routes while preserving existing Hub, Network, MOTHERLand, Intelligence, auth, and onboarding deep links.
 
 ## Recently Completed
 
-- Audited the repository structure, route shell, motion styles, navigation, home dashboard, and announcement carousel.
-- Added reduced-motion detection to stop automatic carousel rotation when the user requests reduced motion.
-- Made carousel focus pause behavior boundary-aware using `relatedTarget`.
-- Increased carousel pagination controls to 44px hit areas while retaining compact visual indicators.
-- Reset the carousel index when an updated item collection no longer contains the current index.
-- Added `docs/interaction-engineering-audit.md`.
+- Replaced the legacy three-destination footer with a floating glass navigation system.
+- Added first-class `/radarmusic`, `/market`, and `/media` entry routes.
+- Preserved existing domain routes as compatibility/deep-link surfaces.
+- Removed the now-unreferenced persistent `TopBar` and `FloatingActionButton` components.
+- Removed local generated `.output`, `.wrangler`, and other build-cache directories; all remain ignored by `.gitignore`.
+- Preserved the existing reduced-motion and announcement-carousel interaction fixes.
 
 ## Currently In Progress
 
-Browser-based QA against a running local or deployed URL remains to be performed because no project URL was supplied.
+The importer-first opening, selective RADARMusic extraction from the separate repository, scroll-aware footer, and browser-based visual QA remain the next product slices. This cleanup does not claim those features are complete.
 
 ## Known Bugs
 
-No new source-level bug is known from the inspected interaction path. Runtime console and hydration status are not measured in this repository-only pass.
+No new source-level bug is known from the shell migration. Runtime console, hydration, responsive visual, and screen-reader status require browser QA against a running URL.
 
 ## Technical Debt
 
-The project still uses deterministic in-memory service mocks. Backend enablement, persistent authentication, E2E coverage, monitoring, and Lighthouse measurement remain deployment work described in `README.md`.
+The project still uses deterministic in-memory service mocks. Backend enablement, persistent authentication, E2E coverage, monitoring, and Lighthouse measurement remain deployment work described in `README.md`. Repository-wide formatting debt is pre-existing and is tracked by the lint check.
 
 ## Architecture Decisions
 
-The existing React state and CSS motion architecture was preserved. No new dependency or parallel carousel implementation was introduced. The carousel continues to use one cancellable timeout and local state.
+The app shell is canvas-first for the primary experience. Auth, onboarding, welcome, and Intelligence retain focused layouts. The new navigation is route-backed rather than button-only and uses compatibility entry points so the existing domain route families are not deleted.
 
 ## Design Decisions
 
-Pagination indicators remain visually minimal, but their interactive wrapper now meets a 44px touch target. Focus rings remain visible without changing the brand styling. Copy, routes, and content were not changed.
+The navigation uses semantic white-on-glass controls with an active white surface, restrained outline/focus treatment, and safe-area-aware spacing. Labels remain visible at all widths for clarity; truncation and a constrained max width prevent collisions on compact screens.
 
 ## Animation/Motion Decisions
 
-Automatic rotation is disabled under `prefers-reduced-motion: reduce`; manual navigation remains available. Existing entry animation remains CSS-based and is already disabled by the stylesheet under reduced motion. The implementation does not claim a cross-fade or media transition because the component is a text/card carousel, not a media player.
+The migration uses existing CSS transitions and glass utilities only. No animation dependency was added. Existing reduced-motion behavior remains in place.
 
 ## Performance Findings
 
-The carousel uses a single timeout, not a repeating interval, and cleans it up when state changes or the component unmounts. LCP, CLS, and INP were not measured.
+Generated build output and local caches are ignored and removed from the working tree. No Web Vitals or browser performance metrics were measured in this pass.
 
 ## Accessibility Findings
 
-The carousel uses semantic buttons and links, accessible labels, `aria-current`, and an explicit slide group. Pagination hit areas are now 44px and expose a visible focus ring. Reduced-motion behavior is implemented in both source logic and CSS.
-
-## Unfinished Features
-
-- Browser console, hydration, responsive, keyboard, touch, and screen-reader QA.
-- LCP/CLS/INP measurement.
-- Backend, real auth, persistent data, and E2E coverage.
+The navigation remains a semantic `nav` with real links, `aria-current`, visible focus treatment, and touch targets at least 56px tall. Reduced-motion behavior remains unchanged. A full keyboard and screen-reader pass remains pending.
 
 ## Verification
 
-- Dependency installation: **PASSED** with `npm install --no-audit --no-fund` (409 packages added; npm emitted upstream deprecation warnings).
-- `npm run lint`: **FAILED / PRE-EXISTING FORMAT DEBT**. It reports Prettier errors in existing route files (`network*`, `notifications`, `onboarding.artist`, and others); the changed carousel passes focused `npx eslint src/components/home/AnnouncementRibbon.tsx`.
+- `npm run build`: **PASSED** after generating the five-tab route tree.
 - `npx tsc --noEmit`: **PASSED**.
-- `npm run build`: **PASSED**.
-- Browser QA: **UNAVAILABLE / NOT MEASURED** because no URL was supplied.
+- Focused ESLint on all changed source files: **PASSED**.
+- `npm run lint`: **FAILED / PRE-EXISTING FORMAT DEBT** with 443 existing Prettier errors across unrelated files; no changed-file errors remain.
+- Browser QA: pending.
 
 ## Files/Components Changed
 
-- `src/components/home/AnnouncementRibbon.tsx`
-- `docs/interaction-engineering-audit.md`
+- `src/components/layout/AppShell.tsx`
+- `src/components/layout/BottomNav.tsx`
+- `src/routes/radarmusic.tsx`
+- `src/routes/market.tsx`
+- `src/routes/media.tsx`
+- `src/routeTree.gen.ts` (generated by the project build)
+- `README.md`
+- `docs/radarme-v2-migration-audit.md`
 - `DEVELOPMENT_HANDOFF.md`
+- Removed `src/components/layout/TopBar.tsx`
+- Removed `src/components/layout/FloatingActionButton.tsx`
 
-## Recommended Next Steps
+## Next Steps
 
-Run the project-native checks, start the local app, and test the carousel at small mobile and desktop widths with reduced motion enabled and disabled. Then capture console and performance evidence before marking the work fully verified.
-
-## Known Limitations
-
-The source uses `window.matchMedia` inside `useEffect`, so SSR is not invoked directly. Browser-level verification is still needed to validate media-query change events on all supported browsers.
-
-## Developer Handoff Notes
-
-Do not replace the carousel with a second implementation or add an animation library for this issue. If the announcement source becomes remote, retain the index guard and add loading/error states rather than rendering an undefined current item.
+Build the importer-first opening experience, selectively inspect and integrate RADARMusic modules, and run browser QA across the five primary destinations at representative mobile and desktop widths.

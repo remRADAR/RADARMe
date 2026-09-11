@@ -16,33 +16,33 @@ The safest V2 strategy is therefore a controlled migration: preserve the existin
 
 ## Current architecture
 
-| Area | Current state | V2 implication |
-|---|---|---|
-| Framework | TanStack Start with React 19 and Vite | Preserve; use existing route conventions and server-function boundaries |
-| Routing | File-based TanStack Router routes generated into `src/routeTree.gen.ts` | Preserve typed/deep-linkable routing; adapt aliases incrementally |
-| App shell | `AppShell`, `TopBar`, `BottomNav`, `FloatingActionButton` | Preserve shell; evolve navigation from three destinations to five ecosystem destinations |
-| Styling | Tailwind CSS v4 plus `src/styles.css` semantic RADAR tokens | Preserve as the implementation source of truth; extend tokens only when required |
-| Auth | `AuthProvider` and localStorage session simulation | Preserve UI flows; replace persistence and authorization server-side before claiming production auth |
-| Data access | Typed async service modules with in-memory seed data | Preserve public signatures; replace implementations domain by domain behind adapters |
-| Database | No database client/schema/migrations found | Build only after contracts and ownership rules are defined |
-| Storage | No verified file-storage integration found | Required for release assets and artist media; remain explicitly pending |
-| External integrations | No verified AmpSuite, DSP, payment, or CMS contract found | Do not claim live integrations; represent pending/processing states honestly |
-| Tests | No test runner or test suite is configured in package scripts | Add focused domain tests with the first backend slice; do not hide this baseline gap |
-| Deployment | Vite/TanStack/Nitro configuration with Cloudflare-oriented build defaults | Preserve build pipeline; verify deployment target before adding backend assumptions |
+| Area                  | Current state                                                             | V2 implication                                                                                       |
+| --------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Framework             | TanStack Start with React 19 and Vite                                     | Preserve; use existing route conventions and server-function boundaries                              |
+| Routing               | File-based TanStack Router routes generated into `src/routeTree.gen.ts`   | Preserve typed/deep-linkable routing; adapt aliases incrementally                                    |
+| App shell             | `AppShell`, floating `BottomNav`                                          | Preserve shell; five ecosystem destinations are now first-class entry routes                         |
+| Styling               | Tailwind CSS v4 plus `src/styles.css` semantic RADAR tokens               | Preserve as the implementation source of truth; extend tokens only when required                     |
+| Auth                  | `AuthProvider` and localStorage session simulation                        | Preserve UI flows; replace persistence and authorization server-side before claiming production auth |
+| Data access           | Typed async service modules with in-memory seed data                      | Preserve public signatures; replace implementations domain by domain behind adapters                 |
+| Database              | No database client/schema/migrations found                                | Build only after contracts and ownership rules are defined                                           |
+| Storage               | No verified file-storage integration found                                | Required for release assets and artist media; remain explicitly pending                              |
+| External integrations | No verified AmpSuite, DSP, payment, or CMS contract found                 | Do not claim live integrations; represent pending/processing states honestly                         |
+| Tests                 | No test runner or test suite is configured in package scripts             | Add focused domain tests with the first backend slice; do not hide this baseline gap                 |
+| Deployment            | Vite/TanStack/Nitro configuration with Cloudflare-oriented build defaults | Preserve build pipeline; verify deployment target before adding backend assumptions                  |
 
 ## Existing routes and feature families
 
-| Current family | Approx. scope | V2 classification | Notes |
-|---|---:|---|---|
-| Home / RADARHub | 1 home route plus 12 hub routes | **KEEP / REFACTOR** | Current hub is a service catalogue; home should become the artist command centre while useful service modules remain reachable |
-| Auth | 5 routes | **REFACTOR** | UI flows exist, but session/authentication are local mocks |
-| Onboarding | 3 routes | **KEEP / REFACTOR** | Valuable artist identity flow; connect to real identity/profile persistence later |
-| RADAR Intelligence | 10 routes | **KEEP / REFACTOR** | Preserve UI and constrain future Matrix tools to read/recommend/request/confirm/write governance |
-| MOTHERLand | 11 routes | **KEEP / REFACTOR** | Preserve community surfaces; move eligibility and participation authorization to backend |
-| RADARNetwork | 13 routes | **RELOCATE / REFACTOR** | Existing editorial/media functionality maps naturally under the V2 Media domain |
-| Profile, notifications, search, settings | 4 routes | **KEEP / REFACTOR** | Shared cross-ecosystem capabilities; replace mock persistence progressively |
-| Admin / REM operations | None found | **BUILD NEW, LATER** | Do not build broadly until stable domain contracts exist |
-| Store / products / tickets | No dedicated V2 store found | **BUILD NEW, LATER** | Begin with events/free registration, not paid commerce |
+| Current family                           |                   Approx. scope | V2 classification       | Notes                                                                                                                          |
+| ---------------------------------------- | ------------------------------: | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Home / RADARHub                          | 1 home route plus 12 hub routes | **KEEP / REFACTOR**     | Current hub is a service catalogue; home should become the artist command centre while useful service modules remain reachable |
+| Auth                                     |                        5 routes | **REFACTOR**            | UI flows exist, but session/authentication are local mocks                                                                     |
+| Onboarding                               |                        3 routes | **KEEP / REFACTOR**     | Valuable artist identity flow; connect to real identity/profile persistence later                                              |
+| RADAR Intelligence                       |                       10 routes | **KEEP / REFACTOR**     | Preserve UI and constrain future Matrix tools to read/recommend/request/confirm/write governance                               |
+| MOTHERLand                               |                       11 routes | **KEEP / REFACTOR**     | Preserve community surfaces; move eligibility and participation authorization to backend                                       |
+| RADARNetwork                             |                       13 routes | **RELOCATE / REFACTOR** | Existing editorial/media functionality maps naturally under the V2 Media domain                                                |
+| Profile, notifications, search, settings |                        4 routes | **KEEP / REFACTOR**     | Shared cross-ecosystem capabilities; replace mock persistence progressively                                                    |
+| Admin / REM operations                   |                      None found | **BUILD NEW, LATER**    | Do not build broadly until stable domain contracts exist                                                                       |
+| Store / products / tickets               |     No dedicated V2 store found | **BUILD NEW, LATER**    | Begin with events/free registration, not paid commerce                                                                         |
 
 ## Preservation boundary
 
@@ -69,16 +69,16 @@ The current implementation contains explicit comments identifying backend swap t
 
 ## Approved V2 domain map
 
-| V2 domain | Existing foundation | Migration direction |
-|---|---|---|
-| **RADARMe** | Home, profile, notifications, settings, onboarding, activity widgets | Make this the authenticated artist command centre; retain useful hub entry points |
-| **RADARMusic** | Network artists/discovery, distribution, playlist pitch, artist-facing release UI | Combine public artist/music discovery with a verified, status-driven distribution workflow |
-| **Media** | Network articles, magazine, interviews, spotlight, TV, videos, search, bookmarks | Relocate/re-alias existing RADARNetwork routes incrementally; preserve deep links during transition |
-| **RADARStore** | Community events, wallet/orders infrastructure, service/order patterns | Start with event discovery/detail/free registration/cancellation; defer paid commerce |
-| **MOTHERLand** | Existing MOTHERLand routes and community seed models | Preserve public/private experience; enforce eligibility and access at backend boundary |
-| **RADARMatrix** | Intelligence routes and `IntelPage` | Keep initial capabilities read-only/recommendation-oriented and permission-bounded |
-| **RADARRoom** | No dedicated structured escalation domain found | Introduce after Matrix support boundaries are defined; avoid generic contact-page substitution |
-| **REM Admin** | No admin control plane found | Build later against stable domain contracts, not speculative screens |
+| V2 domain       | Existing foundation                                                               | Migration direction                                                                                 |
+| --------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **RADARMe**     | Home, profile, notifications, settings, onboarding, activity widgets              | Make this the authenticated artist command centre; retain useful hub entry points                   |
+| **RADARMusic**  | Network artists/discovery, distribution, playlist pitch, artist-facing release UI | Combine public artist/music discovery with a verified, status-driven distribution workflow          |
+| **Media**       | Network articles, magazine, interviews, spotlight, TV, videos, search, bookmarks  | Relocate/re-alias existing RADARNetwork routes incrementally; preserve deep links during transition |
+| **RADARStore**  | Community events, wallet/orders infrastructure, service/order patterns            | Start with event discovery/detail/free registration/cancellation; defer paid commerce               |
+| **MOTHERLand**  | Existing MOTHERLand routes and community seed models                              | Preserve public/private experience; enforce eligibility and access at backend boundary              |
+| **RADARMatrix** | Intelligence routes and `IntelPage`                                               | Keep initial capabilities read-only/recommendation-oriented and permission-bounded                  |
+| **RADARRoom**   | No dedicated structured escalation domain found                                   | Introduce after Matrix support boundaries are defined; avoid generic contact-page substitution      |
+| **REM Admin**   | No admin control plane found                                                      | Build later against stable domain contracts, not speculative screens                                |
 
 ## Required first slice: ecosystem shell
 
@@ -110,15 +110,15 @@ The backend/database must be authoritative for capacity and registration state. 
 
 ## Risks and stop conditions
 
-| Risk | Current evidence | Mitigation |
-|---|---|---|
-| Mock data looks production-like | Widespread deterministic seeds and dashboard metrics | Add explicit data-status conventions and replace domain by domain |
-| Frontend-only auth/authorization | Local storage session; no backend auth/RLS | Establish secure auth and server-side role checks before sensitive workflows |
-| Route migration breaks users | Existing routes are broad and deep-linkable | Add compatibility aliases and migrate incrementally |
-| External integrations are invented | No verified AmpSuite/DSP/payment contracts | Use adapter interfaces and pending/processing states |
-| Commerce begins too early | Wallet/orders exist as UI/mocks | Prove free events first; defer payments |
-| Admin scope expands prematurely | No stable admin contracts yet | Build operational views only after user-facing contracts stabilize |
-| Test baseline is incomplete | No configured test command found | Add domain tests with Slice B and record the baseline honestly |
+| Risk                                                       | Current evidence                                         | Mitigation                                                                    |
+| ---------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Mock data looks production-like                            | Widespread deterministic seeds and dashboard metrics     | Add explicit data-status conventions and replace domain by domain             |
+| Frontend-only auth/authorization                           | Local storage session; no backend auth/RLS               | Establish secure auth and server-side role checks before sensitive workflows  |
+| Route migration breaks users                               | Existing routes are broad and deep-linkable              | Add compatibility aliases and migrate incrementally                           |
+| External integrations are invented                         | No verified AmpSuite/DSP/payment contracts               | Use adapter interfaces and pending/processing states                          |
+| Commerce begins too early                                  | Wallet/orders exist as UI/mocks                          | Prove free events first; defer payments                                       |
+| Admin scope expands prematurely                            | No stable admin contracts yet                            | Build operational views only after user-facing contracts stabilize            |
+| Test baseline is incomplete                                | No configured test command found                         | Add domain tests with Slice B and record the baseline honestly                |
 | Existing uncommitted work may be mixed with migration work | Current working tree has prior shell/theme/preview edits | Separate migration commits from existing UI refinement before major refactors |
 
 ## Baseline commands and expected validation
@@ -132,6 +132,10 @@ npm run lint
 ```
 
 The existing repository has a known broad formatting-lint backlog; changed-file lint and build results should be reported separately from the repository-wide baseline. A test runner should be introduced with the first meaningful backend/domain change rather than retrofitted after multiple slices.
+
+## Completed continuation slice
+
+The ecosystem shell migration is now implemented in `AppShell` and `BottomNav`. The primary navigation exposes Home, RADARMusic, Motherland, Market, and Media using real entry routes at `/`, `/radarmusic`, `/motherland`, `/market`, and `/media`. Existing Hub, Network, and MOTHERLand deep links remain intact. The obsolete persistent `TopBar` and floating-action component were unreferenced after the migration and have been removed. Generated build caches remain ignored and are not part of the source tree.
 
 ## Discovery conclusion
 

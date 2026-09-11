@@ -1,13 +1,10 @@
 import type { ReactNode } from "react";
 import { useRouterState } from "@tanstack/react-router";
-import { TopBar } from "./TopBar";
 import { BottomNav } from "./BottomNav";
-import { FloatingActionButton } from "./FloatingActionButton";
 
 /**
- * Global app frame. Mobile-first, expands to a centered column on tablet+.
- * Chrome (top bar, bottom nav, FAB) is hidden on the intelligence route
- * because that surface is intended to feel fullscreen.
+ * Canvas-first application frame. Authentication and onboarding retain their
+ * focused layouts; the primary product experience uses floating glass chrome.
  */
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -19,23 +16,17 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="relative min-h-dvh bg-transparent text-foreground">
-      {!isImmersive && <TopBar />}
       <main
-        className={isImmersive ? "w-full" : "mx-auto w-full max-w-screen-md px-4 pt-4"}
+        className={isImmersive ? "w-full" : "mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8"}
         style={{
           paddingBottom: isImmersive
             ? "env(safe-area-inset-bottom)"
-            : "calc(env(safe-area-inset-bottom) + 120px)",
+            : "calc(env(safe-area-inset-bottom) + 112px)",
         }}
       >
         {children}
       </main>
-      {!isImmersive && (
-        <>
-          <FloatingActionButton />
-          <BottomNav />
-        </>
-      )}
+      {!isImmersive && <BottomNav />}
     </div>
   );
 }
