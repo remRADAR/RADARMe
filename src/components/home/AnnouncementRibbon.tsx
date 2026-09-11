@@ -53,18 +53,78 @@ const CATEGORY_META: Record<
   Category,
   { label: string; icon: React.ComponentType<{ size?: number }>; accent: string; tint: string }
 > = {
-  magazine:    { label: "RADAR Magazine",       icon: BookOpen,           accent: "oklch(0.78 0.13 85)",  tint: "oklch(0.78 0.13 85 / 0.16)" },
-  release:     { label: "Release RADAR",        icon: Disc3,              accent: "oklch(0.82 0.10 150)", tint: "oklch(0.82 0.10 150 / 0.14)" },
-  playlist:    { label: "Official Playlists",   icon: ListMusic,          accent: "oklch(0.80 0.12 200)", tint: "oklch(0.80 0.12 200 / 0.14)" },
-  concert:     { label: "ON THE RADAR",         icon: Mic2,               accent: "oklch(0.78 0.16 20)",  tint: "oklch(0.78 0.16 20 / 0.14)" },
-  tours:       { label: "Tours",                icon: MapPin,             accent: "oklch(0.78 0.12 60)",  tint: "oklch(0.78 0.12 60 / 0.14)" },
-  events:      { label: "Events",               icon: CalendarHeart,      accent: "oklch(0.80 0.11 320)", tint: "oklch(0.80 0.11 320 / 0.14)" },
-  spotlight:   { label: "Artist Spotlight",     icon: Star,               accent: "oklch(0.86 0.10 90)",  tint: "oklch(0.86 0.10 90 / 0.16)" },
-  interview:   { label: "TALK TO US",           icon: MessageSquareQuote, accent: "oklch(0.78 0.10 260)", tint: "oklch(0.78 0.10 260 / 0.14)" },
-  projects:    { label: "RADARProjects",        icon: FolderKanban,       accent: "oklch(0.78 0.10 170)", tint: "oklch(0.78 0.10 170 / 0.14)" },
-  community:   { label: "Community",            icon: Megaphone,          accent: "oklch(0.82 0.09 25)",  tint: "oklch(0.82 0.09 25 / 0.14)" },
-  opportunity: { label: "Opportunity",          icon: Briefcase,          accent: "oklch(0.80 0.11 130)", tint: "oklch(0.80 0.11 130 / 0.14)" },
-  campaign:    { label: "Featured Campaign",    icon: Sparkles,           accent: "oklch(0.78 0.13 85)",  tint: "oklch(0.78 0.13 85 / 0.16)" },
+  magazine: {
+    label: "RADAR Magazine",
+    icon: BookOpen,
+    accent: "oklch(0.78 0.13 85)",
+    tint: "oklch(0.78 0.13 85 / 0.16)",
+  },
+  release: {
+    label: "Release RADAR",
+    icon: Disc3,
+    accent: "oklch(0.82 0.10 150)",
+    tint: "oklch(0.82 0.10 150 / 0.14)",
+  },
+  playlist: {
+    label: "Official Playlists",
+    icon: ListMusic,
+    accent: "oklch(0.80 0.12 200)",
+    tint: "oklch(0.80 0.12 200 / 0.14)",
+  },
+  concert: {
+    label: "ON THE RADAR",
+    icon: Mic2,
+    accent: "oklch(0.78 0.16 20)",
+    tint: "oklch(0.78 0.16 20 / 0.14)",
+  },
+  tours: {
+    label: "Tours",
+    icon: MapPin,
+    accent: "oklch(0.78 0.12 60)",
+    tint: "oklch(0.78 0.12 60 / 0.14)",
+  },
+  events: {
+    label: "Events",
+    icon: CalendarHeart,
+    accent: "oklch(0.80 0.11 320)",
+    tint: "oklch(0.80 0.11 320 / 0.14)",
+  },
+  spotlight: {
+    label: "Artist Spotlight",
+    icon: Star,
+    accent: "oklch(0.86 0.10 90)",
+    tint: "oklch(0.86 0.10 90 / 0.16)",
+  },
+  interview: {
+    label: "TALK TO US",
+    icon: MessageSquareQuote,
+    accent: "oklch(0.78 0.10 260)",
+    tint: "oklch(0.78 0.10 260 / 0.14)",
+  },
+  projects: {
+    label: "RADARProjects",
+    icon: FolderKanban,
+    accent: "oklch(0.78 0.10 170)",
+    tint: "oklch(0.78 0.10 170 / 0.14)",
+  },
+  community: {
+    label: "Community",
+    icon: Megaphone,
+    accent: "oklch(0.82 0.09 25)",
+    tint: "oklch(0.82 0.09 25 / 0.14)",
+  },
+  opportunity: {
+    label: "Opportunity",
+    icon: Briefcase,
+    accent: "oklch(0.80 0.11 130)",
+    tint: "oklch(0.80 0.11 130 / 0.14)",
+  },
+  campaign: {
+    label: "Featured Campaign",
+    icon: Sparkles,
+    accent: "oklch(0.78 0.13 85)",
+    tint: "oklch(0.78 0.13 85 / 0.16)",
+  },
 };
 
 const ANNOUNCEMENTS: Announcement[] = [
@@ -173,15 +233,12 @@ const ANNOUNCEMENTS: Announcement[] = [
 
 const ROTATE_MS = 6000;
 
-export function AnnouncementRibbon({
-  items = ANNOUNCEMENTS,
-}: {
-  items?: Announcement[];
-}) {
+export function AnnouncementRibbon({ items = ANNOUNCEMENTS }: { items?: Announcement[] }) {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<1 | -1>(1);
   const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const touchStart = useRef<number | null>(null);
 
   const count = items.length;
@@ -199,10 +256,22 @@ export function AnnouncementRibbon({
   const prev = useCallback(() => go(index - 1, -1), [go, index]);
 
   useEffect(() => {
-    if (paused || count <= 1) return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (count > 0 && index >= count) setIndex(0);
+  }, [count, index]);
+
+  useEffect(() => {
+    if (paused || reducedMotion || count <= 1) return;
     const t = setTimeout(next, ROTATE_MS);
     return () => clearTimeout(t);
-  }, [index, paused, count, next]);
+  }, [index, paused, reducedMotion, count, next]);
 
   if (count === 0) {
     return (
@@ -266,7 +335,11 @@ export function AnnouncementRibbon({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
     >
       <div
         className="relative overflow-hidden rounded-[28px]"
@@ -282,13 +355,17 @@ export function AnnouncementRibbon({
         <div
           aria-hidden
           className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full blur-3xl transition-colors duration-700"
-          style={{ background: `radial-gradient(60% 60% at 50% 50%, ${meta.tint}, transparent 70%)` }}
+          style={{
+            background: `radial-gradient(60% 60% at 50% 50%, ${meta.tint}, transparent 70%)`,
+          }}
           key={current.category + "-wash"}
         />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-px"
-          style={{ background: `linear-gradient(90deg, transparent, ${meta.accent}55, transparent)` }}
+          style={{
+            background: `linear-gradient(90deg, transparent, ${meta.accent}55, transparent)`,
+          }}
         />
 
         {/* Header */}
@@ -310,13 +387,20 @@ export function AnnouncementRibbon({
                 aria-label={`Show announcement ${i + 1} of ${count}`}
                 aria-current={i === index}
                 onClick={() => go(i, i > index ? 1 : -1)}
-                className="h-1.5 rounded-full transition-all"
-                style={{
-                  width: i === index ? 14 : 5,
-                  background:
-                    i === index ? meta.accent : "color-mix(in oklab, var(--foreground) 20%, transparent)",
-                }}
-              />
+                className="grid h-11 w-11 place-items-center rounded-full transition-colors hover:bg-surface-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <span
+                  aria-hidden
+                  className="block h-1.5 rounded-full transition-[width,background-color]"
+                  style={{
+                    width: i === index ? 14 : 5,
+                    background:
+                      i === index
+                        ? meta.accent
+                        : "color-mix(in oklab, var(--foreground) 20%, transparent)",
+                  }}
+                />
+              </button>
             ))}
           </div>
         </div>
@@ -351,7 +435,9 @@ export function AnnouncementRibbon({
               >
                 <span
                   className="absolute inset-0 opacity-40"
-                  style={{ background: `radial-gradient(80% 80% at 30% 20%, ${meta.tint}, transparent 70%)` }}
+                  style={{
+                    background: `radial-gradient(80% 80% at 30% 20%, ${meta.tint}, transparent 70%)`,
+                  }}
                 />
                 <span
                   className="relative grid h-8 w-8 place-items-center rounded-xl"
