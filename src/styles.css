@@ -96,6 +96,25 @@
   --radar-radius: 0px;
   --radar-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --radar-ease-slam: cubic-bezier(0.16, 1, 0.3, 1);
+  --radar-glass-subtle: color-mix(in oklab, var(--surface) 34%, transparent);
+  --radar-glass: color-mix(in oklab, var(--surface) 60%, transparent);
+  --radar-glass-strong: color-mix(in oklab, var(--surface) 82%, transparent);
+  --radar-glass-dark: rgb(0 0 0 / 0.58);
+  --radar-glass-light: rgb(255 255 255 / 0.72);
+  --radar-blur-subtle: 12px;
+  --radar-blur: 20px;
+  --radar-blur-strong: 32px;
+  --radar-space-1: 0.25rem;
+  --radar-space-2: 0.5rem;
+  --radar-space-3: 0.75rem;
+  --radar-space-4: 1rem;
+  --radar-space-6: 1.5rem;
+  --radar-space-8: 2rem;
+  --radar-radius-sm: 0.5rem;
+  --radar-radius-md: 0.75rem;
+  --radar-radius-lg: 1rem;
+  --radar-radius-xl: 1.25rem;
+  --radar-radius-pill: 9999px;
   --radius: 0.875rem;
 
   --background: oklch(0.13 0 0);
@@ -241,7 +260,19 @@
   }
 
   :focus-visible {
-    outline: none;
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   ::selection {
@@ -251,9 +282,24 @@
 }
 
 @utility glass {
-  background: color-mix(in oklab, var(--surface) 60%, transparent);
-  backdrop-filter: blur(20px) saturate(140%);
+  background: var(--radar-glass);
+  backdrop-filter: blur(var(--radar-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--radar-blur)) saturate(140%);
   border: 1px solid var(--hairline);
+}
+
+@utility glass-subtle {
+  background: var(--radar-glass-subtle);
+  backdrop-filter: blur(var(--radar-blur-subtle)) saturate(130%);
+  -webkit-backdrop-filter: blur(var(--radar-blur-subtle)) saturate(130%);
+  border: 1px solid var(--hairline);
+}
+
+@utility glass-strong {
+  background: var(--radar-glass-strong);
+  backdrop-filter: blur(var(--radar-blur-strong)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--radar-blur-strong)) saturate(140%);
+  border: 1px solid var(--border);
 }
 
 /*
