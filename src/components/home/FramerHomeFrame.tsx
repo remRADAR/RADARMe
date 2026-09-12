@@ -79,7 +79,6 @@ export function FramerHomeFrame() {
         <div className="framer-home-frame__ticker-track">
           {[...tickerLogos, ...tickerLogos].map((logo, index) => (
             <picture key={`${logo}-${index}`}>
-              <source srcSet={`/media/framer-home/${logo}.avif`} type="image/avif" />
               <source srcSet={`/media/framer-home/${logo}.webp`} type="image/webp" />
               <img
                 src={`/media/framer-home/${logo}.webp`}
@@ -91,6 +90,7 @@ export function FramerHomeFrame() {
                     assetId: `${logo}-${index}`,
                     kind: "ticker",
                     image: event.currentTarget,
+                    preferredFormat: "webp",
                   })
                 }
                 onError={(event) =>
@@ -98,6 +98,7 @@ export function FramerHomeFrame() {
                     assetId: `${logo}-${index}`,
                     kind: "ticker",
                     image: event.currentTarget,
+                    preferredFormat: "webp",
                   })
                 }
               />

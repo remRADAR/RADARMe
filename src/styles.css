@@ -1,8 +1,15 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/syne-latin-700.woff2") format("woff2");
+}
 
 /*
  * RADARMe Design System
@@ -528,12 +535,12 @@
 .framer-home-frame__wordmark {
   margin: 0;
   color: #fff;
-  font-family: var(--font-display);
+  font-family: "Syne", var(--font-display), sans-serif;
   font-size: clamp(3.2rem, 11vw, 9.5rem);
-  font-weight: 800;
-  letter-spacing: -0.08em;
-  line-height: 0.82;
-  background: linear-gradient(180deg, #fff 0%, #fff 46%, #4e4e4e 100%);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  background: radial-gradient(50% 50% at 50% 50%, #fff 46.6475%, transparent 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -556,7 +563,7 @@
   position: relative;
   overflow: hidden;
   padding: 0.75rem 0 1rem;
-  background: #000;
+  background: transparent;
 }
 
 .framer-home-frame__ticker-track {
@@ -572,7 +579,6 @@
   height: clamp(2.5rem, 6vw, 4rem);
   flex: 0 0 auto;
   object-fit: contain;
-  mix-blend-mode: screen;
   opacity: 0.78;
 }
 
