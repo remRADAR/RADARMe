@@ -13,7 +13,7 @@ export function FramerOpening() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dismissDelay = reducedMotion ? 550 : DISPLAY_MS;
+    const dismissDelay = reducedMotion ? 2500 : DISPLAY_MS;
 
     const dismiss = () => {
       if (dismissed.current) return;
@@ -63,13 +63,6 @@ export function FramerOpening() {
         preload="auto"
         poster="/media/welcome/remradar-opening-poster.jpg"
         aria-hidden="true"
-        onEnded={() => {
-          if (!dismissed.current) {
-            dismissed.current = true;
-            setExiting(true);
-            window.setTimeout(() => setVisible(false), EXIT_MS);
-          }
-        }}
         onError={() => {
           if (!dismissed.current) {
             dismissed.current = true;

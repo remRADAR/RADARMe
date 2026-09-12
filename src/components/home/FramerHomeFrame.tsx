@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronRight, Play } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { reportHomepageAssetError, reportHomepageAssetLoad } from "@/lib/homepage-asset-monitor";
 
 const tickerLogos = Array.from(
@@ -9,103 +9,161 @@ const tickerLogos = Array.from(
 );
 const leftArtists = ["Makama", "Odenose", "KEASUNGS", "Moelogo", "TELMAN"];
 const rightArtists = ["Fresh", "Motherland", "Discovery", "Magazine", "The RADARMan"];
-const artistList = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.05, delayChildren: 0.15 } },
-};
-const artistItem = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 0.7, y: 0, transition: { duration: 0.28, ease: "easeOut" } },
+
+type HeroSlide = {
+  id: string;
+  avif?: string;
+  webp: string;
+  jpg?: string;
+  preferredFormat: "avif" | "webp";
 };
 
+const heroSlides: HeroSlide[] = [
+  {
+    id: "shutter-hero-01",
+    avif: "/media/framer-home/shutter-hero.avif",
+    webp: "/media/framer-home/shutter-hero.webp",
+    jpg: "/media/framer-home/shutter-hero.jpg",
+    preferredFormat: "avif",
+  },
+  {
+    id: "shutter-hero-02",
+    webp: "/media/framer-home/shutter-hero-02.webp",
+    preferredFormat: "webp",
+  },
+  {
+    id: "shutter-hero-03",
+    webp: "/media/framer-home/shutter-hero-03.webp",
+    preferredFormat: "webp",
+  },
+  {
+    id: "shutter-hero-04",
+    webp: "/media/framer-home/shutter-hero-04.webp",
+    preferredFormat: "webp",
+  },
+  {
+    id: "shutter-hero-05",
+    webp: "/media/framer-home/shutter-hero-05.webp",
+    preferredFormat: "webp",
+  },
+];
+
+function reportLoadedImage(image: HTMLImageElement, report: (image: HTMLImageElement) => void) {
+  if (image.complete && image.naturalWidth > 0) report(image);
+}
+
+function playShutterSnap() {
+  if (typeof window === "undefined") return;
+  const AudioContextClass =
+    window.AudioContext ||
+    (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!AudioContextClass) return;
+
+  const context = new AudioContextClass();
+  const now = context.currentTime;
+  const gain = context.createGain();
+  const oscillator = context.createOscillator();
+  oscillator.type = "square";
+  oscillator.frequency.setValueAtTime(1450, now);
+  oscillator.frequency.exponentialRampToValueAtTime(420, now + 0.075);
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(0.16, now + 0.004);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.11);
+  oscillator.connect(gain).connect(context.destination);
+  oscillator.start(now);
+  oscillator.stop(now + 0.12);
+  oscillator.addEventListener("ended", () => void context.close(), { once: true });
+}
+
 export function FramerHomeFrame() {
+  const [activeHero, setActiveHero] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => {
+      setActiveHero((current) => {
+        const next = (current + 1) % heroSlides.length;
+        playShutterSnap();
+        return next;
+      });
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <section className="framer-home-frame" aria-labelledby="framer-home-title">
       <div className="framer-home-frame__hero">
-        <motion.picture
-          className="framer-home-frame__image"
-          initial={{ scale: 1.04, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <img
-            src="/media/framer-home/shutter-hero.jpg"
-            alt=""
-            fetchPriority="high"
-            decoding="async"
-            onLoad={(event) =>
-              reportHomepageAssetLoad({
-                assetId: "shutter-hero",
-                kind: "hero",
-                image: event.currentTarget,
-                preferredFormat: "jpeg",
-              })
-            }
-            onError={(event) =>
-              reportHomepageAssetError({
-                assetId: "shutter-hero",
-                kind: "hero",
-                image: event.currentTarget,
-                preferredFormat: "jpeg",
-              })
-            }
-          />
-        </motion.picture>
+        <div className="framer-home-frame__slides" aria-live="polite">
+          {heroSlides.map((slide, index) => (
+            <picture
+              key={slide.id}
+              className={`framer-home-frame__image${index === activeHero ? " is-active" : ""}`}
+              aria-hidden={index !== activeHero}
+            >
+              {slide.avif && <source srcSet={slide.avif} type="image/avif" />}
+              <source srcSet={slide.webp} type="image/webp" />
+              <img
+                src={slide.jpg ?? slide.webp}
+                alt=""
+                fetchPriority={index === 0 ? "high" : "auto"}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                ref={(image) => {
+                  if (image) {
+                    reportLoadedImage(image, (loadedImage) =>
+                      reportHomepageAssetLoad({
+                        assetId: slide.id,
+                        kind: "hero",
+                        image: loadedImage,
+                        preferredFormat: slide.preferredFormat,
+                      }),
+                    );
+                  }
+                }}
+                onLoad={(event) =>
+                  reportHomepageAssetLoad({
+                    assetId: slide.id,
+                    kind: "hero",
+                    image: event.currentTarget,
+                    preferredFormat: slide.preferredFormat,
+                  })
+                }
+                onError={(event) =>
+                  reportHomepageAssetError({
+                    assetId: slide.id,
+                    kind: "hero",
+                    image: event.currentTarget,
+                    preferredFormat: slide.preferredFormat,
+                  })
+                }
+              />
+            </picture>
+          ))}
+        </div>
         <div className="framer-home-frame__wash" aria-hidden="true" />
 
-        <motion.div
-          className="framer-home-frame__artists framer-home-frame__artists--left"
-          variants={artistList}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="framer-home-frame__artists framer-home-frame__artists--left">
           <span className="framer-home-frame__artist-label">•</span>
           {leftArtists.map((artist) => (
-            <motion.span key={artist} variants={artistItem}>
-              {artist}
-            </motion.span>
+            <span key={artist}>{artist}</span>
           ))}
-        </motion.div>
-        <motion.div
-          className="framer-home-frame__artists framer-home-frame__artists--right"
-          variants={artistList}
-          initial="hidden"
-          animate="visible"
-        >
+        </div>
+        <div className="framer-home-frame__artists framer-home-frame__artists--right">
           {rightArtists.map((artist) => (
-            <motion.span key={artist} variants={artistItem}>
-              {artist}
-            </motion.span>
+            <span key={artist}>{artist}</span>
           ))}
           <span className="framer-home-frame__artist-label">•</span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="framer-home-frame__index framer-home-frame__index--left"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 0.8, y: 0 }}
-          transition={{ delay: 0.45 }}
-        >
-          01
-        </motion.div>
-        <motion.div
-          className="framer-home-frame__index framer-home-frame__index--right"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 0.8, y: 0 }}
-          transition={{ delay: 0.55 }}
-        >
-          05
-        </motion.div>
-        <motion.div
-          className="framer-home-frame__hero-cue"
-          aria-label="Scroll for more"
-          animate={{ opacity: [0.45, 1, 0.45] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        >
+        <div className="framer-home-frame__index framer-home-frame__index--left">
+          {String(activeHero + 1).padStart(2, "0")}
+        </div>
+        <div className="framer-home-frame__index framer-home-frame__index--right">05</div>
+        <div className="framer-home-frame__hero-cue" aria-label="Images change every five seconds">
           <span />
           <span />
           <span />
-        </motion.div>
+        </div>
       </div>
 
       <div className="framer-home-frame__brand-band">
@@ -116,11 +174,7 @@ export function FramerHomeFrame() {
       </div>
 
       <div className="framer-home-frame__ticker" aria-label="RADARCharts ecosystem partners">
-        <motion.div
-          className="framer-home-frame__ticker-track"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 32, ease: "linear", repeat: Infinity }}
-        >
+        <div className="framer-home-frame__ticker-track">
           {[...tickerLogos, ...tickerLogos].map((logo, index) => (
             <picture key={`${logo}-${index}`}>
               <img
@@ -128,6 +182,18 @@ export function FramerHomeFrame() {
                 alt=""
                 loading="lazy"
                 decoding="async"
+                ref={(image) => {
+                  if (image) {
+                    reportLoadedImage(image, (loadedImage) =>
+                      reportHomepageAssetLoad({
+                        assetId: `${logo}-${index}`,
+                        kind: "ticker",
+                        image: loadedImage,
+                        preferredFormat: "png",
+                      }),
+                    );
+                  }
+                }}
                 onLoad={(event) =>
                   reportHomepageAssetLoad({
                     assetId: `${logo}-${index}`,
@@ -147,14 +213,7 @@ export function FramerHomeFrame() {
               />
             </picture>
           ))}
-        </motion.div>
-        <Link className="framer-home-frame__ticker-now" to="/network/magazine">
-          <span className="framer-home-frame__ticker-play">
-            <Play size={11} fill="currentColor" />
-          </span>
-          <span>TELMAN — Moov Different</span>
-          <ChevronRight size={14} />
-        </Link>
+        </div>
       </div>
 
       <div className="framer-home-frame__actions">

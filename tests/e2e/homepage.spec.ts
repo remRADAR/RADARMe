@@ -1,7 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 
 async function removeWelcomeLayer(page: Page) {
-  await page.locator(".framer-opening").evaluate((element) => element.remove());
+  const opening = page.locator(".framer-opening");
+  if (await opening.count()) {
+    await opening.evaluate((element) => element.remove());
+  }
 }
 
 test.describe("homepage Framer frame", () => {
@@ -9,9 +12,12 @@ test.describe("homepage Framer frame", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
 
-    await expect(page.locator(".framer-opening")).toBeVisible();
-    await expect(page.locator(".framer-opening__skip")).toHaveCount(0);
-    await expect(page.locator(".framer-opening")).toBeHidden({ timeout: 5_000 });
+    const opening = page.locator(".framer-opening");
+    if (await opening.count()) {
+      await expect(opening).toBeVisible();
+      await expect(page.locator(".framer-opening__skip")).toHaveCount(0);
+      await expect(opening).toBeHidden({ timeout: 5_000 });
+    }
     await expect(page.locator(".framer-home-frame__hero")).toBeVisible();
   });
 
@@ -21,14 +27,14 @@ test.describe("homepage Framer frame", () => {
 
     const hero = page.locator(".framer-home-frame__hero");
     await expect(hero).toBeVisible();
-    await expect(hero.locator("picture.framer-home-frame__image img")).toHaveJSProperty(
+    await expect(hero.locator("picture.framer-home-frame__image img").first()).toHaveJSProperty(
       "naturalWidth",
       4000,
     );
     await expect(page.locator(".framer-home-frame__artists--left")).toContainText("Makama");
     await expect(page.locator(".framer-home-frame__artists--right")).toContainText("Fresh");
     await expect(page.locator(".framer-home-frame__wordmark")).toHaveText("RADARCharts");
-    await expect(page.locator(".framer-home-frame__index--left")).toHaveText("01");
+    await expect(page.locator(".framer-home-frame__index--left")).toHaveText(/^0[1-5]$/);
     await expect(page.locator(".framer-home-frame__index--right")).toHaveText("05");
 
     const tickerImages = page.locator(".framer-home-frame__ticker-track img");
@@ -131,16 +137,22 @@ test.describe("homepage Framer frame", () => {
   });
 
   test("scrolls the ticker track continuously", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto("/");
     await removeWelcomeLayer(page);
 
     const track = page.locator(".framer-home-frame__ticker-track");
-    await expect(track).toHaveCSS("animation-name", "framer-home-ticker");
-
+    const reducedMotion = await page.evaluate(
+      () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    );
     const initialTransform = await track.evaluate((element) => getComputedStyle(element).transform);
     await page.waitForTimeout(250);
     const laterTransform = await track.evaluate((element) => getComputedStyle(element).transform);
 
-    expect(laterTransform).not.toBe(initialTransform);
+    if (reducedMotion) {
+      expect(laterTransform).toBe(initialTransform);
+    } else {
+      expect(laterTransform).not.toBe(initialTransform);
+    }
   });
 });

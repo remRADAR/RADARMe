@@ -1,7 +1,11 @@
 import { chromium, devices } from "@playwright/test";
 
 const url = process.env.RADARME_URL || "https://radarme.vercel.app/radarmusic";
-const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || "/usr/bin/chromium", args: ["--no-sandbox", "--disable-dev-shm-usage"] });
+const browser = await chromium.launch({
+  headless: true,
+  executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || "/usr/bin/chromium",
+  args: ["--no-sandbox", "--disable-dev-shm-usage"],
+});
 const cases = [
   { name: "iPhone 13", device: devices["iPhone 13"] },
   { name: "Pixel 5", device: devices["Pixel 5"] },
@@ -26,7 +30,8 @@ for (const testCase of cases) {
       const tick = (now) => {
         frames.push(now - previous);
         previous = now;
-        if (now < end) requestAnimationFrame(tick); else resolve();
+        if (now < end) requestAnimationFrame(tick);
+        else resolve();
       };
       requestAnimationFrame(tick);
     });
@@ -37,10 +42,26 @@ for (const testCase of cases) {
       viewport: { width: innerWidth, height: innerHeight },
       documentWidth: document.documentElement.scrollWidth,
       horizontalOverflow: document.documentElement.scrollWidth > innerWidth + 1,
-      bottomNavVisible: Boolean(document.querySelector('nav[aria-label="Primary"]')) && getComputedStyle(document.querySelector('nav[aria-label="Primary"]')).display !== "none",
-      bottomNavItems: [...document.querySelectorAll('nav[aria-label="Primary"] a')].map((a) => a.textContent?.trim()).filter(Boolean),
-      botVisible: (() => { const bot = document.querySelector(".radar-bot-wrapper"); if (!bot) return false; const rect = bot.getBoundingClientRect(); return rect.width > 0 && rect.height > 0 && rect.bottom <= innerHeight + 1 && rect.right <= innerWidth + 1; })(),
-      botAnimations: [...document.querySelectorAll(".radar-bot-wrapper *")].filter((el) => getComputedStyle(el).animationName !== "none").map((el) => getComputedStyle(el).animationName),
+      bottomNavVisible:
+        Boolean(document.querySelector('nav[aria-label="Primary"]')) &&
+        getComputedStyle(document.querySelector('nav[aria-label="Primary"]')).display !== "none",
+      bottomNavItems: [...document.querySelectorAll('nav[aria-label="Primary"] a')]
+        .map((a) => a.textContent?.trim())
+        .filter(Boolean),
+      botVisible: (() => {
+        const bot = document.querySelector(".radar-bot-wrapper");
+        if (!bot) return false;
+        const rect = bot.getBoundingClientRect();
+        return (
+          rect.width > 0 &&
+          rect.height > 0 &&
+          rect.bottom <= innerHeight + 1 &&
+          rect.right <= innerWidth + 1
+        );
+      })(),
+      botAnimations: [...document.querySelectorAll(".radar-bot-wrapper *")]
+        .filter((el) => getComputedStyle(el).animationName !== "none")
+        .map((el) => getComputedStyle(el).animationName),
       frameCount: frameGaps.length,
       approxFps: Number((frameGaps.length / 2.5).toFixed(1)),
       p95FrameGapMs: Number(p95.toFixed(2)),
@@ -48,9 +69,24 @@ for (const testCase of cases) {
       framesOver33ms: frameGaps.filter((gap) => gap > 33.3).length,
     };
   });
-  results.push({ name: testCase.name, loadMs: Date.now() - started, metrics, consoleErrors, pageErrors });
+  results.push({
+    name: testCase.name,
+    loadMs: Date.now() - started,
+    metrics,
+    consoleErrors,
+    pageErrors,
+  });
   await context.close();
 }
 await browser.close();
 console.log(JSON.stringify(results, null, 2));
-if (results.some(({ metrics, consoleErrors, pageErrors }) => metrics.horizontalOverflow || !metrics.botVisible || consoleErrors.length || pageErrors.length)) process.exit(1);
+if (
+  results.some(
+    ({ metrics, consoleErrors, pageErrors }) =>
+      metrics.horizontalOverflow ||
+      !metrics.botVisible ||
+      consoleErrors.length ||
+      pageErrors.length,
+  )
+)
+  process.exit(1);
