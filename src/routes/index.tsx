@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { lazy, Suspense } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { lazy, Suspense, useRef } from "react";
 import {
   Sparkles,
   UploadCloud,
@@ -15,6 +15,7 @@ import {
   Newspaper,
 } from "lucide-react";
 import { FramerHomeFrame } from "@/components/home/FramerHomeFrame";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const AnnouncementRibbon = lazy(() =>
   import("@/components/home/AnnouncementRibbon").then(({ AnnouncementRibbon }) => ({
@@ -41,9 +42,11 @@ function Index() {
       <FramerHomeFrame />
 
       {/* RADAR Live */}
-      <Suspense fallback={<div className="min-h-40" aria-hidden="true" />}>
-        <AnnouncementRibbon />
-      </Suspense>
+      <ErrorBoundary fallback={<div className="min-h-40" aria-hidden="true" />}>
+        <Suspense fallback={<div className="min-h-40" aria-hidden="true" />}>
+          <AnnouncementRibbon />
+        </Suspense>
+      </ErrorBoundary>
 
       {/* Single-line action track */}
       <section className="radar-action-stack" aria-labelledby="quick-actions-title">
@@ -196,8 +199,17 @@ function RecItem({
   kicker?: string;
   hint: string;
 }) {
+  const itemRef = useRef<HTMLLIElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: itemRef,
+    offset: ["start 85%", "start 20%"],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.78]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -18]);
+
   return (
-    <li className="radar-scroll-stack__item">
+    <motion.li ref={itemRef} className="radar-scroll-stack__item" style={{ scale, opacity, y }}>
       <Link
         to={to}
         className="group flex items-center gap-3 rounded-2xl bg-surface p-3 hairline elev-1 glass-reflect transition-colors hover:bg-surface-2"
@@ -224,6 +236,6 @@ function RecItem({
           className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
         />
       </Link>
-    </li>
+    </motion.li>
   );
 }

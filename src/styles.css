@@ -1242,3 +1242,32 @@ nav span {
     transition: none;
   }
 }
+
+.radar-section-fallback {
+  display: grid;
+  gap: 0.5rem;
+  min-height: 10rem;
+  place-items: center;
+  align-content: center;
+  padding: 1.5rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radar-radius-xl);
+  background: var(--radar-material-thin);
+  color: var(--radar-label-secondary);
+  text-align: center;
+}
+
+.radar-section-fallback strong {
+  color: var(--radar-label-primary);
+}
+
+.radar-section-fallback button {
+  min-height: 44px;
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--gold);
+  border-radius: var(--radar-radius-md);
+  background: transparent;
+  color: var(--gold);
+  font-weight: 600;
+}
