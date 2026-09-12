@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const radarmeLogo = "/favicon.webp";
+const radarmeLogo = "/icons/icon-192.png";
 
 type Props = {
   className?: string;
@@ -11,8 +11,7 @@ type Props = {
 
 /**
  * RADARMe brand mark. Pure SVG so it inherits `currentColor` for the
- * wordmark and uses the gold token for the accent. Swap for the official
- * supplied logo asset later without touching call sites.
+ * wordmark and uses the supplied RADARMe icon asset for the mark.
  */
 export function Logo({ className, size = 28, showWordmark = true, animated = false }: Props) {
   return (
