@@ -22,7 +22,7 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 sm:px-6 sm:pb-5"
+      className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 sm:px-6 sm:pb-5 lg:hidden"
       aria-label="Primary"
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
