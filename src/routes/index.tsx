@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { lazy, Suspense } from "react";
 import {
   Sparkles,
@@ -45,15 +46,18 @@ function Index() {
         <AnnouncementRibbon />
       </Suspense>
 
-      {/* Quick actions — one clear next step */}
-      <section className="space-y-3">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+      {/* Single-line action track — keeps the music stage above the fold */}
+      <section className="radar-action-stack" aria-labelledby="quick-actions-title">
+        <div className="flex items-baseline justify-between px-1">
+          <h2
+            id="quick-actions-title"
+            className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+          >
             Quick actions
           </h2>
           <span className="text-[11px] text-muted-foreground">Your next move</span>
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="radar-action-track">
           <QuickAction
             to="/hub/distribution"
             icon={<UploadCloud size={18} />}
@@ -81,6 +85,8 @@ function Index() {
           />
         </div>
       </section>
+
+      <MusicFirstStage />
 
       {/* Recommended for you */}
       <section className="space-y-3">
@@ -154,23 +160,84 @@ function QuickAction({
   gold?: boolean;
 }) {
   return (
-    <Link
-      to={to}
-      className="group relative flex items-center gap-3 overflow-hidden rounded-2xl bg-surface p-3.5 hairline elev-1 glass-reflect transition-transform active:scale-[0.98]"
+    <motion.div
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 500, damping: 30 }}
     >
-      <span
-        className={[
-          "grid h-11 w-11 shrink-0 place-items-center rounded-2xl transition-colors",
-          gold ? "bg-gold text-gold-foreground" : "bg-surface-2 text-gold group-hover:bg-surface",
-        ].join(" ")}
+      <Link
+        to={to}
+        className={["radar-action-pill", gold ? "radar-action-pill--active" : ""].join(" ")}
+        aria-label={`${label}: ${hint}`}
       >
         {icon}
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block truncate text-[13px] font-semibold leading-tight">{label}</span>
-        <span className="block truncate text-[11px] text-muted-foreground">{hint}</span>
-      </span>
-    </Link>
+        <span>{label}</span>
+        <span className="sr-only">{hint}</span>
+      </Link>
+    </motion.div>
+  );
+}
+
+function MusicFirstStage() {
+  const tracks = [
+    ["01", "TELMAN", "Moov Different", "+18%"],
+    ["02", "Odenose", "Outside the Lines", "+12%"],
+    ["03", "KEASUNGS", "New Signal", "+9%"],
+  ];
+  return (
+    <section className="radar-visual-stage" aria-labelledby="visual-stage-title">
+      <div className="radar-stage-glow" aria-hidden="true" />
+      <header className="flex items-center justify-between border-b border-hairline px-4 py-3">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-gold">Music intelligence</p>
+          <h2 id="visual-stage-title" className="mt-1 text-sm font-semibold">
+            On The Radar · Lagos Hot 50
+          </h2>
+        </div>
+        <span className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.12em] text-emerald-300">
+          <span className="size-2 animate-pulse rounded-full bg-emerald-400" />
+          Live updates
+        </span>
+      </header>
+      <div className="grid gap-3 p-4 sm:grid-cols-[1.1fr_.9fr]">
+        <div className="rounded-xl border border-hairline bg-black/30 p-4">
+          <div className="flex items-end gap-1" aria-label="Waveform preview">
+            <span className="text-xs font-mono text-muted-foreground">NOW PLAYING</span>
+            {Array.from({ length: 32 }, (_, i) => (
+              <span
+                key={i}
+                className="w-1 rounded-full bg-gold/70"
+                style={{ height: `${12 + ((i * 17) % 28)}px` }}
+              />
+            ))}
+          </div>
+          <p className="mt-5 text-lg font-semibold">Moov Different</p>
+          <p className="text-xs text-muted-foreground">TELMAN · featured on RADARCharts</p>
+          <Link
+            to="/network/playlists"
+            className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-foreground px-3 text-xs font-semibold text-background"
+          >
+            Open listening route <ChevronRight size={14} />
+          </Link>
+        </div>
+        <div className="divide-y divide-hairline rounded-xl border border-hairline bg-black/20">
+          {tracks.map(([rank, artist, title, change]) => (
+            <Link
+              key={rank}
+              to="/network/spotlight"
+              className="flex min-h-16 items-center gap-3 px-3 transition-colors hover:bg-white/[0.04]"
+            >
+              <span className="w-5 text-[11px] font-mono text-muted-foreground">{rank}</span>
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-xs font-medium">{title}</span>
+                <span className="block truncate text-[10px] text-muted-foreground">{artist}</span>
+              </span>
+              <span className="text-[10px] font-mono text-emerald-300">{change}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
