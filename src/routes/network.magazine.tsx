@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen } from "lucide-react";
-import { NetworkPage, EditorialSection, Cover } from "@/components/network/NetworkPage";
+import { NetworkPage, EditorialSection } from "@/components/network/NetworkPage";
+import { ArticleHeroBanner } from "@/components/magazine/ArticleHeroBanner";
 
 export const Route = createFileRoute("/network/magazine")({
   head: () => ({
@@ -43,22 +44,10 @@ function MagazinePage() {
       icon={<BookOpen size={22} />}
     >
       <EditorialSection title="Cover story">
-        <article className="overflow-hidden rounded-3xl hairline glass-reflect">
-          <Cover seed="cover-issue-12" aspect="4/3" label="Feature" />
-          <div className="p-5">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-gold">14 min read</p>
-            <h2 className="mt-1 font-display text-xl font-semibold leading-tight">
-              The artists rewriting the sound of the diaspora
-            </h2>
-            <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
-              From Lagos to São Paulo, a long-form portrait of 14 artists shaping global music from
-              the outside in.
-            </p>
-            <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              By Amara Okafor · Photography by Ade Adekola
-            </p>
-          </div>
-        </article>
+        <ArticleHeroBanner
+          title="The artists rewriting the sound of the diaspora"
+          byline="14 min read · By Amara Okafor · Photography by Ade Adekola"
+        />
       </EditorialSection>
 
       <EditorialSection title="In this issue" hint="Six new pieces">

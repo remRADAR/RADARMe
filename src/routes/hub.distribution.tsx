@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { UploadCloud, Music2, Radio, Globe2, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/radar";
+import { ReleaseCard } from "@/components/music/ReleaseCard";
 import {
   ServicePage,
   SectionHeader,
@@ -84,6 +85,11 @@ function DistributionPage() {
         <Stat icon={<Music2 size={14} />} label="Releases" value="0" />
         <Stat icon={<Radio size={14} />} label="Streams" value="—" />
         <Stat icon={<Globe2 size={14} />} label="Territories" value="200+" />
+      </section>
+
+      <section className="space-y-3">
+        <SectionHeader title="Release workspace" hint="Artwork preview · replace anytime" />
+        <ReleaseCard title="Untitled release" artist="Your artist profile" />
       </section>
 
       <section className="space-y-3">

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ListMusic } from "lucide-react";
-import { NetworkPage, EditorialSection, Cover } from "@/components/network/NetworkPage";
+import { NetworkPage, EditorialSection } from "@/components/network/NetworkPage";
+import { PlaylistCard } from "@/components/playlists/PlaylistCard";
 
 export const Route = createFileRoute("/network/playlists")({
   head: () => ({
@@ -32,18 +33,7 @@ function PlaylistsPage() {
       <EditorialSection title="Editorial picks">
         <div className="grid grid-cols-2 gap-3">
           {lists.map((l) => (
-            <article
-              key={l.name}
-              className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect"
-            >
-              <Cover seed={l.name} aspect="1/1" />
-              <div className="p-3">
-                <p className="font-display text-[14px] font-semibold leading-tight">{l.name}</p>
-                <p className="text-[11px] text-muted-foreground">
-                  {l.tracks} tracks · Curated by {l.curator}
-                </p>
-              </div>
-            </article>
+            <PlaylistCard key={l.name} name={l.name} tracks={l.tracks} curator={l.curator} />
           ))}
         </div>
       </EditorialSection>

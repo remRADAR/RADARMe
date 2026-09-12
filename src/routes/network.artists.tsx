@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { UserRound, BadgeCheck } from "lucide-react";
-import { NetworkPage, EditorialSection, Cover } from "@/components/network/NetworkPage";
+import { UserRound } from "lucide-react";
+import { NetworkPage, EditorialSection } from "@/components/network/NetworkPage";
+import { ArtistSpotlightCard } from "@/components/network/ArtistSpotlightCard";
 
 export const Route = createFileRoute("/network/artists")({
   head: () => ({
@@ -32,20 +33,13 @@ function ArtistProfiles() {
       <EditorialSection title="On RADAR">
         <div className="grid grid-cols-2 gap-3">
           {artists.map((a) => (
-            <article
+            <ArtistSpotlightCard
               key={a.name}
-              className="overflow-hidden rounded-2xl bg-surface hairline glass-reflect"
-            >
-              <Cover seed={"artist-" + a.name} aspect="1/1" />
-              <div className="p-3">
-                <div className="flex items-center gap-1">
-                  <p className="truncate font-display text-[14px] font-semibold">{a.name}</p>
-                  {a.verified && <BadgeCheck size={12} className="shrink-0 text-gold" />}
-                </div>
-                <p className="truncate text-[11px] text-muted-foreground">{a.city}</p>
-                <p className="mt-1 text-[11px] text-muted-foreground">{a.followers} listeners</p>
-              </div>
-            </article>
+              name={a.name}
+              city={a.city}
+              followers={a.followers}
+              verified={a.verified}
+            />
           ))}
         </div>
       </EditorialSection>
