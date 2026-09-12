@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "../lib/theme";
 import { AuthProvider } from "../lib/auth";
 import { AppShell } from "../components/layout/AppShell";
+import { FramerOpening } from "../components/opening/FramerOpening";
 
 function NotFoundComponent() {
   return (
@@ -157,6 +158,7 @@ function RootComponent() {
               <Outlet />
             </div>
           </AppShell>
+          {pathname === "/" && <FramerOpening />}
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

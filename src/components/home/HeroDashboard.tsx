@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   Sparkles,
@@ -51,12 +51,14 @@ export function HeroDashboard() {
   const fullName = session?.profile?.displayName || "Your Artist Name";
   const role = session?.profile?.role || "Independent Artist";
 
-  const greeting = useMemo(() => {
+  const [greeting, setGreeting] = useState("Welcome back");
+
+  useEffect(() => {
     const h = new Date().getHours();
-    if (h < 5) return "Still up";
-    if (h < 12) return "Good morning";
-    if (h < 18) return "Good afternoon";
-    return "Good evening";
+    if (h < 5) setGreeting("Still up");
+    else if (h < 12) setGreeting("Good morning");
+    else if (h < 18) setGreeting("Good afternoon");
+    else setGreeting("Good evening");
   }, []);
 
   const streams = useCountUp(128420, 1400);
