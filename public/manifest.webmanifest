@@ -1,13 +1,14 @@
 {
-  "name": "RADARMe — The Artist Operating System",
+  "name": "RADARMe: The iNDUSTRYKit",
   "short_name": "RADARMe",
-  "description": "A premium operating system for music artists, by RADARCharts.",
+  "description": "The premium operating system for music artists by RADARCharts.",
   "start_url": "/",
   "scope": "/",
+  "id": "https://radarme.vercel.app/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
+  "theme_color": "#050505",
   "icons": [
     {
       "src": "/icons/icon-192.png",

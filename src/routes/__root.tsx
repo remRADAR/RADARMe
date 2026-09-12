@@ -83,22 +83,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "RADARMe — The Artist Operating System" },
+      { title: "RADARMe: The iNDUSTRYKit" },
       {
         name: "description",
         content:
-          "RADARMe by RADARCharts — a premium operating system for music artists. Discover, build and grow your career.",
+          "RADARMe: The iNDUSTRYKit — the premium operating system for music artists by RADARCharts.",
       },
       { name: "author", content: "RADARCharts by REM" },
       { name: "theme-color", content: "#0a0a0a" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { name: "apple-mobile-web-app-title", content: "RADARMe" },
-      { property: "og:title", content: "RADARMe — The Artist Operating System" },
+      { name: "apple-mobile-web-app-title", content: "RADARMe: The iNDUSTRYKit" },
+      { property: "og:title", content: "RADARMe: The iNDUSTRYKit" },
       {
         property: "og:description",
-        content: "A premium operating system for music artists, by RADARCharts.",
+        content: "The premium operating system for music artists by RADARCharts.",
       },
+      { property: "og:url", content: "https://radarme.vercel.app/" },
       { property: "og:type", content: "website" },
       {
         property: "og:image",
@@ -108,10 +109,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:width", content: "1600" },
       { property: "og:image:height", content: "900" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "RADARMe — The Artist Operating System" },
+      { name: "twitter:title", content: "RADARMe: The iNDUSTRYKit" },
       {
         name: "twitter:description",
-        content: "A premium operating system for music artists, by RADARCharts.",
+        content: "The premium operating system for music artists by RADARCharts.",
       },
       {
         name: "twitter:image",
@@ -137,6 +138,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap",
       },
       { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "canonical", href: "https://radarme.vercel.app/" },
       { rel: "icon", href: "/icons/favicon-32.png", type: "image/png", sizes: "32x32" },
       { rel: "icon", href: "/icons/favicon-16.png", type: "image/png", sizes: "16x16" },
       { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png", sizes: "180x180" },

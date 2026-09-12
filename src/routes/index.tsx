@@ -25,10 +25,10 @@ const AnnouncementRibbon = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RADARHub — RADARMe" },
+      { title: "RADARMe: The iNDUSTRYKit" },
       {
         name: "description",
-        content: "Your RADARHub — the command center of your artist career in RADARMe.",
+        content: "RADARMe: The iNDUSTRYKit — your command center for an artist career.",
       },
     ],
   }),
@@ -93,7 +93,7 @@ function Index() {
           </h2>
           <span className="text-[11px] text-gold">Personalised</span>
         </div>
-        <ul className="space-y-2">
+        <ul className="radar-scroll-stack">
           <RecItem
             to="/network/playlists"
             kind="Playlist"
@@ -197,7 +197,7 @@ function RecItem({
   hint: string;
 }) {
   return (
-    <li>
+    <li className="radar-scroll-stack__item">
       <Link
         to={to}
         className="group flex items-center gap-3 rounded-2xl bg-surface p-3 hairline elev-1 glass-reflect transition-colors hover:bg-surface-2"
