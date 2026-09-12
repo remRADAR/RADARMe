@@ -1,12 +1,12 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Headphones, Pause, Play, Sparkles } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 import { useAIBotInteractions } from "@/hooks/useAIBotInteractions";
 import { IntelligencePanel } from "./IntelligencePanel";
 import "./AIBot.styles.css";
 
 const POSITION_KEY = "radar_bot_position";
-const BOT_SIZE = 68;
+const BOT_SIZE = 58;
 const VIEWPORT_PADDING = 20;
 
 type Position = { x: number; y: number };
@@ -151,20 +151,14 @@ export function AIBot({
       >
         <div className="radar-bot-face" aria-hidden="true">
           <div className="radar-bot-aura" />
-          <div className="radar-bot-ring">
-            <div className="radar-bot-eye radar-bot-eye-left">
-              <span />
-            </div>
-            <div className="radar-bot-eye radar-bot-eye-right">
-              <span />
-            </div>
-            <div className="radar-bot-mouth" />
-            {isPlaying ? (
-              <Headphones className="radar-bot-headphones" size={26} />
-            ) : (
-              <Sparkles className="radar-bot-spark" size={18} />
-            )}
-          </div>
+          <img
+            className="radar-bot-gif"
+            src="/media/radar-bot.gif"
+            alt=""
+            width={750}
+            height={750}
+            draggable={false}
+          />
           <div className="radar-bot-status">
             {isPlaying ? (
               <Pause size={10} fill="currentColor" />

@@ -5,13 +5,25 @@ const browser = await chromium.launch({
   executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || "/usr/bin/chromium",
   args: ["--no-sandbox", "--disable-dev-shm-usage"],
 });
+const testUrl = process.env.RADARME_TEST_URL || "http://127.0.0.1:4173/radarmusic";
 const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
 const page = await context.newPage();
 const errors = [];
 page.on("console", (message) => message.type() === "error" && errors.push(message.text()));
-await page.goto("http://127.0.0.1:4173/radarmusic", { waitUntil: "networkidle" });
+await page.goto(testUrl, { waitUntil: "networkidle" });
 const bot = page.getByRole("button", { name: /RADAR music; hold for intelligence/ });
 await bot.waitFor({ state: "visible" });
+
+const botGif = page.locator('img[src="/media/radar-bot.gif"]');
+if (!(await botGif.isVisible())) throw new Error("Active RADAR bot GIF is not visible");
+const gifReady = await botGif.evaluate((image) => ({
+  complete: image.complete,
+  width: image.naturalWidth,
+  height: image.naturalHeight,
+}));
+if (!gifReady.complete || gifReady.width === 0 || gifReady.height === 0) {
+  throw new Error(`Active RADAR bot GIF did not load: ${JSON.stringify(gifReady)}`);
+}
 
 const initial = await bot.boundingBox();
 if (!initial) throw new Error("AI Bot did not have a measurable bounding box");
@@ -24,6 +36,20 @@ await bot.dispatchEvent("pointerdown");
 await page.waitForTimeout(1250);
 const panel = page.getByRole("dialog", { name: "Your intelligence layer" });
 if (!(await panel.isVisible())) throw new Error("Hold did not open the intelligence panel");
+const panelGlass = await panel.evaluate((element) => ({
+  className: element.className,
+  backdropFilter: getComputedStyle(element).backdropFilter,
+  overlayBackdropFilter: getComputedStyle(element.parentElement).backdropFilter,
+  background: getComputedStyle(element).backgroundColor,
+}));
+if (
+  !String(panelGlass.className).includes("radar-intelligence-panel") ||
+  (panelGlass.backdropFilter === "none" && panelGlass.overlayBackdropFilter === "none")
+) {
+  throw new Error(
+    `Intelligence panel lost its glass backdrop treatment: ${JSON.stringify(panelGlass)}`,
+  );
+}
 await page.getByRole("button", { name: "Close RADAR intelligence panel" }).click();
 
 const beforeDrag = await bot.boundingBox();
@@ -44,6 +70,12 @@ if (
 const stored = await page.evaluate(() => localStorage.getItem("radar_bot_position"));
 const saved = stored ? JSON.parse(stored) : null;
 if (errors.length) throw new Error(`Console errors: ${errors.join(" | ")}`);
-console.log(JSON.stringify({ initial, afterTap, beforeDrag, afterDrag, stored, errors }, null, 2));
+console.log(
+  JSON.stringify(
+    { initial, afterTap, gifReady, panelGlass, beforeDrag, afterDrag, stored, errors },
+    null,
+    2,
+  ),
+);
 await context.close();
 await browser.close();

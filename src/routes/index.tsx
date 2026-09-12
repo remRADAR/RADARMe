@@ -204,10 +204,24 @@ function MusicFirstStage() {
           <div className="flex items-end gap-1" aria-label="Waveform preview">
             <span className="text-xs font-mono text-muted-foreground">NOW PLAYING</span>
             {Array.from({ length: 32 }, (_, i) => (
-              <span
+              <motion.span
                 key={i}
                 className="w-1 rounded-full bg-gold/70"
-                style={{ height: `${12 + ((i * 17) % 28)}px` }}
+                initial={{ height: `${12 + ((i * 17) % 28)}px` }}
+                animate={{
+                  height: [
+                    `${10 + ((i * 13) % 20)}px`,
+                    `${20 + ((i * 19) % 28)}px`,
+                    `${12 + ((i * 17) % 28)}px`,
+                  ],
+                }}
+                transition={{
+                  duration: 1.1 + (i % 5) * 0.12,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut",
+                  delay: i * 0.018,
+                }}
               />
             ))}
           </div>

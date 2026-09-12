@@ -1175,3 +1175,72 @@ nav span {
     border-radius: 1rem;
   }
 }
+
+/* Apple HIG refinement layer */
+:root {
+  --radar-field: #070709;
+  --background: #070709;
+  --radar-glass-subtle: rgb(22 22 28 / 0.42);
+  --radar-glass: rgb(22 22 28 / 0.65);
+  --radar-glass-strong: rgb(22 22 28 / 0.82);
+  --radar-blur: 24px;
+  --font-display:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+}
+body {
+  background-color: #070709;
+  background-image:
+    radial-gradient(circle at 72% -12%, rgb(196 153 54 / 0.11), transparent 34rem),
+    radial-gradient(circle at 10% 36%, rgb(30 99 80 / 0.08), transparent 30rem);
+}
+.glass,
+.radar-visual-stage,
+.radar-apple-dock {
+  background: rgb(22 22 28 / 0.65);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 20px 40px -15px rgb(0 0 0 / 0.5);
+}
+.radar-apple-dock {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+.radar-action-pill {
+  border-radius: 20px;
+  background: rgb(22 22 28 / 0.65);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+}
+.radar-action-pill:not(.radar-action-pill--active) {
+  min-height: 56px;
+  border-radius: 20px;
+  padding-inline: 0.85rem;
+}
+.radar-visual-stage {
+  border-radius: 28px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .radar-apple-dock [layoutid="activeTab"] {
+    transition: none !important;
+  }
+}
+
+.radar-action-track {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  overflow: visible;
+  padding: 0.5rem 0.25rem 0.75rem;
+}
+.radar-action-track > * {
+  min-width: 0;
+}
+@media (min-width: 1024px) {
+  .radar-action-track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
