@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, ChevronRight, Play } from "lucide-react";
 import { reportHomepageAssetError, reportHomepageAssetLoad } from "@/lib/homepage-asset-monitor";
 
@@ -15,35 +16,93 @@ const tickerLogos = [
 
 const leftArtists = ["Makama", "Odenose", "KEASUNGS", "Moelogo", "TELMAN"];
 const rightArtists = ["Fresh", "Motherland", "Discovery", "Magazine", "The RADARMan"];
+type HeroSlide = {
+  id: string;
+  avif?: string;
+  webp: string;
+  jpg?: string;
+  preferredFormat: "avif" | "webp";
+};
+
+const heroSlides: HeroSlide[] = [
+  {
+    id: "shutter-hero-01",
+    avif: "/media/framer-home/shutter-hero.avif",
+    webp: "/media/framer-home/shutter-hero.webp",
+    jpg: "/media/framer-home/shutter-hero.jpg",
+    preferredFormat: "avif",
+  },
+  {
+    id: "shutter-hero-02",
+    webp: "/media/framer-home/shutter-hero-02.webp",
+    preferredFormat: "webp",
+  },
+  {
+    id: "shutter-hero-03",
+    webp: "/media/framer-home/shutter-hero-03.webp",
+    preferredFormat: "webp",
+  },
+  {
+    id: "shutter-hero-04",
+    webp: "/media/framer-home/shutter-hero-04.webp",
+    preferredFormat: "webp",
+  },
+  {
+    id: "shutter-hero-05",
+    webp: "/media/framer-home/shutter-hero-05.webp",
+    preferredFormat: "webp",
+  },
+];
 
 export function FramerHomeFrame() {
+  const [activeHero, setActiveHero] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => {
+      setActiveHero((current) => (current + 1) % heroSlides.length);
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <section className="framer-home-frame" aria-labelledby="framer-home-title">
       <div className="framer-home-frame__hero">
-        <picture className="framer-home-frame__image">
-          <source srcSet="/media/framer-home/shutter-hero.avif" type="image/avif" />
-          <source srcSet="/media/framer-home/shutter-hero.webp" type="image/webp" />
-          <img
-            src="/media/framer-home/shutter-hero.jpg"
-            alt=""
-            fetchPriority="high"
-            decoding="async"
-            onLoad={(event) =>
-              reportHomepageAssetLoad({
-                assetId: "shutter-hero",
-                kind: "hero",
-                image: event.currentTarget,
-              })
-            }
-            onError={(event) =>
-              reportHomepageAssetError({
-                assetId: "shutter-hero",
-                kind: "hero",
-                image: event.currentTarget,
-              })
-            }
-          />
-        </picture>
+        <div className="framer-home-frame__slides" aria-live="polite">
+          {heroSlides.map((slide, index) => (
+            <picture
+              key={slide.id}
+              className={`framer-home-frame__image${index === activeHero ? " is-active" : ""}`}
+              aria-hidden={index !== activeHero}
+            >
+              {slide.avif && <source srcSet={slide.avif} type="image/avif" />}
+              <source srcSet={slide.webp} type="image/webp" />
+              <img
+                src={slide.jpg ?? slide.webp}
+                alt=""
+                fetchPriority={index === 0 ? "high" : "auto"}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                onLoad={(event) =>
+                  reportHomepageAssetLoad({
+                    assetId: slide.id,
+                    kind: "hero",
+                    image: event.currentTarget,
+                    preferredFormat: slide.preferredFormat,
+                  })
+                }
+                onError={(event) =>
+                  reportHomepageAssetError({
+                    assetId: slide.id,
+                    kind: "hero",
+                    image: event.currentTarget,
+                    preferredFormat: slide.preferredFormat,
+                  })
+                }
+              />
+            </picture>
+          ))}
+        </div>
         <div className="framer-home-frame__wash" aria-hidden="true" />
 
         <div className="framer-home-frame__artists framer-home-frame__artists--left">
@@ -59,7 +118,9 @@ export function FramerHomeFrame() {
           <span className="framer-home-frame__artist-label">•</span>
         </div>
 
-        <div className="framer-home-frame__index framer-home-frame__index--left">01</div>
+        <div className="framer-home-frame__index framer-home-frame__index--left">
+          {String(activeHero + 1).padStart(2, "0")}
+        </div>
         <div className="framer-home-frame__index framer-home-frame__index--right">05</div>
         <div className="framer-home-frame__hero-cue" aria-hidden="true">
           <span />

@@ -1,7 +1,11 @@
-const CACHE_NAME = "radarme-hero-v1";
+const CACHE_NAME = "radarme-hero-v2";
 const HERO_ASSETS = [
   "/media/framer-home/shutter-hero.avif",
   "/media/framer-home/shutter-hero.webp",
+  "/media/framer-home/shutter-hero-02.webp",
+  "/media/framer-home/shutter-hero-03.webp",
+  "/media/framer-home/shutter-hero-04.webp",
+  "/media/framer-home/shutter-hero-05.webp",
 ];
 
 self.addEventListener("install", (event) => {

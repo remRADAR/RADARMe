@@ -25,7 +25,7 @@ test.describe("homepage Framer frame", () => {
       "srcset",
       "/media/framer-home/shutter-hero.avif",
     );
-    await expect(hero.locator("picture.framer-home-frame__image img")).toHaveJSProperty(
+    await expect(hero.locator("picture.framer-home-frame__image.is-active img")).toHaveJSProperty(
       "naturalWidth",
       4000,
     );
@@ -65,16 +65,34 @@ test.describe("homepage Framer frame", () => {
     expect(events.every((event) => event.url && event.selectedFormat)).toBe(true);
   });
 
+  test("switches the shutter hero through the five Framer frames", async ({ page }) => {
+    await page.goto("/");
+    await removeWelcomeLayer(page);
+    await expect(page.locator(".framer-home-frame__index--left")).toHaveText("01");
+    await expect(page.locator(".framer-home-frame__image.is-active img")).toBeVisible();
+
+    await page.waitForTimeout(5_300);
+
+    await expect(page.locator(".framer-home-frame__index--left")).toHaveText("02");
+    await expect(page.locator(".framer-home-frame__image.is-active img")).toBeVisible();
+    await expect(page.locator(".framer-home-frame__ticker-track img").first()).toBeVisible();
+  });
+
   test("precaches the AVIF and WebP hero assets for offline loading", async ({ page, context }) => {
     await page.goto("/");
 
     const cacheState = await page.evaluate(async () => {
       const registration = await navigator.serviceWorker.ready;
-      const cache = await caches.open("radarme-hero-v1");
+      const cache = await caches.open("radarme-hero-v2");
       const assets = await Promise.all(
-        ["/media/framer-home/shutter-hero.avif", "/media/framer-home/shutter-hero.webp"].map(
-          async (url) => Boolean(await cache.match(url)),
-        ),
+        [
+          "/media/framer-home/shutter-hero.avif",
+          "/media/framer-home/shutter-hero.webp",
+          "/media/framer-home/shutter-hero-02.webp",
+          "/media/framer-home/shutter-hero-03.webp",
+          "/media/framer-home/shutter-hero-04.webp",
+          "/media/framer-home/shutter-hero-05.webp",
+        ].map(async (url) => Boolean(await cache.match(url))),
       );
       return {
         activeWorker: registration.active?.scriptURL,
@@ -83,22 +101,25 @@ test.describe("homepage Framer frame", () => {
     });
 
     expect(cacheState.activeWorker).toContain("/radarme-sw.js");
-    expect(cacheState.assets).toEqual([true, true]);
+    expect(cacheState.assets).toEqual(Array.from({ length: 6 }, () => true));
 
     await context.setOffline(true);
     const offlineAssets = await page.evaluate(async () => {
-      const responses = await Promise.all([
-        fetch("/media/framer-home/shutter-hero.avif"),
-        fetch("/media/framer-home/shutter-hero.webp"),
-      ]);
+      const responses = await Promise.all(
+        [
+          "/media/framer-home/shutter-hero.avif",
+          "/media/framer-home/shutter-hero.webp",
+          "/media/framer-home/shutter-hero-02.webp",
+          "/media/framer-home/shutter-hero-03.webp",
+          "/media/framer-home/shutter-hero-04.webp",
+          "/media/framer-home/shutter-hero-05.webp",
+        ].map((url) => fetch(url)),
+      );
       return responses.map((response) => ({ ok: response.ok, status: response.status }));
     });
     await context.setOffline(false);
 
-    expect(offlineAssets).toEqual([
-      { ok: true, status: 200 },
-      { ok: true, status: 200 },
-    ]);
+    expect(offlineAssets).toEqual(Array.from({ length: 6 }, () => ({ ok: true, status: 200 })));
   });
 
   test("keeps the Framer frame inside the viewport on mobile", async ({ page }) => {
