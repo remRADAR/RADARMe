@@ -40,6 +40,28 @@ test.describe("homepage Framer frame", () => {
     await expect(tickerImages.first()).toHaveJSProperty("naturalWidth", 2000);
   });
 
+  test("keeps the Framer hero, title, and ticker together in the first frame", async ({ page }) => {
+    await page.goto("/");
+    await removeWelcomeLayer(page);
+
+    const layout = await page.evaluate(() => {
+      const frame = document.querySelector<HTMLElement>(".framer-home-frame");
+      const brand = document.querySelector<HTMLElement>(".framer-home-frame__brand-band");
+      const ticker = document.querySelector<HTMLElement>(".framer-home-frame__ticker");
+      return {
+        frameHeight: frame?.getBoundingClientRect().height ?? 0,
+        viewportHeight: window.innerHeight,
+        titleToTickerGap:
+          (ticker?.getBoundingClientRect().top ?? 0) - (brand?.getBoundingClientRect().bottom ?? 0),
+        brandBottomPadding: brand ? Number.parseFloat(getComputedStyle(brand).paddingBottom) : 999,
+      };
+    });
+
+    expect(layout.frameHeight).toBeGreaterThanOrEqual(layout.viewportHeight);
+    expect(layout.titleToTickerGap).toBe(0);
+    expect(layout.brandBottomPadding).toBeLessThanOrEqual(24);
+  });
+
   test("reports loaded hero and ticker assets with their selected formats", async ({ page }) => {
     await page.addInitScript(() => {
       window.__radarmeAssetEvents = [];

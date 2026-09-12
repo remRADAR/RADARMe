@@ -407,6 +407,9 @@
 
 .framer-home-frame {
   position: relative;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
   margin-inline: -1rem;
   overflow: hidden;
   background: #050505;
@@ -415,6 +418,7 @@
 
 .framer-home-frame__hero {
   position: relative;
+  flex: 1 1 auto;
   min-height: clamp(31rem, 70svh, 47rem);
   overflow: hidden;
   isolation: isolate;
@@ -527,7 +531,7 @@
 .framer-home-frame__brand-band {
   display: grid;
   gap: 0.45rem;
-  padding: clamp(2.25rem, 5vw, 4.5rem) 1rem calc(clamp(1.8rem, 4vw, 3rem) + 5.5rem);
+  padding: clamp(2.25rem, 5vw, 4.5rem) 1rem clamp(1rem, 2vw, 1.5rem);
   background: #050505;
   text-align: center;
 }
