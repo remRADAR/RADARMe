@@ -19,13 +19,16 @@ export function FramerHomeFrame() {
   return (
     <section className="framer-home-frame" aria-labelledby="framer-home-title">
       <div className="framer-home-frame__hero">
-        <img
-          src="/media/framer-home/shutter-hero.jpg"
-          alt=""
-          className="framer-home-frame__image"
-          fetchPriority="high"
-          decoding="async"
-        />
+        <picture className="framer-home-frame__image">
+          <source srcSet="/media/framer-home/shutter-hero.avif" type="image/avif" />
+          <source srcSet="/media/framer-home/shutter-hero.webp" type="image/webp" />
+          <img
+            src="/media/framer-home/shutter-hero.jpg"
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
         <div className="framer-home-frame__wash" aria-hidden="true" />
 
         <div className="framer-home-frame__artists framer-home-frame__artists--left">

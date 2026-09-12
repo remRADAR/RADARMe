@@ -21,9 +21,13 @@ test.describe("homepage Framer frame", () => {
 
     const hero = page.locator(".framer-home-frame__hero");
     await expect(hero).toBeVisible();
-    await expect(hero.locator("img.framer-home-frame__image")).toHaveAttribute(
-      "src",
-      "/media/framer-home/shutter-hero.jpg",
+    await expect(hero.locator("picture.framer-home-frame__image source").first()).toHaveAttribute(
+      "srcset",
+      "/media/framer-home/shutter-hero.avif",
+    );
+    await expect(hero.locator("picture.framer-home-frame__image img")).toHaveJSProperty(
+      "naturalWidth",
+      4000,
     );
     await expect(page.locator(".framer-home-frame__artists--left")).toContainText("Makama");
     await expect(page.locator(".framer-home-frame__artists--right")).toContainText("Fresh");

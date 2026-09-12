@@ -422,6 +422,14 @@
   height: 100%;
 }
 
+.framer-home-frame__image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
 .framer-home-frame__image {
   z-index: -3;
   object-fit: cover;
@@ -512,8 +520,7 @@
 .framer-home-frame__brand-band {
   display: grid;
   gap: 0.45rem;
-  padding: clamp(2.25rem, 5vw, 4.5rem) 1rem
-    calc(clamp(1.8rem, 4vw, 3rem) + 5.5rem);
+  padding: clamp(2.25rem, 5vw, 4.5rem) 1rem calc(clamp(1.8rem, 4vw, 3rem) + 5.5rem);
   background: #050505;
   text-align: center;
 }

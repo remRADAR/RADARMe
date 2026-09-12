@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import {
   Sparkles,
   UploadCloud,
@@ -14,7 +15,12 @@ import {
   Newspaper,
 } from "lucide-react";
 import { FramerHomeFrame } from "@/components/home/FramerHomeFrame";
-import { AnnouncementRibbon } from "@/components/home/AnnouncementRibbon";
+
+const AnnouncementRibbon = lazy(() =>
+  import("@/components/home/AnnouncementRibbon").then(({ AnnouncementRibbon }) => ({
+    default: AnnouncementRibbon,
+  })),
+);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,7 +41,9 @@ function Index() {
       <FramerHomeFrame />
 
       {/* RADAR Live */}
-      <AnnouncementRibbon />
+      <Suspense fallback={<div className="min-h-40" aria-hidden="true" />}>
+        <AnnouncementRibbon />
+      </Suspense>
 
       {/* Quick actions — one clear next step */}
       <section className="space-y-3">
