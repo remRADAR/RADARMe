@@ -421,17 +421,12 @@
   background: #111;
 }
 
-.framer-home-frame__slides,
+.framer-home-frame__image,
 .framer-home-frame__wash {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.framer-home-frame__slides {
-  z-index: -3;
-  isolation: isolate;
 }
 
 .framer-home-frame__image img {
@@ -443,20 +438,10 @@
 }
 
 .framer-home-frame__image {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: block;
-  opacity: 0;
+  z-index: -3;
   object-fit: cover;
   object-position: center;
   filter: grayscale(1) contrast(1.12) brightness(0.78);
-  pointer-events: none;
-  transition: opacity 1.2s ease-in-out;
-}
-
-.framer-home-frame__image.is-active {
-  opacity: 1;
 }
 
 .framer-home-frame__wash {
@@ -795,10 +780,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .framer-home-frame__image {
-    transition: none;
-  }
-
   .animate-hero-in,
   .animate-hero-drift-a,
   .animate-hero-drift-b {

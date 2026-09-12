@@ -2,18 +2,13 @@
 
 RADARMe registers `/radarme-sw.js` after the initial render during an idle period. Registration is an enhancement and is intentionally not on the critical rendering path.
 
-The service worker precaches all five hero frames and their modern variants during installation:
+The service worker precaches the original Framer hero frame during installation:
 
-- `/media/framer-home/shutter-hero.avif`
-- `/media/framer-home/shutter-hero.webp`
-- `/media/framer-home/shutter-hero-02.webp`
-- `/media/framer-home/shutter-hero-03.webp`
-- `/media/framer-home/shutter-hero-04.webp`
-- `/media/framer-home/shutter-hero-05.webp`
+- `/media/framer-home/shutter-hero.jpg`
 
 Requests for those same-origin assets use a cache-first strategy. If an asset is not yet cached, the service worker fetches it from the network, returns it immediately, and stores a clone for the next visit. Other application requests are not intercepted.
 
-The cache is versioned as `radarme-hero-v2`. Updating the version in `public/radarme-sw.js` invalidates older hero caches during activation. The worker calls `skipWaiting()` and `clients.claim()` so an updated cache becomes active without requiring a second browser session.
+The cache is versioned as `radarme-hero-v1`. Updating the version in `public/radarme-sw.js` invalidates older hero caches during activation. The worker calls `skipWaiting()` and `clients.claim()` so an updated cache becomes active without requiring a second browser session.
 
 The JPEG remains the HTML `<picture>` fallback for browsers that do not support AVIF or WebP. The service worker only caches AVIF and WebP because browsers that select JPEG do not request the modern variants; the existing JPEG fallback remains available online and through normal browser caching.
 

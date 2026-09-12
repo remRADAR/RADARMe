@@ -1,108 +1,48 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { ArrowUpRight, ChevronRight, Play } from "lucide-react";
 import { reportHomepageAssetError, reportHomepageAssetLoad } from "@/lib/homepage-asset-monitor";
 
 const tickerLogos = [
-  "ticker-logo-01",
-  "ticker-logo-02",
-  "ticker-logo-03",
-  "ticker-logo-04",
-  "ticker-logo-05",
-  "ticker-logo-06",
-  "ticker-logo-07",
-  "ticker-logo-08",
+  "/media/framer-home/ticker-logo-01.png",
+  "/media/framer-home/ticker-logo-02.png",
+  "/media/framer-home/ticker-logo-03.png",
+  "/media/framer-home/ticker-logo-04.png",
+  "/media/framer-home/ticker-logo-05.png",
+  "/media/framer-home/ticker-logo-06.png",
+  "/media/framer-home/ticker-logo-07.png",
+  "/media/framer-home/ticker-logo-08.png",
 ];
 
 const leftArtists = ["Makama", "Odenose", "KEASUNGS", "Moelogo", "TELMAN"];
 const rightArtists = ["Fresh", "Motherland", "Discovery", "Magazine", "The RADARMan"];
-type HeroSlide = {
-  id: string;
-  avif?: string;
-  webp: string;
-  jpg?: string;
-  preferredFormat: "avif" | "webp";
-};
-
-const heroSlides: HeroSlide[] = [
-  {
-    id: "shutter-hero-01",
-    avif: "/media/framer-home/shutter-hero.avif",
-    webp: "/media/framer-home/shutter-hero.webp",
-    jpg: "/media/framer-home/shutter-hero.jpg",
-    preferredFormat: "avif",
-  },
-  {
-    id: "shutter-hero-02",
-    webp: "/media/framer-home/shutter-hero-02.webp",
-    preferredFormat: "webp",
-  },
-  {
-    id: "shutter-hero-03",
-    webp: "/media/framer-home/shutter-hero-03.webp",
-    preferredFormat: "webp",
-  },
-  {
-    id: "shutter-hero-04",
-    webp: "/media/framer-home/shutter-hero-04.webp",
-    preferredFormat: "webp",
-  },
-  {
-    id: "shutter-hero-05",
-    webp: "/media/framer-home/shutter-hero-05.webp",
-    preferredFormat: "webp",
-  },
-];
-
 export function FramerHomeFrame() {
-  const [activeHero, setActiveHero] = useState(0);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => {
-      setActiveHero((current) => (current + 1) % heroSlides.length);
-    }, 5000);
-    return () => window.clearInterval(timer);
-  }, []);
-
   return (
     <section className="framer-home-frame" aria-labelledby="framer-home-title">
       <div className="framer-home-frame__hero">
-        <div className="framer-home-frame__slides" aria-live="polite">
-          {heroSlides.map((slide, index) => (
-            <picture
-              key={slide.id}
-              className={`framer-home-frame__image${index === activeHero ? " is-active" : ""}`}
-              aria-hidden={index !== activeHero}
-            >
-              {slide.avif && <source srcSet={slide.avif} type="image/avif" />}
-              <source srcSet={slide.webp} type="image/webp" />
-              <img
-                src={slide.jpg ?? slide.webp}
-                alt=""
-                fetchPriority={index === 0 ? "high" : "auto"}
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
-                onLoad={(event) =>
-                  reportHomepageAssetLoad({
-                    assetId: slide.id,
-                    kind: "hero",
-                    image: event.currentTarget,
-                    preferredFormat: slide.preferredFormat,
-                  })
-                }
-                onError={(event) =>
-                  reportHomepageAssetError({
-                    assetId: slide.id,
-                    kind: "hero",
-                    image: event.currentTarget,
-                    preferredFormat: slide.preferredFormat,
-                  })
-                }
-              />
-            </picture>
-          ))}
-        </div>
+        <picture className="framer-home-frame__image">
+          <img
+            src="/media/framer-home/shutter-hero.jpg"
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            onLoad={(event) =>
+              reportHomepageAssetLoad({
+                assetId: "shutter-hero",
+                kind: "hero",
+                image: event.currentTarget,
+                preferredFormat: "jpeg",
+              })
+            }
+            onError={(event) =>
+              reportHomepageAssetError({
+                assetId: "shutter-hero",
+                kind: "hero",
+                image: event.currentTarget,
+                preferredFormat: "jpeg",
+              })
+            }
+          />
+        </picture>
         <div className="framer-home-frame__wash" aria-hidden="true" />
 
         <div className="framer-home-frame__artists framer-home-frame__artists--left">
@@ -118,9 +58,7 @@ export function FramerHomeFrame() {
           <span className="framer-home-frame__artist-label">•</span>
         </div>
 
-        <div className="framer-home-frame__index framer-home-frame__index--left">
-          {String(activeHero + 1).padStart(2, "0")}
-        </div>
+        <div className="framer-home-frame__index framer-home-frame__index--left">01</div>
         <div className="framer-home-frame__index framer-home-frame__index--right">05</div>
         <div className="framer-home-frame__hero-cue" aria-hidden="true">
           <span />
@@ -140,9 +78,8 @@ export function FramerHomeFrame() {
         <div className="framer-home-frame__ticker-track">
           {[...tickerLogos, ...tickerLogos].map((logo, index) => (
             <picture key={`${logo}-${index}`}>
-              <source srcSet={`/media/framer-home/${logo}.webp`} type="image/webp" />
               <img
-                src={`/media/framer-home/${logo}.webp`}
+                src={logo}
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -151,7 +88,7 @@ export function FramerHomeFrame() {
                     assetId: `${logo}-${index}`,
                     kind: "ticker",
                     image: event.currentTarget,
-                    preferredFormat: "webp",
+                    preferredFormat: "png",
                   })
                 }
                 onError={(event) =>
@@ -159,7 +96,7 @@ export function FramerHomeFrame() {
                     assetId: `${logo}-${index}`,
                     kind: "ticker",
                     image: event.currentTarget,
-                    preferredFormat: "webp",
+                    preferredFormat: "png",
                   })
                 }
               />

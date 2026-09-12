@@ -32,4 +32,4 @@ The callback is optional and never blocks rendering. When the existing Lovable r
 
 ## What is monitored
 
-The hero monitors the AVIF → WebP → JPEG picture chain. Ticker images use the transparent WebP artwork for both copies used by the continuous marquee. A browser fallback is reported only after the browser has selected and decoded the fallback image. A broken image is reported only when the final selected image emits `error`, avoiding duplicate alerts for normal source negotiation.
+The hero monitors the original JPEG image. Ticker images use the original transparent PNG artwork for both copies used by the continuous marquee. A broken image is reported only when the selected image emits `error`, avoiding duplicate alerts for normal asset loading.
