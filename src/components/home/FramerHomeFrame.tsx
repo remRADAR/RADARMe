@@ -27,11 +27,6 @@ export function FramerHomeFrame() {
           decoding="async"
         />
         <div className="framer-home-frame__wash" aria-hidden="true" />
-        <div className="framer-home-frame__shutters" aria-hidden="true">
-          {Array.from({ length: 8 }, (_, index) => (
-            <span key={index} style={{ animationDelay: `${index * 45}ms` }} />
-          ))}
-        </div>
 
         <div className="framer-home-frame__artists framer-home-frame__artists--left">
           <span className="framer-home-frame__artist-label">•</span>

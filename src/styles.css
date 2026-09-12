@@ -457,7 +457,6 @@
   object-fit: cover;
   object-position: center;
   filter: grayscale(1) contrast(1.12) brightness(0.78);
-  animation: framer-home-image-in 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .framer-home-frame__wash {
@@ -465,22 +464,6 @@
   background:
     linear-gradient(90deg, rgb(4 4 4 / 0.8), transparent 28%, transparent 72%, rgb(4 4 4 / 0.8)),
     linear-gradient(180deg, rgb(0 0 0 / 0.14), rgb(0 0 0 / 0.1) 65%, rgb(0 0 0 / 0.92));
-}
-
-.framer-home-frame__shutters {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  pointer-events: none;
-}
-
-.framer-home-frame__shutters span {
-  background: #111;
-  transform: scaleX(1);
-  transform-origin: left center;
-  animation: framer-home-shutter-open 900ms cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
 .framer-home-frame__artists {
@@ -685,26 +668,6 @@
   color: var(--gold);
 }
 
-@keyframes framer-home-shutter-open {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0);
-  }
-}
-
-@keyframes framer-home-image-in {
-  from {
-    opacity: 0;
-    transform: scale(1.06);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 @keyframes framer-home-ticker {
   from {
     transform: translateX(0);
@@ -715,14 +678,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .framer-home-frame__image,
-  .framer-home-frame__shutters span,
   .framer-home-frame__ticker-track {
     animation: none !important;
-  }
-
-  .framer-home-frame__shutters {
-    display: none;
   }
 
   .framer-opening__video {
