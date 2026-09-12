@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "../lib/theme";
 import { AuthProvider } from "../lib/auth";
+import { registerRadarMeServiceWorker } from "../lib/register-service-worker";
 import { AppShell } from "../components/layout/AppShell";
 import { FramerOpening } from "../components/opening/FramerOpening";
 
@@ -147,6 +148,10 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  useEffect(() => {
+    registerRadarMeServiceWorker();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -65,6 +65,42 @@ test.describe("homepage Framer frame", () => {
     expect(events.every((event) => event.url && event.selectedFormat)).toBe(true);
   });
 
+  test("precaches the AVIF and WebP hero assets for offline loading", async ({ page, context }) => {
+    await page.goto("/");
+
+    const cacheState = await page.evaluate(async () => {
+      const registration = await navigator.serviceWorker.ready;
+      const cache = await caches.open("radarme-hero-v1");
+      const assets = await Promise.all(
+        ["/media/framer-home/shutter-hero.avif", "/media/framer-home/shutter-hero.webp"].map(
+          async (url) => Boolean(await cache.match(url)),
+        ),
+      );
+      return {
+        activeWorker: registration.active?.scriptURL,
+        assets,
+      };
+    });
+
+    expect(cacheState.activeWorker).toContain("/radarme-sw.js");
+    expect(cacheState.assets).toEqual([true, true]);
+
+    await context.setOffline(true);
+    const offlineAssets = await page.evaluate(async () => {
+      const responses = await Promise.all([
+        fetch("/media/framer-home/shutter-hero.avif"),
+        fetch("/media/framer-home/shutter-hero.webp"),
+      ]);
+      return responses.map((response) => ({ ok: response.ok, status: response.status }));
+    });
+    await context.setOffline(false);
+
+    expect(offlineAssets).toEqual([
+      { ok: true, status: 200 },
+      { ok: true, status: 200 },
+    ]);
+  });
+
   test("keeps the Framer frame inside the viewport on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
