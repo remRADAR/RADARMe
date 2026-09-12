@@ -100,7 +100,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "A premium operating system for music artists, by RADARCharts.",
       },
       { property: "og:type", content: "website" },
+      {
+        property: "og:image",
+        content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg",
+      },
+      { property: "og:image:alt", content: "RADARMe artist interview in a recording studio" },
+      { property: "og:image:width", content: "1600" },
+      { property: "og:image:height", content: "900" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "RADARMe — The Artist Operating System" },
+      {
+        name: "twitter:description",
+        content: "A premium operating system for music artists, by RADARCharts.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg",
+      },
     ],
     links: [
       {
