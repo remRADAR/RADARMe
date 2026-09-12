@@ -471,22 +471,12 @@
   background: #111;
 }
 
-.framer-home-frame__slides {
-  position: absolute;
-  inset: 0;
-  z-index: -3;
-}
-
 .framer-home-frame__image,
 .framer-home-frame__wash {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.framer-home-frame__image {
-  margin: 0;
 }
 
 .framer-home-frame__image img {
@@ -498,16 +488,10 @@
 }
 
 .framer-home-frame__image {
-  z-index: 0;
+  z-index: -3;
   object-fit: cover;
   object-position: center;
   filter: grayscale(1) contrast(1.12) brightness(0.78);
-  opacity: 0;
-  transition: opacity 650ms ease;
-}
-
-.framer-home-frame__image.is-active {
-  opacity: 1;
 }
 
 .framer-home-frame__wash {
@@ -638,7 +622,6 @@
   align-items: center;
   gap: clamp(1.7rem, 5vw, 4rem);
   will-change: transform;
-  animation: framer-home-ticker 32s linear infinite;
 }
 
 .framer-home-frame__ticker-track img {
@@ -1193,85 +1176,71 @@ nav span {
   }
 }
 
-/* RADARCharts Apple-inspired design guide surfaces */
+/* Apple HIG refinement layer */
 :root {
-  --radar-system-background: #000;
-  --radar-system-secondary: color-mix(in oklab, var(--surface) 82%, transparent);
-  --radar-system-tertiary: color-mix(in oklab, var(--surface-2) 86%, transparent);
-  --radar-label-primary: var(--foreground);
-  --radar-label-secondary: var(--muted-foreground);
-  --radar-label-tertiary: color-mix(in oklab, var(--muted-foreground) 72%, transparent);
-  --radar-separator: rgb(120 120 128 / 0.2);
-  --radar-material-ultra-thin: color-mix(in oklab, var(--surface) 60%, transparent);
-  --radar-material-thin: color-mix(in oklab, var(--surface) 70%, transparent);
-  --radar-material-thick: color-mix(in oklab, var(--surface) 80%, transparent);
+  --radar-field: #070709;
+  --background: #070709;
+  --radar-glass-subtle: rgb(22 22 28 / 0.42);
+  --radar-glass: rgb(22 22 28 / 0.65);
+  --radar-glass-strong: rgb(22 22 28 / 0.82);
+  --radar-blur: 24px;
+  --font-display:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
 }
-
-.radar-scroll-stack {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0;
-  padding: 0 0.25rem 1rem;
-  list-style: none;
-  scroll-snap-type: y proximity;
+body {
+  background-color: #070709;
+  background-image:
+    radial-gradient(circle at 72% -12%, rgb(196 153 54 / 0.11), transparent 34rem),
+    radial-gradient(circle at 10% 36%, rgb(30 99 80 / 0.08), transparent 30rem);
 }
-
-.radar-scroll-stack__item {
-  position: sticky;
-  top: clamp(4.5rem, 12vh, 7rem);
-  scroll-snap-align: start;
-  transform-origin: center top;
-  transition:
-    transform 300ms var(--radar-ease-out),
-    opacity 300ms ease;
+.glass,
+.radar-visual-stage,
+.radar-apple-dock {
+  background: rgb(22 22 28 / 0.65);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 20px 40px -15px rgb(0 0 0 / 0.5);
 }
-
-.radar-scroll-stack__item > a {
-  min-height: 5.25rem;
-  border-radius: 1.25rem;
-  background: var(--radar-material-thin);
-  box-shadow: var(--shadow-elev-1);
-  backdrop-filter: blur(var(--radar-blur));
-  -webkit-backdrop-filter: blur(var(--radar-blur));
+.radar-apple-dock {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
 }
-
-.radar-scroll-stack__item > a:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
+.radar-action-pill {
+  border-radius: 20px;
+  background: rgb(22 22 28 / 0.65);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
 }
-
+.radar-action-pill:not(.radar-action-pill--active) {
+  min-height: 56px;
+  border-radius: 20px;
+  padding-inline: 0.85rem;
+}
+.radar-visual-stage {
+  border-radius: 28px;
+}
 @media (prefers-reduced-motion: reduce) {
-  .radar-scroll-stack__item {
-    position: relative;
-    transition: none;
+  .radar-apple-dock [layoutid="activeTab"] {
+    transition: none !important;
   }
 }
 
-.radar-section-fallback {
+.radar-action-track {
   display: grid;
-  gap: 0.5rem;
-  min-height: 10rem;
-  place-items: center;
-  align-content: center;
-  padding: 1.5rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--radar-radius-xl);
-  background: var(--radar-material-thin);
-  color: var(--radar-label-secondary);
-  text-align: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  overflow: visible;
+  padding: 0.5rem 0.25rem 0.75rem;
 }
-
-.radar-section-fallback strong {
-  color: var(--radar-label-primary);
+.radar-action-track > * {
+  min-width: 0;
 }
-
-.radar-section-fallback button {
-  min-height: 44px;
-  margin-top: 0.5rem;
-  padding: 0 1rem;
-  border: 1px solid var(--gold);
-  border-radius: var(--radar-radius-md);
-  background: transparent;
-  color: var(--gold);
-  font-weight: 600;
+@media (min-width: 1024px) {
+  .radar-action-track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

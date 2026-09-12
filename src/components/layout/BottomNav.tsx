@@ -1,4 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Home, Library, Music2, ShoppingBag, Users } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import { cn } from "@/lib/utils";
@@ -22,11 +23,11 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 sm:px-6 sm:pb-5 lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 px-3 pb-4 sm:px-6 sm:pb-6 lg:hidden"
       aria-label="Primary"
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
-      <div className="glass mx-auto grid max-w-3xl grid-cols-5 overflow-hidden rounded-3xl p-1 shadow-[0_18px_60px_-24px_oklch(0_0_0_/_0.9)]">
+      <div className="radar-apple-dock mx-auto grid w-fit max-w-full grid-cols-5 gap-1 overflow-hidden rounded-full p-1.5 shadow-[0_25px_50px_-12px_rgb(0_0_0_/_0.7)]">
         {items.map((item) => {
           const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
           const Icon = item.icon;
@@ -36,15 +37,23 @@ export function BottomNav() {
               to={item.to}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "group relative flex min-h-14 min-w-0 items-center justify-center gap-1 rounded-2xl px-1 py-2 text-[10px] font-semibold tracking-[0.08em] text-muted-foreground transition-[background-color,color,transform] duration-200 sm:min-h-16 sm:gap-2 sm:px-3 sm:text-[11px]",
+                "group relative flex min-h-12 min-w-0 items-center justify-center gap-1 rounded-full px-2 py-2 text-[10px] font-semibold tracking-[0.04em] text-muted-foreground transition-[color,transform] duration-200 sm:min-h-14 sm:gap-2 sm:px-4 sm:text-[11px]",
                 "focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-flare",
-                active
-                  ? "bg-white text-black shadow-[0_4px_20px_-10px_white]"
-                  : "hover:bg-white/10 hover:text-foreground active:scale-[0.98]",
+                active ? "text-white" : "hover:text-foreground active:scale-[0.98]",
               )}
             >
-              <Icon size={18} strokeWidth={2} aria-hidden />
-              <span className="max-w-[6.5rem] truncate text-center">{item.label}</span>
+              {active && (
+                <motion.span
+                  layoutId="activeTab"
+                  className="absolute inset-0 rounded-full bg-white/[0.14] shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18)]"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  aria-hidden
+                />
+              )}
+              <Icon className="relative z-[1]" size={18} strokeWidth={2} aria-hidden />
+              <span className="relative z-[1] max-w-[6.5rem] truncate text-center">
+                {item.label}
+              </span>
               <span
                 aria-hidden
                 className={cn(

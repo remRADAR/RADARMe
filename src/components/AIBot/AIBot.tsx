@@ -6,7 +6,7 @@ import { IntelligencePanel } from "./IntelligencePanel";
 import "./AIBot.styles.css";
 
 const POSITION_KEY = "radar_bot_position";
-const BOT_SIZE = 104;
+const BOT_SIZE = 58;
 const VIEWPORT_PADDING = 20;
 
 type Position = { x: number; y: number };
@@ -153,10 +153,10 @@ export function AIBot({
           <div className="radar-bot-aura" />
           <img
             className="radar-bot-gif"
-            src="/media/radar-bot-transparent-cropped.gif"
+            src="/media/radar-bot.gif"
             alt=""
-            width={263}
-            height={263}
+            width={750}
+            height={750}
             draggable={false}
           />
           <div className="radar-bot-status">
