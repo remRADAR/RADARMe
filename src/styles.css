@@ -428,7 +428,303 @@
   color: #fff;
 }
 
+.framer-home-frame {
+  position: relative;
+  margin-inline: -1rem;
+  overflow: hidden;
+  background: #050505;
+  color: #f5f5f5;
+}
+
+.framer-home-frame__hero {
+  position: relative;
+  min-height: clamp(31rem, 70svh, 47rem);
+  overflow: hidden;
+  isolation: isolate;
+  background: #111;
+}
+
+.framer-home-frame__image,
+.framer-home-frame__wash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.framer-home-frame__image {
+  z-index: -3;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1) contrast(1.12) brightness(0.78);
+  animation: framer-home-image-in 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.framer-home-frame__wash {
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgb(4 4 4 / 0.8), transparent 28%, transparent 72%, rgb(4 4 4 / 0.8)),
+    linear-gradient(180deg, rgb(0 0 0 / 0.14), rgb(0 0 0 / 0.1) 65%, rgb(0 0 0 / 0.92));
+}
+
+.framer-home-frame__shutters {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  pointer-events: none;
+}
+
+.framer-home-frame__shutters span {
+  background: #111;
+  transform: scaleX(1);
+  transform-origin: left center;
+  animation: framer-home-shutter-open 900ms cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.framer-home-frame__artists {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  color: rgb(255 255 255 / 0.56);
+  font-family: var(--font-mono);
+  font-size: clamp(0.58rem, 1.2vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+}
+
+.framer-home-frame__artists--left {
+  left: clamp(1rem, 4vw, 3.5rem);
+}
+
+.framer-home-frame__artists--right {
+  right: clamp(1rem, 4vw, 3.5rem);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.framer-home-frame__artists span:not(.framer-home-frame__artist-label):first-of-type {
+  color: #fff;
+  font-size: 1.1em;
+}
+
+.framer-home-frame__artist-label {
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  line-height: 0.5;
+}
+
+.framer-home-frame__index {
+  position: absolute;
+  z-index: 3;
+  bottom: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.framer-home-frame__index--left {
+  left: 41%;
+}
+
+.framer-home-frame__index--right {
+  right: 41%;
+}
+
+.framer-home-frame__hero-cue {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 1.75rem;
+  display: flex;
+  gap: 0.3rem;
+  transform: translateX(-50%);
+}
+
+.framer-home-frame__hero-cue span {
+  width: 0.22rem;
+  height: 0.22rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.7);
+}
+
+.framer-home-frame__brand-band {
+  display: grid;
+  gap: 0.45rem;
+  padding: clamp(2.25rem, 5vw, 4.5rem) 1rem
+    calc(clamp(1.8rem, 4vw, 3rem) + 5.5rem);
+  background: #050505;
+  text-align: center;
+}
+
+.framer-home-frame__wordmark {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 11vw, 9.5rem);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 0.82;
+  background: linear-gradient(180deg, #fff 0%, #fff 46%, #4e4e4e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.framer-home-frame__wordmark span {
+  font-weight: 700;
+}
+
+.framer-home-frame__brand-band p {
+  margin: 0;
+  color: rgb(255 255 255 / 0.42);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.framer-home-frame__ticker {
+  position: relative;
+  overflow: hidden;
+  padding: 0.75rem 0 1rem;
+  background: #000;
+}
+
+.framer-home-frame__ticker-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: clamp(1.7rem, 5vw, 4rem);
+  animation: framer-home-ticker 32s linear infinite;
+}
+
+.framer-home-frame__ticker-track img {
+  width: clamp(3.7rem, 9vw, 6rem);
+  height: clamp(2.5rem, 6vw, 4rem);
+  flex: 0 0 auto;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  opacity: 0.78;
+}
+
+.framer-home-frame__ticker-now {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.58rem 0.72rem;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 0.5rem;
+  background: rgb(0 0 0 / 0.62);
+  color: rgb(255 255 255 / 0.76);
+  font-family: var(--font-mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+}
+
+.framer-home-frame__ticker-play {
+  display: grid;
+  width: 1.3rem;
+  height: 1.3rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.5);
+  border-radius: 999px;
+}
+
+.framer-home-frame__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #050505;
+}
+
+.framer-home-frame__action {
+  display: inline-flex;
+  flex: 1 1 10rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 0.35rem;
+  color: rgb(255 255 255 / 0.75);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.framer-home-frame__action:hover,
+.framer-home-frame__action:focus-visible {
+  border-color: rgb(255 255 255 / 0.45);
+  background: rgb(255 255 255 / 0.08);
+  color: #fff;
+}
+
+.framer-home-frame__action--gold {
+  border-color: color-mix(in oklab, var(--gold) 50%, transparent);
+  color: var(--gold);
+}
+
+@keyframes framer-home-shutter-open {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes framer-home-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes framer-home-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .framer-home-frame__image,
+  .framer-home-frame__shutters span,
+  .framer-home-frame__ticker-track {
+    animation: none !important;
+  }
+
+  .framer-home-frame__shutters {
+    display: none;
+  }
+
   .framer-opening__video {
     display: none;
   }

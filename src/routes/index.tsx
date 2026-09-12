@@ -13,7 +13,7 @@ import {
   Users,
   Newspaper,
 } from "lucide-react";
-import { HeroDashboard } from "@/components/home/HeroDashboard";
+import { FramerHomeFrame } from "@/components/home/FramerHomeFrame";
 import { AnnouncementRibbon } from "@/components/home/AnnouncementRibbon";
 
 export const Route = createFileRoute("/")({
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="space-y-8">
-      <HeroDashboard />
+      <FramerHomeFrame />
 
       {/* RADAR Live */}
       <AnnouncementRibbon />

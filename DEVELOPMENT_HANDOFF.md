@@ -77,3 +77,11 @@ The navigation remains a semantic `nav` with real links, `aria-current`, visible
 ## Next Steps
 
 Build the importer-first opening experience, selectively inspect and integrate RADARMusic modules, and run browser QA across the five primary destinations at representative mobile and desktop widths.
+
+## Framer Homepage Frame Adaptation
+
+The main `/` route now preserves the existing welcome animation and then presents a RADARCharts editorial homepage frame adapted from the authorized `radarcharts.framer.website` reference. The frame uses the captured shutter portrait hero, left/right artist rails, 01/05 frame markers, a centered RADARCharts wordmark band, a scrolling partner/logo ticker, a current-track ticker link, and app-native links into RADARMusic, the magazine, and Intelligence. Existing RADAR announcements, quick actions, recommendations, and five-tab navigation remain below the adapted frame.
+
+The exact Framer site was crawled through the authorized `framer-clone` exporter. The exporter captured all 20 routes and 1,181 first-party assets, but its full static output hit a path collision on an external Framer signup asset during rewrite. Only the approved homepage assets needed for this adaptation were copied into `public/media/framer-home/`; the Framer runtime and analytics were not shipped.
+
+Fresh browser verification passed at 1440×900 and 390×844. The welcome overlay was present before interaction, dismissed correctly, and restored document overflow. The adapted hero, wordmark, ticker boundary, and fixed app navigation rendered without overlap after the brand-band safe-area repair. A fresh Playwright console audit reported no runtime, page, or hydration errors.
