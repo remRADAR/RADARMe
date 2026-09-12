@@ -1,25 +1,33 @@
 import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronRight, Play } from "lucide-react";
 import { reportHomepageAssetError, reportHomepageAssetLoad } from "@/lib/homepage-asset-monitor";
 
-const tickerLogos = [
-  "/media/framer-home/ticker-logo-01.png",
-  "/media/framer-home/ticker-logo-02.png",
-  "/media/framer-home/ticker-logo-03.png",
-  "/media/framer-home/ticker-logo-04.png",
-  "/media/framer-home/ticker-logo-05.png",
-  "/media/framer-home/ticker-logo-06.png",
-  "/media/framer-home/ticker-logo-07.png",
-  "/media/framer-home/ticker-logo-08.png",
-];
-
+const tickerLogos = Array.from(
+  { length: 8 },
+  (_, index) => `/media/framer-home/ticker-logo-0${index + 1}.png`,
+);
 const leftArtists = ["Makama", "Odenose", "KEASUNGS", "Moelogo", "TELMAN"];
 const rightArtists = ["Fresh", "Motherland", "Discovery", "Magazine", "The RADARMan"];
+const artistList = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.05, delayChildren: 0.15 } },
+};
+const artistItem = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 0.7, y: 0, transition: { duration: 0.28, ease: "easeOut" } },
+};
+
 export function FramerHomeFrame() {
   return (
     <section className="framer-home-frame" aria-labelledby="framer-home-title">
       <div className="framer-home-frame__hero">
-        <picture className="framer-home-frame__image">
+        <motion.picture
+          className="framer-home-frame__image"
+          initial={{ scale: 1.04, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
+        >
           <img
             src="/media/framer-home/shutter-hero.jpg"
             alt=""
@@ -42,29 +50,62 @@ export function FramerHomeFrame() {
               })
             }
           />
-        </picture>
+        </motion.picture>
         <div className="framer-home-frame__wash" aria-hidden="true" />
 
-        <div className="framer-home-frame__artists framer-home-frame__artists--left">
+        <motion.div
+          className="framer-home-frame__artists framer-home-frame__artists--left"
+          variants={artistList}
+          initial="hidden"
+          animate="visible"
+        >
           <span className="framer-home-frame__artist-label">•</span>
           {leftArtists.map((artist) => (
-            <span key={artist}>{artist}</span>
+            <motion.span key={artist} variants={artistItem}>
+              {artist}
+            </motion.span>
           ))}
-        </div>
-        <div className="framer-home-frame__artists framer-home-frame__artists--right">
+        </motion.div>
+        <motion.div
+          className="framer-home-frame__artists framer-home-frame__artists--right"
+          variants={artistList}
+          initial="hidden"
+          animate="visible"
+        >
           {rightArtists.map((artist) => (
-            <span key={artist}>{artist}</span>
+            <motion.span key={artist} variants={artistItem}>
+              {artist}
+            </motion.span>
           ))}
           <span className="framer-home-frame__artist-label">•</span>
-        </div>
+        </motion.div>
 
-        <div className="framer-home-frame__index framer-home-frame__index--left">01</div>
-        <div className="framer-home-frame__index framer-home-frame__index--right">05</div>
-        <div className="framer-home-frame__hero-cue" aria-hidden="true">
+        <motion.div
+          className="framer-home-frame__index framer-home-frame__index--left"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 0.8, y: 0 }}
+          transition={{ delay: 0.45 }}
+        >
+          01
+        </motion.div>
+        <motion.div
+          className="framer-home-frame__index framer-home-frame__index--right"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 0.8, y: 0 }}
+          transition={{ delay: 0.55 }}
+        >
+          05
+        </motion.div>
+        <motion.div
+          className="framer-home-frame__hero-cue"
+          aria-label="Scroll for more"
+          animate={{ opacity: [0.45, 1, 0.45] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
           <span />
           <span />
           <span />
-        </div>
+        </motion.div>
       </div>
 
       <div className="framer-home-frame__brand-band">
@@ -75,7 +116,11 @@ export function FramerHomeFrame() {
       </div>
 
       <div className="framer-home-frame__ticker" aria-label="RADARCharts ecosystem partners">
-        <div className="framer-home-frame__ticker-track">
+        <motion.div
+          className="framer-home-frame__ticker-track"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 32, ease: "linear", repeat: Infinity }}
+        >
           {[...tickerLogos, ...tickerLogos].map((logo, index) => (
             <picture key={`${logo}-${index}`}>
               <img
@@ -102,7 +147,7 @@ export function FramerHomeFrame() {
               />
             </picture>
           ))}
-        </div>
+        </motion.div>
         <Link className="framer-home-frame__ticker-now" to="/network/magazine">
           <span className="framer-home-frame__ticker-play">
             <Play size={11} fill="currentColor" />

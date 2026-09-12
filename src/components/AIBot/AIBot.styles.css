@@ -1,0 +1,334 @@
+.radar-bot-engine {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.radar-bot-engine iframe {
+  width: 1px;
+  height: 1px;
+  border: 0;
+}
+.radar-bot-wrapper {
+  position: fixed;
+  z-index: 45;
+  width: clamp(60px, 8vw, 68px);
+  height: clamp(60px, 8vw, 68px);
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  cursor: grab;
+  user-select: none;
+  filter: drop-shadow(0 16px 24px rgb(0 0 0 / 0.4));
+}
+.radar-bot-wrapper:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+}
+.radar-bot-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.radar-bot-ring {
+  position: relative;
+  z-index: 2;
+  width: 82%;
+  height: 82%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.65);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 22%, #fff 0 4%, #9a9a9a 15%, #343434 48%, #080808 78%);
+  box-shadow:
+    inset 5px 5px 12px rgb(255 255 255 / 0.55),
+    inset -8px -10px 16px #000,
+    0 0 0 3px rgb(255 255 255 / 0.12);
+  animation: radar-bot-breathe 3s ease-in-out infinite;
+}
+.radar-bot-wrapper.playing .radar-bot-ring {
+  animation:
+    radar-bot-breathe 3s ease-in-out infinite,
+    radar-bot-beat 0.65s ease-in-out infinite alternate;
+}
+.radar-bot-aura {
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.42),
+    rgb(0 225 255 / 0.13) 42%,
+    transparent 72%
+  );
+  filter: blur(10px);
+  opacity: 0.6;
+  animation: radar-bot-glow 3.4s ease-in-out infinite;
+}
+.radar-bot-wrapper.playing .radar-bot-aura {
+  opacity: 0.9;
+  filter: blur(8px) brightness(1.25);
+}
+.radar-bot-eye {
+  position: absolute;
+  top: 36%;
+  width: 18%;
+  height: 14%;
+  border-radius: 50%;
+  background: #050505;
+  box-shadow: 0 0 3px rgb(255 255 255 / 0.5);
+  overflow: hidden;
+}
+.radar-bot-eye-left {
+  left: 25%;
+}
+.radar-bot-eye-right {
+  right: 25%;
+}
+.radar-bot-eye span {
+  display: block;
+  width: 45%;
+  height: 45%;
+  margin: 26% auto;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: translate(var(--gaze-x, 0), var(--gaze-y, 0));
+  transition: transform 0.12s ease-out;
+}
+.radar-bot-eye-right span {
+  animation: radar-bot-wink 5.1s ease-in-out infinite;
+}
+.radar-bot-mouth {
+  position: absolute;
+  bottom: 26%;
+  width: 23%;
+  height: 9%;
+  border-bottom: 2px solid rgb(255 255 255 / 0.8);
+  border-radius: 50%;
+}
+.radar-bot-headphones {
+  position: absolute;
+  z-index: 3;
+  color: var(--gold);
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 4px var(--gold));
+}
+.radar-bot-spark {
+  position: absolute;
+  z-index: 3;
+  top: 11%;
+  right: 8%;
+  color: var(--gold);
+}
+.radar-bot-status {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: 1%;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--background);
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--gold-foreground);
+}
+.radar-bot-drag-indicator {
+  position: absolute;
+  bottom: -8px;
+  width: 18px;
+  height: 3px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.7);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.radar-bot-wrapper:hover .radar-bot-drag-indicator,
+.radar-bot-wrapper:focus-visible .radar-bot-drag-indicator {
+  opacity: 1;
+}
+.radar-intelligence-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  background: rgb(0 0 0 / 0.72);
+  backdrop-filter: blur(12px);
+}
+.radar-intelligence-panel {
+  width: min(100%, 520px);
+  max-height: min(80vh, 680px);
+  overflow-y: auto;
+  padding: 12px 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px 24px 16px 16px;
+  background: var(--radar-glass-strong);
+  box-shadow: 0 -20px 70px rgb(0 0 0 / 0.55);
+}
+.radar-intelligence-grabber {
+  width: 38px;
+  height: 4px;
+  margin: 0 auto 20px;
+  border-radius: 9999px;
+  background: var(--muted-foreground);
+  opacity: 0.6;
+}
+.radar-intelligence-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.radar-intelligence-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.radar-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+}
+.radar-panel-eyebrow {
+  margin: 0 0 3px;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.radar-intelligence-header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+.radar-panel-close {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--foreground);
+  cursor: pointer;
+}
+.radar-panel-close:hover {
+  background: var(--surface-3);
+}
+.radar-intelligence-content {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+.radar-insight-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radar-radius-lg);
+  background: var(--radar-glass-subtle);
+}
+.radar-insight-card-muted {
+  opacity: 0.6;
+  border-style: dashed;
+}
+.radar-insight-icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radar-radius-md);
+  background: var(--surface-2);
+  color: var(--gold);
+}
+.radar-insight-card h3 {
+  margin: 0;
+  font-size: 15px;
+}
+.radar-insight-card p {
+  margin: 4px 0 10px;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.radar-insight-card button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radar-radius-md);
+  background: var(--foreground);
+  color: var(--background);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.radar-insight-card button:disabled {
+  background: var(--surface-3);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+}
+.radar-panel-footer {
+  margin: 18px 0 0;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  text-align: center;
+}
+@keyframes radar-bot-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+@keyframes radar-bot-beat {
+  to {
+    transform: scale(1.12);
+  }
+}
+@keyframes radar-bot-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+@keyframes radar-bot-wink {
+  0%,
+  47%,
+  53%,
+  100% {
+    transform: translate(var(--gaze-x, 0), var(--gaze-y, 0)) scaleY(1);
+  }
+  50% {
+    transform: translate(var(--gaze-x, 0), var(--gaze-y, 0)) scaleY(0.1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .radar-bot-ring,
+  .radar-bot-aura,
+  .radar-bot-eye-right span {
+    animation: none;
+  }
+}

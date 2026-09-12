@@ -16,6 +16,7 @@ import {
   Users,
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
+import { AIBot } from "@/components/AIBot/AIBot";
 import { BottomNav } from "./BottomNav";
 import { cn } from "@/lib/utils";
 
@@ -214,6 +215,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           {children}
         </main>
         {!isImmersive && <BottomNav />}
+        {!isImmersive && <AIBot />}
       </div>
     </div>
   );
