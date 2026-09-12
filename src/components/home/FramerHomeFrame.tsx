@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, ChevronRight, Play } from "lucide-react";
+import { reportHomepageAssetError, reportHomepageAssetLoad } from "@/lib/homepage-asset-monitor";
 
 const tickerLogos = [
   "ticker-logo-01",
@@ -27,6 +28,20 @@ export function FramerHomeFrame() {
             alt=""
             fetchPriority="high"
             decoding="async"
+            onLoad={(event) =>
+              reportHomepageAssetLoad({
+                assetId: "shutter-hero",
+                kind: "hero",
+                image: event.currentTarget,
+              })
+            }
+            onError={(event) =>
+              reportHomepageAssetError({
+                assetId: "shutter-hero",
+                kind: "hero",
+                image: event.currentTarget,
+              })
+            }
           />
         </picture>
         <div className="framer-home-frame__wash" aria-hidden="true" />
@@ -66,7 +81,26 @@ export function FramerHomeFrame() {
             <picture key={`${logo}-${index}`}>
               <source srcSet={`/media/framer-home/${logo}.avif`} type="image/avif" />
               <source srcSet={`/media/framer-home/${logo}.webp`} type="image/webp" />
-              <img src={`/media/framer-home/${logo}.webp`} alt="" loading="lazy" decoding="async" />
+              <img
+                src={`/media/framer-home/${logo}.webp`}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onLoad={(event) =>
+                  reportHomepageAssetLoad({
+                    assetId: `${logo}-${index}`,
+                    kind: "ticker",
+                    image: event.currentTarget,
+                  })
+                }
+                onError={(event) =>
+                  reportHomepageAssetError({
+                    assetId: `${logo}-${index}`,
+                    kind: "ticker",
+                    image: event.currentTarget,
+                  })
+                }
+              />
             </picture>
           ))}
         </div>

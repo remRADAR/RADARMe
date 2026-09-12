@@ -44,6 +44,27 @@ test.describe("homepage Framer frame", () => {
     await expect(tickerImages.first()).toHaveJSProperty("naturalWidth", 2000);
   });
 
+  test("reports loaded hero and ticker assets with their selected formats", async ({ page }) => {
+    await page.addInitScript(() => {
+      window.__radarmeAssetEvents = [];
+      window.addEventListener("radarme:asset", (event) => {
+        window.__radarmeAssetEvents.push((event as CustomEvent).detail);
+      });
+    });
+    await page.goto("/");
+    await removeWelcomeLayer(page);
+    await page.locator(".framer-home-frame__ticker").scrollIntoViewIfNeeded();
+    await expect(page.locator(".framer-home-frame__ticker-track img").first()).toBeVisible();
+
+    await expect
+      .poll(() => page.evaluate(() => window.__radarmeAssetEvents.length))
+      .toBeGreaterThan(1);
+    const events = await page.evaluate(() => window.__radarmeAssetEvents);
+    expect(events.some((event) => event.kind === "hero" && event.status === "loaded")).toBe(true);
+    expect(events.some((event) => event.kind === "ticker" && event.status === "loaded")).toBe(true);
+    expect(events.every((event) => event.url && event.selectedFormat)).toBe(true);
+  });
+
   test("keeps the Framer frame inside the viewport on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
