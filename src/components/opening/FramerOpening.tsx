@@ -6,6 +6,7 @@ const EXIT_MS = 1200;
 export function FramerOpening() {
   const [visible, setVisible] = useState(true);
   const [exiting, setExiting] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const dismissed = useRef(false);
   const displayTimer = useRef<number | undefined>(undefined);
   const exitTimer = useRef<number | undefined>(undefined);
@@ -24,12 +25,14 @@ export function FramerOpening() {
     };
 
     displayTimer.current = window.setTimeout(dismiss, dismissDelay);
-    window.addEventListener("radarme-opening-dismiss", dismiss);
+    const video = videoRef.current;
+    video?.play().catch(() => {
+      exitTimer.current = window.setTimeout(dismiss, 650);
+    });
 
     return () => {
       if (displayTimer.current) window.clearTimeout(displayTimer.current);
       if (exitTimer.current) window.clearTimeout(exitTimer.current);
-      window.removeEventListener("radarme-opening-dismiss", dismiss);
     };
   }, []);
 
@@ -44,8 +47,6 @@ export function FramerOpening() {
 
   if (!visible) return null;
 
-  const dismiss = () => window.dispatchEvent(new Event("radarme-opening-dismiss"));
-
   return (
     <div
       className={`framer-opening${exiting ? " is-exiting" : ""}`}
@@ -54,6 +55,7 @@ export function FramerOpening() {
       aria-modal="true"
     >
       <video
+        ref={videoRef}
         className="framer-opening__video"
         autoPlay
         muted
@@ -61,8 +63,20 @@ export function FramerOpening() {
         preload="auto"
         poster="/media/welcome/remradar-opening-poster.jpg"
         aria-hidden="true"
-        onEnded={dismiss}
-        onError={() => window.setTimeout(dismiss, 650)}
+        onEnded={() => {
+          if (!dismissed.current) {
+            dismissed.current = true;
+            setExiting(true);
+            window.setTimeout(() => setVisible(false), EXIT_MS);
+          }
+        }}
+        onError={() => {
+          if (!dismissed.current) {
+            dismissed.current = true;
+            setExiting(true);
+            window.setTimeout(() => setVisible(false), EXIT_MS);
+          }
+        }}
       >
         <source src="/media/welcome/remradar-opening.webm" type="video/webm" />
         <source src="/media/welcome/remradar-opening.mp4" type="video/mp4" />
@@ -74,9 +88,6 @@ export function FramerOpening() {
         aria-hidden="true"
       />
       <div className="framer-opening__scrim" aria-hidden="true" />
-      <button type="button" className="framer-opening__skip" onClick={dismiss}>
-        Skip opening
-      </button>
     </div>
   );
 }

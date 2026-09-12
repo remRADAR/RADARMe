@@ -398,36 +398,6 @@
   background: linear-gradient(180deg, rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.18));
 }
 
-.framer-opening__skip {
-  position: absolute;
-  right: max(1rem, env(safe-area-inset-right));
-  bottom: max(1rem, env(safe-area-inset-bottom));
-  z-index: 3;
-  min-height: 44px;
-  padding: 0.7rem 1rem;
-  border: 1px solid rgb(255 255 255 / 0.28);
-  border-radius: 999px;
-  background: rgb(0 0 0 / 0.35);
-  color: rgb(255 255 255 / 0.82);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  backdrop-filter: blur(16px);
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
-}
-
-.framer-opening__skip:hover,
-.framer-opening__skip:focus-visible {
-  border-color: rgb(255 255 255 / 0.7);
-  background: rgb(255 255 255 / 0.14);
-  color: #fff;
-}
-
 .framer-home-frame {
   position: relative;
   margin-inline: -1rem;
@@ -597,6 +567,13 @@
   object-fit: contain;
   mix-blend-mode: screen;
   opacity: 0.78;
+}
+
+.framer-home-frame__ticker-track picture {
+  display: block;
+  width: clamp(3.7rem, 9vw, 6rem);
+  height: clamp(2.5rem, 6vw, 4rem);
+  flex: 0 0 auto;
 }
 
 .framer-home-frame__ticker-now {

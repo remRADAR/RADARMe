@@ -2,14 +2,14 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, ChevronRight, Play } from "lucide-react";
 
 const tickerLogos = [
-  "/media/framer-home/ticker-logo-01.png",
-  "/media/framer-home/ticker-logo-02.png",
-  "/media/framer-home/ticker-logo-03.png",
-  "/media/framer-home/ticker-logo-04.png",
-  "/media/framer-home/ticker-logo-05.png",
-  "/media/framer-home/ticker-logo-06.png",
-  "/media/framer-home/ticker-logo-07.png",
-  "/media/framer-home/ticker-logo-08.png",
+  "ticker-logo-01",
+  "ticker-logo-02",
+  "ticker-logo-03",
+  "ticker-logo-04",
+  "ticker-logo-05",
+  "ticker-logo-06",
+  "ticker-logo-07",
+  "ticker-logo-08",
 ];
 
 const leftArtists = ["Makama", "Odenose", "KEASUNGS", "Moelogo", "TELMAN"];
@@ -60,7 +60,11 @@ export function FramerHomeFrame() {
       <div className="framer-home-frame__ticker" aria-label="RADARCharts ecosystem partners">
         <div className="framer-home-frame__ticker-track">
           {[...tickerLogos, ...tickerLogos].map((logo, index) => (
-            <img key={`${logo}-${index}`} src={logo} alt="" loading="lazy" />
+            <picture key={`${logo}-${index}`}>
+              <source srcSet={`/media/framer-home/${logo}.avif`} type="image/avif" />
+              <source srcSet={`/media/framer-home/${logo}.webp`} type="image/webp" />
+              <img src={`/media/framer-home/${logo}.webp`} alt="" loading="lazy" decoding="async" />
+            </picture>
           ))}
         </div>
         <Link className="framer-home-frame__ticker-now" to="/network/magazine">
