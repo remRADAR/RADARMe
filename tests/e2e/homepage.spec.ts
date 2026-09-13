@@ -21,21 +21,21 @@ test.describe("homepage Framer frame", () => {
     await expect(page.locator(".framer-home-frame__hero")).toBeVisible();
   });
 
-  test("renders the original Framer hero, wordmark, rails, and ticker assets", async ({ page }) => {
+  test("renders the HD Drive image hero, wordmark, and ticker assets", async ({ page }) => {
     await page.goto("/");
     await removeWelcomeLayer(page);
 
     const hero = page.locator(".framer-home-frame__hero");
     await expect(hero).toBeVisible();
-    await expect(hero.locator("picture.framer-home-frame__image img").first()).toHaveJSProperty(
+    await expect(hero.locator("figure.framer-home-frame__image img")).toHaveCount(47);
+    await expect(hero.locator("figure.framer-home-frame__image img").first()).toHaveJSProperty(
       "naturalWidth",
-      4000,
+      1080,
     );
-    await expect(page.locator(".framer-home-frame__artists--left")).toContainText("Makama");
-    await expect(page.locator(".framer-home-frame__artists--right")).toContainText("Fresh");
+    await expect(page.locator(".framer-home-frame__artists")).toHaveCount(0);
+    await expect(page.locator(".framer-home-frame__index")).toHaveCount(0);
+    await expect(page.locator(".framer-home-frame__hero-cue")).toHaveCount(0);
     await expect(page.locator(".framer-home-frame__wordmark")).toHaveText("RADARCharts");
-    await expect(page.locator(".framer-home-frame__index--left")).toHaveText(/^0[1-5]$/);
-    await expect(page.locator(".framer-home-frame__index--right")).toHaveText("05");
 
     const tickerImages = page.locator(".framer-home-frame__ticker-track img");
     await expect(tickerImages).toHaveCount(16);

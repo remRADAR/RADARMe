@@ -485,6 +485,10 @@
   height: 100%;
 }
 
+.framer-home-frame__image {
+  margin: 0;
+}
+
 .framer-home-frame__image img {
   width: 100%;
   height: 100%;
