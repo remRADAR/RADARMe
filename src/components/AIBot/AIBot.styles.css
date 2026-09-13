@@ -15,14 +15,14 @@
 .radar-bot-wrapper {
   position: fixed;
   z-index: 45;
-  width: clamp(48px, 12vw, 58px);
-  height: clamp(48px, 12vw, 58px);
+  width: clamp(78px, 24vw, 110px);
+  height: clamp(78px, 24vw, 110px);
   display: grid;
   place-items: center;
   border-radius: 9999px;
   cursor: grab;
   user-select: none;
-  filter: drop-shadow(0 12px 20px rgb(0 0 0 / 0.48));
+  filter: none;
   will-change: transform;
 }
 .radar-bot-wrapper:focus-visible {
@@ -46,39 +46,26 @@
   width: 100%;
   height: 100%;
   display: block;
-  border: 1px solid rgb(255 255 255 / 0.38);
-  border-radius: 9999px;
+  border: 0;
+  border-radius: 0;
   object-fit: cover;
   background: transparent !important;
   background-color: transparent !important;
-  box-shadow:
-    0 0 0 2px rgb(255 255 255 / 0.1),
-    0 0 18px rgb(0 255 136 / 0.16);
+  box-shadow: none;
   pointer-events: none;
   user-select: none;
 }
 .radar-bot-wrapper.playing .radar-bot-gif {
-  box-shadow:
-    0 0 0 2px rgb(255 255 255 / 0.18),
-    0 0 24px rgb(0 255 136 / 0.32);
+  box-shadow: none;
 }
 .radar-bot-aura {
   position: absolute;
   inset: -20%;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgb(255 255 255 / 0.42),
-    rgb(0 225 255 / 0.13) 42%,
-    transparent 72%
-  );
-  filter: blur(10px);
-  opacity: 0.6;
-  animation: radar-bot-glow 3.4s ease-in-out infinite;
+  display: none;
 }
 .radar-bot-wrapper.playing .radar-bot-aura {
-  opacity: 0.9;
-  filter: blur(8px) brightness(1.25);
+  display: none;
 }
 .radar-bot-status {
   position: absolute;
