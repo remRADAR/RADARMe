@@ -15,14 +15,13 @@
 .radar-bot-wrapper {
   position: fixed;
   z-index: 45;
-  width: clamp(48px, 12vw, 58px);
-  height: clamp(48px, 12vw, 58px);
+  width: clamp(64px, 16vw, 76px);
+  height: clamp(64px, 16vw, 76px);
   display: grid;
   place-items: center;
-  border-radius: 9999px;
   cursor: grab;
   user-select: none;
-  filter: drop-shadow(0 12px 20px rgb(0 0 0 / 0.48));
+  filter: drop-shadow(0 12px 20px rgb(0 0 0 / 0.32));
   will-change: transform;
 }
 .radar-bot-wrapper:focus-visible {
@@ -41,22 +40,15 @@
 .radar-bot-gif {
   position: relative;
   z-index: 2;
-  width: 100%;
-  height: 100%;
+  width: 124%;
+  height: 124%;
   display: block;
-  border: 1px solid rgb(255 255 255 / 0.38);
-  border-radius: 9999px;
-  object-fit: cover;
-  box-shadow:
-    0 0 0 2px rgb(255 255 255 / 0.1),
-    0 0 18px rgb(0 255 136 / 0.16);
+  object-fit: contain;
   pointer-events: none;
   user-select: none;
 }
 .radar-bot-wrapper.playing .radar-bot-gif {
-  box-shadow:
-    0 0 0 2px rgb(255 255 255 / 0.18),
-    0 0 24px rgb(0 255 136 / 0.32);
+  filter: brightness(1.08);
 }
 .radar-bot-aura {
   position: absolute;
@@ -89,6 +81,7 @@
   border-radius: 50%;
   background: var(--gold);
   color: var(--gold-foreground);
+  display: none;
 }
 .radar-bot-drag-indicator {
   position: absolute;
