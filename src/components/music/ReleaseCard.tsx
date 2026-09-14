@@ -14,7 +14,7 @@ export function ReleaseCard({
       <div className="relative aspect-square">
         <img
           src="/media/radar-assets/release-vinyl.jpg"
-          alt="Vinyl sleeve artwork placeholder"
+          alt={`${title} vinyl sleeve artwork`}
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -29,7 +29,7 @@ export function ReleaseCard({
         <div className="min-w-0 flex-1">
           <h3 className="truncate text-sm font-semibold">{title}</h3>
           <p className="truncate text-[11px] text-muted-foreground">
-            {artist} · artwork ready to replace
+            {artist} · vinyl artwork
           </p>
         </div>
         <button
