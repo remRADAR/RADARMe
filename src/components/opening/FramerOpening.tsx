@@ -24,18 +24,25 @@ export function FramerOpening({ onComplete }: { onComplete: () => void }) {
     }
   }, []);
 
-  const dismiss = useCallback((exitDuration: number) => {
-    if (dismissed.current) return;
-    dismissed.current = true;
-    clearTimers();
-    try { window.sessionStorage.setItem(STORAGE_KEY, "true"); } catch { /* storage may be blocked in previews */ }
-    setExiting(exitDuration > 0);
-    exitTimer.current = window.setTimeout(() => {
-      setVisible(false);
-      setExiting(false);
-      onComplete();
-    }, exitDuration);
-  }, [clearTimers, onComplete]);
+  const dismiss = useCallback(
+    (exitDuration: number) => {
+      if (dismissed.current) return;
+      dismissed.current = true;
+      clearTimers();
+      try {
+        window.sessionStorage.setItem(STORAGE_KEY, "true");
+      } catch {
+        /* storage may be blocked in previews */
+      }
+      setExiting(exitDuration > 0);
+      exitTimer.current = window.setTimeout(() => {
+        setVisible(false);
+        setExiting(false);
+        onComplete();
+      }, exitDuration);
+    },
+    [clearTimers, onComplete],
+  );
 
   useEffect(() => {
     try {
@@ -43,7 +50,9 @@ export function FramerOpening({ onComplete }: { onComplete: () => void }) {
         onComplete();
         return;
       }
-    } catch { /* continue without session storage */ }
+    } catch {
+      /* continue without session storage */
+    }
     dismissed.current = false;
     setVisible(true);
   }, [onComplete]);
@@ -60,16 +69,25 @@ export function FramerOpening({ onComplete }: { onComplete: () => void }) {
     const preloadPoster = new Image();
     preloadPoster.src = "/media/welcome/remradar-opening-poster.jpg";
     void Promise.allSettled([document.fonts.ready, preloadPoster.decode?.() ?? Promise.resolve()]);
-    displayTimer.current = window.setTimeout(() => dismiss(reducedMotion ? 550 : DISPLAY_MS), reducedMotion ? 550 : DISPLAY_MS);
+    displayTimer.current = window.setTimeout(
+      () => dismiss(reducedMotion ? 550 : DISPLAY_MS),
+      reducedMotion ? 550 : DISPLAY_MS,
+    );
     // Never let a stalled asset, hydration, or autoplay promise keep the app covered.
     safetyTimer.current = window.setTimeout(() => dismiss(0), SAFETY_TIMEOUT_MS);
 
     const video = videoRef.current;
     const handleEnded = () => dismiss(exitDuration);
-    const handleError = () => { clearTimers(); displayTimer.current = window.setTimeout(() => dismiss(exitDuration), 650); };
+    const handleError = () => {
+      clearTimers();
+      displayTimer.current = window.setTimeout(() => dismiss(exitDuration), 650);
+    };
     video?.addEventListener("ended", handleEnded, { once: true });
     video?.addEventListener("error", handleError, { once: true });
-    video?.play().catch(() => { clearTimers(); displayTimer.current = window.setTimeout(() => dismiss(exitDuration), 850); });
+    video?.play().catch(() => {
+      clearTimers();
+      displayTimer.current = window.setTimeout(() => dismiss(exitDuration), 850);
+    });
 
     return () => {
       clearTimers();
@@ -84,12 +102,33 @@ export function FramerOpening({ onComplete }: { onComplete: () => void }) {
   if (!visible) return null;
 
   return (
-    <div className={`framer-opening${exiting ? " is-exiting" : ""}`} role="dialog" aria-label="RADARCharts welcome animation" aria-modal="true">
-      <video ref={videoRef} className="framer-opening__video" autoPlay muted playsInline controls={false} disablePictureInPicture preload="auto" poster="/media/welcome/remradar-opening-poster.jpg" aria-hidden="true">
+    <div
+      className={`framer-opening${exiting ? " is-exiting" : ""}`}
+      role="dialog"
+      aria-label="RADARCharts welcome animation"
+      aria-modal="true"
+    >
+      <video
+        ref={videoRef}
+        className="framer-opening__video"
+        autoPlay
+        muted
+        playsInline
+        controls={false}
+        disablePictureInPicture
+        preload="auto"
+        poster="/media/welcome/remradar-opening-poster.jpg"
+        aria-hidden="true"
+      >
         <source src="/media/welcome/remradar-opening.webm" type="video/webm" />
         <source src="/media/welcome/remradar-opening.mp4" type="video/mp4" />
       </video>
-      <img className="framer-opening__poster" src="/media/welcome/remradar-opening-poster.jpg" alt="" aria-hidden="true" />
+      <img
+        className="framer-opening__poster"
+        src="/media/welcome/remradar-opening-poster.jpg"
+        alt=""
+        aria-hidden="true"
+      />
       <div className="framer-opening__scrim" aria-hidden="true" />
     </div>
   );
