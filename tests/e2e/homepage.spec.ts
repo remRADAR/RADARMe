@@ -96,9 +96,11 @@ test.describe("homepage Framer frame", () => {
 
     const cacheState = await page.evaluate(async () => {
       const registration = await navigator.serviceWorker.ready;
-      const cache = await caches.open("radarme-hero-v1");
+      const cache = await caches.open("radarme-app-v2");
       const assets = await Promise.all(
-        ["/media/framer-home/shutter-hero.jpg"].map(async (url) => Boolean(await cache.match(url))),
+        ["/media/framer-home/shutter-hero.jpg", "/backgrounds/main-bg.webp"].map(async (url) =>
+          Boolean(await cache.match(url)),
+        ),
       );
       return {
         activeWorker: registration.active?.scriptURL,
@@ -107,7 +109,7 @@ test.describe("homepage Framer frame", () => {
     });
 
     expect(cacheState.activeWorker).toContain("/radarme-sw.js");
-    expect(cacheState.assets).toEqual([true]);
+    expect(cacheState.assets).toEqual([true, true]);
 
     await context.setOffline(true);
     const offlineAssets = await page.evaluate(async () => {

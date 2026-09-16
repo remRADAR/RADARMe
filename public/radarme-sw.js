@@ -1,9 +1,10 @@
-const CACHE_NAME = "radarme-hero-v1";
+const CACHE_NAME = "radarme-app-v2";
 const STATIC_ASSETS = [
   "/",
   "/manifest.webmanifest",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
+  "/backgrounds/main-bg.webp",
   "/media/welcome/remradar-opening-poster.jpg",
   "/media/framer-home/shutter-hero.jpg",
 ];

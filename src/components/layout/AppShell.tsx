@@ -13,6 +13,7 @@ import {
   Settings,
   ShoppingBag,
   Sparkles,
+  UserRound,
   Users,
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
@@ -57,12 +58,6 @@ const primaryNav: PrimaryNavItem[] = [
   },
 ];
 
-function currentSection(pathname: string) {
-  if (pathname === "/") return "Dashboard";
-  const item = primaryNav.find((candidate) => pathname.startsWith(candidate.to));
-  return item?.label ?? "RADARMe";
-}
-
 /**
  * Product frame for the RADARMe ecosystem. Authentication and onboarding keep
  * their focused layouts; the core product gets an adaptive desktop rail and
@@ -75,10 +70,9 @@ export function AppShell({ children }: { children: ReactNode }) {
     pathname.startsWith("/welcome") ||
     pathname.startsWith("/auth") ||
     pathname.startsWith("/onboarding");
-  const section = currentSection(pathname);
 
   return (
-    <div className="min-h-dvh bg-transparent text-foreground">
+    <div className="app-shell h-dvh overflow-hidden bg-transparent text-foreground">
       <a
         href="#main-content"
         className="sr-only fixed left-4 top-4 z-[60] rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background focus:not-sr-only"
@@ -87,7 +81,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </a>
 
       {!isImmersive && (
-        <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-hairline bg-background/80 px-4 py-5 backdrop-blur-xl lg:flex">
+        <aside className="glass-card fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-hairline bg-background/40 px-4 py-5 backdrop-blur-2xl lg:flex">
           <div className="flex items-center justify-between px-2">
             <Link
               to="/"
@@ -160,20 +154,16 @@ export function AppShell({ children }: { children: ReactNode }) {
         </aside>
       )}
 
-      <div className={cn(!isImmersive && "lg:pl-64")}>
+      <div className={cn("h-full", !isImmersive && "lg:pl-64")}>
         {!isImmersive && (
-          <header className="sticky top-0 z-30 flex min-h-16 items-center justify-between border-b border-hairline bg-background/70 px-4 backdrop-blur-xl sm:px-6 lg:px-10">
-            <div className="flex min-w-0 items-center gap-3">
-              <span className="hidden text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground sm:inline">
-                RADARMe
-              </span>
-              <ChevronRight
-                size={14}
-                className="hidden text-muted-foreground sm:inline"
-                aria-hidden
-              />
-              <h1 className="truncate text-sm font-semibold">{section}</h1>
-            </div>
+          <header className="glass-card sticky top-0 z-30 flex min-h-16 items-center justify-between rounded-none border-x-0 border-t-0 bg-background/40 px-4 backdrop-blur-2xl sm:px-6 lg:px-10">
+            <Link
+              to="/"
+              aria-label="RADARMe home"
+              className="rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+            >
+              <Logo size={28} />
+            </Link>
             <div className="flex items-center gap-1">
               <Link
                 to="/search"
@@ -190,6 +180,13 @@ export function AppShell({ children }: { children: ReactNode }) {
                 <Bell size={18} aria-hidden />
               </Link>
               <Link
+                to="/profile"
+                aria-label="Your profile"
+                className="rounded-lg p-2.5 text-muted-foreground hover:bg-surface-2 hover:text-foreground focus-visible:outline-2 focus-visible:outline-gold"
+              >
+                <UserRound size={18} aria-hidden />
+              </Link>
+              <Link
                 to="/intelligence/chat"
                 aria-label="Ask RADAR"
                 className="ml-1 hidden items-center gap-2 rounded-lg bg-foreground px-3 py-2 text-xs font-semibold text-background hover:opacity-90 focus-visible:outline-2 focus-visible:outline-gold sm:flex"
@@ -204,7 +201,9 @@ export function AppShell({ children }: { children: ReactNode }) {
         <main
           id="main-content"
           className={cn(
-            isImmersive ? "w-full" : "mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8",
+            isImmersive
+              ? "h-full w-full overflow-y-auto"
+              : "app-content-scroll mx-auto h-[calc(100dvh-4rem)] w-full max-w-[1440px] overflow-y-auto px-4 sm:px-6 lg:px-8",
           )}
           style={{
             paddingBottom: isImmersive
