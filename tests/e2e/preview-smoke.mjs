@@ -51,6 +51,36 @@ try {
     if (!bodyText.includes("RADARMe")) {
       throw new Error(`${route} rendered without the RADARMe app shell`);
     }
+
+    if (route === "/") {
+      const heroImage = page.locator(".framer-home-frame__image.is-active img");
+      await heroImage.waitFor({ state: "visible", timeout: 15_000 });
+      const heroState = await heroImage.evaluate((image) => {
+        const rect = image.getBoundingClientRect();
+        const styles = getComputedStyle(image);
+        return {
+          naturalWidth: image.naturalWidth,
+          naturalHeight: image.naturalHeight,
+          width: rect.width,
+          height: rect.height,
+          opacity: styles.opacity,
+          visibility: styles.visibility,
+        };
+      });
+
+      if (
+        heroState.naturalWidth === 0 ||
+        heroState.naturalHeight === 0 ||
+        heroState.width === 0 ||
+        heroState.height === 0 ||
+        heroState.opacity === "0" ||
+        heroState.visibility === "hidden"
+      ) {
+        throw new Error(
+          `Homepage hero image is not visibly rendered: ${JSON.stringify(heroState)}`,
+        );
+      }
+    }
   }
 
   if (pageErrors.length > 0) {

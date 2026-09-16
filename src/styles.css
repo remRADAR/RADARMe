@@ -649,7 +649,7 @@
 }
 
 .framer-home-frame__image {
-  z-index: -3;
+  z-index: 0;
   object-fit: cover;
   object-position: center;
   filter: grayscale(1) contrast(1.12) brightness(0.78);
