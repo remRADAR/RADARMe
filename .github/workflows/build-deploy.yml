@@ -77,7 +77,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
 
       - name: Install Wrangler
         run: npm install --global wrangler@4.131.1
