@@ -1,7 +1,7 @@
 # RADARMe Services Layer
 
-Placeholder service modules that mirror the shape of the future backend
-(Supabase / Lovable Cloud). Every service:
+Placeholder service modules that mirror the shape of the future Supabase-backed
+backend. Every service:
 
 - Exports typed functions returning `Promise<T>` (async by design).
 - Uses in-memory mock data under `./mocks/` — no network, no side effects.

@@ -1,12 +1,5 @@
-<!-- LOVABLE:BEGIN -->
+# RADARMe Repository Guidance
 
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
+Keep the main branch in a working state. Do not rewrite published history with force pushes, rebases, or amended commits. Preserve existing product behavior unless a task explicitly authorizes a breaking change.
 
-<!-- LOVABLE:END -->
+Before submitting changes, run the project lint, production build, and relevant Playwright end-to-end tests.

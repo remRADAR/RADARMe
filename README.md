@@ -18,7 +18,7 @@ assistant into one premium product.
 | Data/state        | TanStack Query, React context (`auth`, `theme`)                      |
 | Icons             | lucide-react                                                         |
 | Target            | Progressive Web App (installable on iOS/Android)                     |
-| Backend (planned) | Lovable Cloud / Supabase (Postgres, Auth, Storage, server functions) |
+| Backend (planned) | Supabase (Postgres, Auth, Storage, server functions)                 |
 
 > Note: the original brief requested Flutter. This project is implemented in React +
 > TanStack Start (the supported stack), delivering the same mobile-app experience via PWA.
@@ -41,7 +41,7 @@ src/
     motherland/           MotherPage shell
     intelligence/         IntelPage shell
     ui/                   shadcn primitives
-  lib/                    auth.tsx, theme.tsx, utils, error reporting
+  lib/                    auth.tsx, theme.tsx, utils, local diagnostics
   services/               Modular placeholder backend layer (9 domains + mocks)
   styles.css              Global tokens, typography, animations, glass utilities
   router.tsx, start.ts, server.ts
@@ -111,7 +111,7 @@ Timeline, Knowledge.
 
 Universal Search (9 browse categories before querying), Notifications, Profile,
 Settings (theme, notifications, privacy), sitemap.xml, per-route SEO head metadata,
-404 + error boundaries with reporting hook.
+404 + error boundaries with local console diagnostics.
 
 ### Backend-ready service layer
 
@@ -131,7 +131,7 @@ priority loading, unified route animations, typecheck clean.
 
 ### A. Backend (highest priority)
 
-1. Enable **Lovable Cloud / Supabase**; provision Postgres, Auth, Storage.
+1. Provision Supabase Postgres, Auth, and Storage.
 2. Schema: `profiles`, `user_roles` (separate table, `has_role()` security-definer
    function), `wallets`, `wallet_transactions`, `orders`, `order_items`, `referrals`,
    `articles`, `community_posts`, `community_events`, `notifications`,

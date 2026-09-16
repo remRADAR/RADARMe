@@ -8,10 +8,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "../lib/theme";
 import { AuthProvider } from "../lib/auth";
 import { registerRadarMeServiceWorker } from "../lib/register-service-worker";
@@ -44,7 +43,7 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    console.error("[RADARMe] Root route error", error);
   }, [error]);
 
   return (
@@ -82,7 +81,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      {
+        name: "viewport",
+        content:
+          "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover",
+      },
       { title: "RADARMe: The iNDUSTRYKit" },
       {
         name: "description",
@@ -168,6 +171,8 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [openingComplete, setOpeningComplete] = useState(pathname !== "/");
+  const completeOpening = useCallback(() => setOpeningComplete(true), []);
 
   useEffect(() => {
     registerRadarMeServiceWorker();
@@ -190,20 +195,33 @@ function RootComponent() {
     };
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    const preventPinchZoom = (event: TouchEvent) => {
+      if (event.touches.length > 1) event.preventDefault();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    document.addEventListener("touchmove", preventPinchZoom, { passive: false });
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("touchmove", preventPinchZoom);
+    };
   }, [router]);
+
+  const showOpening = pathname === "/" && !openingComplete;
 
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <AppShell>
-            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <div key={pathname} className="route-transition">
-              <Outlet />
-            </div>
-          </AppShell>
-          {pathname === "/" && <FramerOpening />}
+          {showOpening ? (
+            <FramerOpening onComplete={completeOpening} />
+          ) : (
+            <AppShell>
+              {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+              <div key={pathname} className="route-transition">
+                <Outlet />
+              </div>
+            </AppShell>
+          )}
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

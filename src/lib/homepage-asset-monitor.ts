@@ -29,23 +29,7 @@ function publish(event: HomepageAssetEvent) {
   (window as AssetMonitorWindow).__radarmeAssetMonitor?.(event);
 
   if (event.status === "error") {
-    window.__lovableEvents?.captureException?.(
-      new Error(`Homepage ${event.kind} asset failed to load: ${event.assetId}`),
-      {
-        source: "homepage_asset_monitor",
-        route: event.route,
-        assetId: event.assetId,
-        assetKind: event.kind,
-        assetUrl: event.url,
-        selectedFormat: event.selectedFormat,
-        fallback: event.fallback,
-      },
-      {
-        mechanism: "onerror",
-        handled: true,
-        severity: "warning",
-      },
-    );
+    console.warn("[RADARMe] Homepage asset failed to load", event);
   }
 }
 

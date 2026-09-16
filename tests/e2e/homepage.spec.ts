@@ -1,10 +1,9 @@
 import { expect, test, type Page } from "@playwright/test";
 
 async function removeWelcomeLayer(page: Page) {
-  const opening = page.locator(".framer-opening");
-  if (await opening.count()) {
-    await opening.evaluate((element) => element.remove());
-  }
+  await page.evaluate(() => sessionStorage.setItem("radarme_welcome_seen", "true"));
+  await page.reload();
+  await expect(page.locator(".framer-home-frame")).toBeVisible();
 }
 
 test.describe("homepage Framer frame", () => {

@@ -28,7 +28,7 @@ window.__radarmeAssetMonitor = (event) => {
 };
 ```
 
-The callback is optional and never blocks rendering. When the existing Lovable runtime telemetry hook is present, final asset failures are also reported there as handled warnings. Successful fallback selection is not treated as an error; it is recorded with `fallback: true` so browser-specific format support can be measured without false alarms.
+The callback is optional and never blocks rendering. Final asset failures are logged as handled warnings. Successful fallback selection is not treated as an error; it is recorded with `fallback: true` so browser-specific format support can be measured without false alarms.
 
 ## What is monitored
 
