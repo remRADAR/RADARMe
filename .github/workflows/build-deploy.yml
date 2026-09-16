@@ -171,7 +171,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           PREVIEW_CONFIG: ${{ runner.temp }}/wrangler-preview.json
-        run: wrangler deploy --config "$PREVIEW_CONFIG" --no-prompts
+        run: wrangler deploy --config "$PREVIEW_CONFIG"
 
       - name: Publish preview details
         env:
