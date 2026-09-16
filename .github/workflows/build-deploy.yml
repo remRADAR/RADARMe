@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment:
-      name: production
+      name: Production
     steps:
       - name: Set up Node.js
         uses: actions/setup-node@v4
