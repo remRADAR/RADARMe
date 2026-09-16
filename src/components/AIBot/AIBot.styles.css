@@ -12,42 +12,60 @@
   height: 1px;
   border: 0;
 }
-.radar-bot-wrapper {
-  position: fixed;
-  z-index: 45;
-  width: clamp(64px, 16vw, 76px);
-  height: clamp(64px, 16vw, 76px);
-  display: grid;
-  place-items: center;
-  cursor: grab;
-  user-select: none;
-  filter: drop-shadow(0 12px 20px rgb(0 0 0 / 0.32));
-  will-change: transform;
-}
-.radar-bot-wrapper:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 6px;
-}
-.radar-bot-face {
+.radar-bot-header-button {
   position: relative;
-  width: 100%;
-  height: 100%;
+  z-index: 1;
+  width: 58px;
+  height: 52px;
   display: grid;
   place-items: center;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.22);
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.08);
+  color: var(--foreground);
+  cursor: pointer;
+  filter: drop-shadow(0 8px 16px rgb(0 0 0 / 0.28));
+  overflow: visible;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+.radar-bot-header-button:hover {
+  border-color: rgb(255 255 255 / 0.48);
+  background: rgb(255 255 255 / 0.14);
+  transform: translateY(-1px);
+}
+.radar-bot-header-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+.radar-bot-header-button.holding,
+.radar-bot-header-button.playing {
+  border-color: var(--gold);
+  background: rgb(255 255 255 / 0.16);
+}
+.radar-bot-header-face {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
   animation: radar-bot-float 4.8s ease-in-out infinite;
   will-change: transform;
 }
 .radar-bot-gif {
   position: relative;
   z-index: 2;
-  width: 124%;
-  height: 124%;
+  width: 150%;
+  height: 150%;
   display: block;
   object-fit: contain;
   pointer-events: none;
   user-select: none;
 }
-.radar-bot-wrapper.playing .radar-bot-gif {
+.radar-bot-header-button.playing .radar-bot-gif {
   filter: brightness(1.08);
 }
 .radar-bot-aura {
@@ -64,7 +82,7 @@
   opacity: 0.6;
   animation: radar-bot-glow 3.4s ease-in-out infinite;
 }
-.radar-bot-wrapper.playing .radar-bot-aura {
+.radar-bot-header-button.playing .radar-bot-aura {
   opacity: 0.9;
   filter: blur(8px) brightness(1.25);
 }
@@ -75,27 +93,13 @@
   bottom: 1%;
   display: grid;
   place-items: center;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border: 1px solid var(--background);
   border-radius: 50%;
   background: var(--gold);
   color: var(--gold-foreground);
-  display: none;
-}
-.radar-bot-drag-indicator {
-  position: absolute;
-  bottom: -8px;
-  width: 18px;
-  height: 3px;
-  border-radius: 9999px;
-  background: rgb(255 255 255 / 0.7);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-.radar-bot-wrapper:hover .radar-bot-drag-indicator,
-.radar-bot-wrapper:focus-visible .radar-bot-drag-indicator {
-  opacity: 1;
+  display: grid;
 }
 .radar-intelligence-overlay {
   position: fixed;

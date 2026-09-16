@@ -157,13 +157,16 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className={cn("h-full", !isImmersive && "lg:pl-64")}>
         {!isImmersive && (
           <header className="glass-card sticky top-0 z-30 flex min-h-16 items-center justify-between rounded-none border-x-0 border-t-0 bg-background/40 px-4 backdrop-blur-2xl sm:px-6 lg:px-10">
-            <Link
-              to="/"
-              aria-label="RADARMe home"
-              className="rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
-            >
-              <Logo size={28} />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                to="/"
+                aria-label="RADARMe home"
+                className="rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+              >
+                <Logo size={28} />
+              </Link>
+              <AIBot />
+            </div>
             <div className="flex items-center gap-1">
               <Link
                 to="/search"
@@ -214,7 +217,6 @@ export function AppShell({ children }: { children: ReactNode }) {
           {children}
         </main>
         {!isImmersive && <BottomNav />}
-        {!isImmersive && <AIBot />}
       </div>
     </div>
   );
