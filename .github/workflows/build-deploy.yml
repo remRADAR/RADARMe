@@ -182,10 +182,10 @@ jobs:
           {
             echo "## Cloudflare PR preview"
             echo
-            echo "Worker: \\`remradar-radarme-pr-${PR_NUMBER}\\`"
+            echo "Worker: remradar-radarme-pr-${PR_NUMBER}"
+            echo "URL: https://remradar-radarme-pr-${PR_NUMBER}.remradar.workers.dev"
             echo
             echo "This preview is deployed only for pull requests originating from this repository."
-            echo "The public hostname or route is controlled by Cloudflare account settings."
           } >> "$GITHUB_STEP_SUMMARY"
 
   cleanup:
