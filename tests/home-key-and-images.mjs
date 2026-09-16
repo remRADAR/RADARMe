@@ -15,7 +15,13 @@ await page.goto(`${baseURL}/radarmusic`, { waitUntil: "networkidle" });
 await page.keyboard.press("Home");
 await page.waitForURL(/\/$/);
 
-const imageRoutes = ["/", "/network/magazine", "/network/playlists", "/network/artists", "/hub/distribution"];
+const imageRoutes = [
+  "/",
+  "/network/magazine",
+  "/network/playlists",
+  "/network/artists",
+  "/hub/distribution",
+];
 const imageResults = [];
 for (const route of imageRoutes) {
   await page.goto(`${baseURL}${route}`, { waitUntil: "networkidle" });

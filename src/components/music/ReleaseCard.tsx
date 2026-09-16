@@ -28,9 +28,7 @@ export function ReleaseCard({
         </span>
         <div className="min-w-0 flex-1">
           <h3 className="truncate text-sm font-semibold">{title}</h3>
-          <p className="truncate text-[11px] text-muted-foreground">
-            {artist} · vinyl artwork
-          </p>
+          <p className="truncate text-[11px] text-muted-foreground">{artist} · vinyl artwork</p>
         </div>
         <button
           type="button"
