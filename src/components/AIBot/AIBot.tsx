@@ -12,7 +12,7 @@ const VIEWPORT_PADDING = 20;
 type Position = { x: number; y: number };
 
 export function AIBot({
-  playlistId = "PL4fGSI1pDJn6O1L3P_N0S4s8Ld6yQ7H7P",
+  playlistId = "PLZ_5O41VO5Mk",
   onMusicStateChange,
 }: {
   playlistId?: string;
