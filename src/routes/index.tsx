@@ -96,13 +96,14 @@ function Index() {
           </h2>
           <span className="text-[11px] text-gold">Personalised</span>
         </div>
-        <ul className="space-y-2">
+        <ul className="radar-recommendation-stack">
           <RecItem
             to="/network/playlists"
             kind="Playlist"
             title="Sunday Bloom · Afro-alté"
             hint="Curated for your sound"
             icon={<ListMusic size={16} />}
+            image="/media/radar-assets/playlist-lagos-live.jpg"
           />
           <RecItem
             to="/hub/playlist-pitch"
@@ -110,6 +111,7 @@ function Index() {
             title="Pitch to editorial playlists"
             hint="Boost your next release"
             icon={<Briefcase size={16} />}
+            image="/media/radar-assets/release-vinyl.jpg"
           />
           <RecItem
             to="/network/spotlight"
@@ -117,6 +119,7 @@ function Index() {
             title="Yuki Tanabe · Rising"
             hint="Featured this week"
             icon={<Star size={16} />}
+            image="/media/radar-assets/artist-spotlight.jpg"
           />
           <RecItem
             to="/motherland/events"
@@ -125,6 +128,7 @@ function Index() {
             kicker="Aug 2"
             hint="MOTHERLand meetup"
             icon={<CalendarHeart size={16} />}
+            image="/media/radar-assets/playlist-lagos-live.jpg"
           />
           <RecItem
             to="/motherland"
@@ -132,6 +136,7 @@ function Index() {
             title="Join the Alté Circle"
             hint="12 new members this week"
             icon={<Users size={16} />}
+            image="/media/radar-assets/magazine-interview.jpg"
           />
           <RecItem
             to="/network/magazine"
@@ -139,6 +144,7 @@ function Index() {
             title="The diaspora sound, rewritten"
             hint="14 min read · Issue 12"
             icon={<Newspaper size={16} />}
+            image="/media/radar-assets/magazine-interview.jpg"
           />
         </ul>
       </section>
@@ -262,6 +268,7 @@ function RecItem({
   title,
   kicker,
   hint,
+  image,
 }: {
   to:
     | "/network/playlists"
@@ -275,34 +282,40 @@ function RecItem({
   title: string;
   kicker?: string;
   hint: string;
+  image: string;
 }) {
   return (
     <li>
       <Link
         to={to}
-        className="group flex items-center gap-3 rounded-2xl bg-surface p-3 hairline elev-1 glass-reflect transition-colors hover:bg-surface-2"
+        className="group radar-recommendation-card rounded-2xl bg-surface hairline elev-1 glass-reflect transition-colors hover:bg-surface-2"
       >
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-surface-2 text-gold">
-          {icon}
-        </span>
-        <div className="min-w-0 flex-1">
+        <img
+          className="radar-recommendation-card__image"
+          src={image}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+        <span className="radar-recommendation-card__scrim" aria-hidden="true" />
+        <div className="radar-recommendation-card__body">
           <div className="flex items-center gap-2">
+            <span className="grid size-8 place-items-center rounded-lg bg-black/35 text-gold backdrop-blur-sm">
+              {icon}
+            </span>
             <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
               {kind}
             </span>
             {kicker && (
-              <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-white/65">
                 · {kicker}
               </span>
             )}
           </div>
-          <p className="mt-0.5 truncate text-[13px] font-semibold leading-tight">{title}</p>
-          <p className="truncate text-[11px] text-muted-foreground">{hint}</p>
+          <p className="mt-3 text-lg font-semibold leading-tight text-white">{title}</p>
+          <p className="mt-1 text-xs text-white/70">{hint}</p>
         </div>
-        <ArrowUpRight
-          size={14}
-          className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-        />
+        <ArrowUpRight size={18} className="radar-recommendation-card__arrow text-white/75" />
       </Link>
     </li>
   );

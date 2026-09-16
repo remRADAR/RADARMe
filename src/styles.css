@@ -562,11 +562,90 @@
 }
 
 .framer-home-frame__image img {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   object-position: center;
+  transform: scale(1.02) translate3d(0, 0, 0);
+  will-change: transform;
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms ease;
+}
+.framer-home-frame__image.is-active img {
+  transform: scale(1.08) translate3d(0, -1.5%, 0);
+  filter: saturate(1.08) contrast(1.04);
+}
+.framer-home-frame__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgb(255 255 255 / 0.12) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.framer-home-frame__image.is-active::after {
+  transform: translateX(120%);
+}
+
+.radar-recommendation-card {
+  position: relative;
+  min-height: 230px;
+  overflow: hidden;
+  isolation: isolate;
+  scroll-snap-align: start;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms ease;
+}
+.radar-recommendation-card:hover {
+  transform: translate3d(0, -4px, 0);
+  border-color: rgb(255 255 255 / 0.28);
+}
+.radar-recommendation-card__image,
+.radar-recommendation-card__scrim {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.radar-recommendation-card__image {
+  z-index: -2;
+  object-fit: cover;
+  transform: scale(1.04) translate3d(0, 0, 0);
+  filter: saturate(0.85) brightness(0.72);
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 400ms ease;
+}
+.radar-recommendation-card:hover .radar-recommendation-card__image {
+  transform: scale(1.1) translate3d(0, -1%, 0);
+  filter: saturate(1.05) brightness(0.82);
+}
+.radar-recommendation-card__scrim {
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.08) 20%, rgb(0 0 0 / 0.82) 100%);
+}
+.radar-recommendation-card__body {
+  position: absolute;
+  inset: auto 1rem 1rem;
+}
+.radar-recommendation-card__arrow {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.radar-recommendation-card:hover .radar-recommendation-card__arrow {
+  transform: translate3d(3px, -3px, 0);
 }
 
 .framer-home-frame__image {
@@ -574,6 +653,50 @@
   object-fit: cover;
   object-position: center;
   filter: grayscale(1) contrast(1.12) brightness(0.78);
+}
+
+.radar-recommendation-stack {
+  display: grid;
+  gap: 0.85rem;
+  max-height: min(680px, 72dvh);
+  margin: 0;
+  padding: 0.25rem 0.25rem 1rem;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.28) transparent;
+}
+.radar-recommendation-stack::-webkit-scrollbar {
+  width: 5px;
+}
+.radar-recommendation-stack::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.28);
+}
+
+@media (max-width: 767px) {
+  .radar-recommendation-card {
+    min-height: 220px;
+  }
+  .radar-recommendation-card__body {
+    right: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .framer-home-frame__image img,
+  .framer-home-frame__image::after,
+  .radar-recommendation-card,
+  .radar-recommendation-card__image,
+  .radar-recommendation-card__arrow {
+    transition: none;
+    transform: none;
+  }
+  .radar-recommendation-stack {
+    scroll-behavior: auto;
+  }
 }
 
 .framer-home-frame__wash {

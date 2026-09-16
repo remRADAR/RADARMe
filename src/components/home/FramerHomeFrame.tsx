@@ -78,7 +78,7 @@ export function FramerHomeFrame() {
         <h1 id="framer-home-title" className="framer-home-frame__wordmark">
           RADAR<span>Charts</span>
         </h1>
-        <p>Experience the artist operating system by RADARCharts</p>
+        <p>The iNDUSTRYKit by REM</p>
       </div>
 
       <div className="framer-home-frame__ticker" aria-label="RADARCharts ecosystem partners">
