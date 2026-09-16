@@ -28,7 +28,10 @@ function NotFoundComponent() {
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link to="/" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
             Go home
           </Link>
         </div>
@@ -47,13 +50,26 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
   return (
     <div className="flex min-h-dvh items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">This page didn&apos;t load</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Something went wrong on our end. You can try refreshing or head back home.</p>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+          This page didn&apos;t load
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Something went wrong on our end. You can try refreshing or head back home.
+        </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button onClick={() => { router.invalidate(); reset(); }} className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
             Try again
           </button>
-          <a href="/" className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent">
+          <a
+            href="/"
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
             Go home
           </a>
         </div>
@@ -68,32 +84,55 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" },
+      {
+        name: "viewport",
+        content:
+          "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover",
+      },
       { title: "RADARMe: The iNDUSTRYKit" },
-      { name: "description", content: "RADARMe: The iNDUSTRYKit — the premium operating system for music artists by RADARCharts." },
+      {
+        name: "description",
+        content:
+          "RADARMe: The iNDUSTRYKit — the premium operating system for music artists by RADARCharts.",
+      },
       { name: "author", content: "RADARCharts by REM" },
       { name: "theme-color", content: "#0a0a0a" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { name: "apple-mobile-web-app-title", content: "RADARMe: The iNDUSTRYKit" },
       { property: "og:title", content: "RADARMe: The iNDUSTRYKit" },
-      { property: "og:description", content: "The premium operating system for music artists by RADARCharts." },
+      {
+        property: "og:description",
+        content: "The premium operating system for music artists by RADARCharts.",
+      },
       { property: "og:url", content: "https://radarme.vercel.app/" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg" },
+      {
+        property: "og:image",
+        content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg",
+      },
       { property: "og:image:alt", content: "RADARMe artist interview in a recording studio" },
       { property: "og:image:width", content: "1600" },
       { property: "og:image:height", content: "900" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "RADARMe: The iNDUSTRYKit" },
-      { name: "twitter:description", content: "The premium operating system for music artists by RADARCharts." },
-      { name: "twitter:image", content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg" },
+      {
+        name: "twitter:description",
+        content: "The premium operating system for music artists by RADARCharts.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap",
+      },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "canonical", href: "https://radarme.vercel.app/" },
       { rel: "icon", href: "/icons/favicon-32.png", type: "image/png", sizes: "32x32" },
@@ -108,7 +147,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  return <html lang="en" className="dark"><head><HeadContent /></head><body className="min-h-dvh bg-background text-foreground">{children}<Scripts /></body></html>;
+  return (
+    <html lang="en" className="dark">
+      <head>
+        <HeadContent />
+      </head>
+      <body className="min-h-dvh bg-background text-foreground">
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
 }
 
 function RootComponent() {
@@ -118,16 +167,26 @@ function RootComponent() {
   const [openingComplete, setOpeningComplete] = useState(pathname !== "/");
   const completeOpening = useCallback(() => setOpeningComplete(true), []);
 
-  useEffect(() => { registerRadarMeServiceWorker(); }, []);
+  useEffect(() => {
+    registerRadarMeServiceWorker();
+  }, []);
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Home") return;
       const target = event.target as HTMLElement | null;
-      if (target?.isContentEditable || target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement) return;
+      if (
+        target?.isContentEditable ||
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        target instanceof HTMLSelectElement
+      )
+        return;
       event.preventDefault();
       void router.navigate({ to: "/" });
     };
-    const preventPinchZoom = (event: TouchEvent) => { if (event.touches.length > 1) event.preventDefault(); };
+    const preventPinchZoom = (event: TouchEvent) => {
+      if (event.touches.length > 1) event.preventDefault();
+    };
     window.addEventListener("keydown", onKeyDown);
     document.addEventListener("touchmove", preventPinchZoom, { passive: false });
     return () => {
@@ -140,9 +199,19 @@ function RootComponent() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider><AuthProvider>
-          {showOpening ? <FramerOpening onComplete={completeOpening} /> : <AppShell><div key={pathname} className="route-transition"><Outlet /></div></AppShell>}
-        </AuthProvider></ThemeProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            {showOpening ? (
+              <FramerOpening onComplete={completeOpening} />
+            ) : (
+              <AppShell>
+                <div key={pathname} className="route-transition">
+                  <Outlet />
+                </div>
+              </AppShell>
+            )}
+          </AuthProvider>
+        </ThemeProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );
