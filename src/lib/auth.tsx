@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- auth provider, hook, and session utility are one public API. */
 import {
   createContext,
   useCallback,

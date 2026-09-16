@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- badgeVariants is an intentional shared style export. */
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 

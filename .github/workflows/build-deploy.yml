@@ -54,13 +54,14 @@ jobs:
       - name: Run end-to-end tests
         run: npm run test:e2e
 
+      - name: Package verified Worker bundle
+        run: tar -czf worker-bundle.tar.gz -C dist client server
+
       - name: Upload verified Worker bundle
         uses: actions/upload-artifact@v4
         with:
           name: worker-bundle-${{ github.sha }}
-          path: |
-            dist/client
-            dist/server
+          path: worker-bundle.tar.gz
           if-no-files-found: error
           retention-days: 7
 
@@ -85,7 +86,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: worker-bundle-${{ github.sha }}
-          path: .
+          path: bundle
+
+      - name: Extract verified Worker bundle
+        run: |
+          mkdir -p dist
+          tar -xzf bundle/worker-bundle.tar.gz -C dist
+          test -s dist/server/index.mjs
+          test -s dist/server/wrangler.json
+          test -s dist/client/_headers
 
       - name: Verify deployment credentials
         run: |
