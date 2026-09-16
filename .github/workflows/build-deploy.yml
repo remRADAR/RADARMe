@@ -2,6 +2,11 @@ name: Build and deploy Worker
 
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
   push:
     branches:
       - main
@@ -20,6 +25,7 @@ env:
 jobs:
   build:
     name: Build and test
+    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -109,3 +115,109 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  preview:
+    name: Deploy PR preview Worker
+    needs: build
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Wrangler
+        run: npm install --global wrangler@4.131.1
+
+      - name: Download verified Worker bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: worker-bundle-${{ github.sha }}
+          path: bundle
+
+      - name: Extract Worker bundle
+        run: |
+          mkdir -p dist
+          tar -xzf bundle/worker-bundle.tar.gz -C dist
+          test -s dist/server/index.mjs
+          test -s dist/server/wrangler.json
+          test -s dist/client/_headers
+
+      - name: Create PR preview configuration
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PREVIEW_CONFIG: ${{ runner.temp }}/wrangler-preview.json
+        run: |
+          node -e '
+            const fs = require("fs");
+            const config = JSON.parse(
+              fs.readFileSync("dist/server/wrangler.json", "utf8")
+            );
+            config.name = `remradar-radarme-pr-${process.env.PR_NUMBER}`;
+            fs.writeFileSync(
+              process.env.PREVIEW_CONFIG,
+              JSON.stringify(config, null, 2)
+            );
+          '
+          test -s "$PREVIEW_CONFIG"
+
+      - name: Deploy PR preview Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PREVIEW_CONFIG: ${{ runner.temp }}/wrangler-preview.json
+        run: wrangler deploy --config "$PREVIEW_CONFIG" --no-prompts
+
+      - name: Publish preview details
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          {
+            echo "## Cloudflare PR preview"
+            echo
+            echo "Worker: \\`remradar-radarme-pr-${PR_NUMBER}\\`"
+            echo
+            echo "This preview is deployed only for pull requests originating from this repository."
+            echo "The public hostname or route is controlled by Cloudflare account settings."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  cleanup:
+    name: Delete closed PR preview Worker
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Wrangler
+        run: npm install --global wrangler@4.131.1
+
+      - name: Delete PR preview Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          WORKER_NAME="remradar-radarme-pr-${PR_NUMBER}"
+          wrangler delete "$WORKER_NAME" --force
+
+      - name: Publish cleanup details
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          {
+            echo "## Cloudflare PR preview cleanup"
+            echo
+            echo "Deleted Worker: \\`remradar-radarme-pr-${PR_NUMBER}\\`"
+          } >> "$GITHUB_STEP_SUMMARY"
