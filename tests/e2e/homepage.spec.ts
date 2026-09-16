@@ -147,7 +147,7 @@ test.describe("homepage Framer frame", () => {
       () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     );
     const initialTransform = await track.evaluate((element) => getComputedStyle(element).transform);
-    await page.waitForTimeout(250);
+    await page.waitForTimeout(750);
     const laterTransform = await track.evaluate((element) => getComputedStyle(element).transform);
 
     if (reducedMotion) {
