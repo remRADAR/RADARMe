@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { AIBot } from "@/components/AIBot/AIBot";
-import { BottomNav } from "./BottomNav";
 import { cn } from "@/lib/utils";
 
 type PrimaryNavItem = {
@@ -192,7 +191,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Link
                 to="/intelligence/chat"
                 aria-label="Ask RADAR"
-                className="ml-1 hidden items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-xs font-semibold text-background hover:opacity-90 focus-visible:outline-2 focus-visible:outline-gold sm:flex"
+                className="ml-1 hidden items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-xs font-semibold text-background transition-[background-color,color,box-shadow] duration-200 hover:bg-white hover:text-black hover:shadow-[0_0_0_1px_rgb(192_192_192_/_0.85),0_8px_24px_rgb(192_192_192_/_0.28)] focus-visible:outline-2 focus-visible:outline-gold sm:flex"
               >
                 <Sparkles size={14} aria-hidden />
                 Ask RADAR
@@ -209,14 +208,11 @@ export function AppShell({ children }: { children: ReactNode }) {
               : "app-content-scroll mx-auto h-[calc(100dvh-4rem)] w-full max-w-[1440px] overflow-y-auto px-4 sm:px-7 lg:px-10",
           )}
           style={{
-            paddingBottom: isImmersive
-              ? "env(safe-area-inset-bottom)"
-              : "calc(env(safe-area-inset-bottom) + 112px)",
+            paddingBottom: "env(safe-area-inset-bottom)",
           }}
         >
           {children}
         </main>
-        {!isImmersive && <BottomNav />}
       </div>
     </div>
   );

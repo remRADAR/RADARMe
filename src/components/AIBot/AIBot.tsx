@@ -1,5 +1,4 @@
 import { useCallback, useRef, useState } from "react";
-import { Pause, Play } from "lucide-react";
 import { useAIBotInteractions } from "@/hooks/useAIBotInteractions";
 import { IntelligencePanel } from "./IntelligencePanel";
 import "./AIBot.styles.css";
@@ -71,7 +70,6 @@ export function AIBot({ playlistId = "PLZ_5O41VO5Mk", onMusicStateChange }: AIBo
         title="Tap to play RADAR music. Hold for RADAR intelligence."
       >
         <span className="radar-bot-header-face" aria-hidden="true">
-          <span className="radar-bot-aura" />
           <img
             className="radar-bot-gif"
             src="/media/radar-bot.gif"
@@ -80,13 +78,6 @@ export function AIBot({ playlistId = "PLZ_5O41VO5Mk", onMusicStateChange }: AIBo
             height={750}
             draggable={false}
           />
-          <span className="radar-bot-status">
-            {isPlaying ? (
-              <Pause size={12} fill="currentColor" />
-            ) : (
-              <Play size={12} fill="currentColor" />
-            )}
-          </span>
         </span>
         <span className="sr-only">Ask RADAR</span>
       </button>

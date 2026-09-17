@@ -152,7 +152,7 @@ export function FramerHomeFrame() {
               forward.
             </p>
           </div>
-          <span className="inline-flex items-center gap-2 self-start rounded-full border border-white/15 bg-white/[0.05] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/65 sm:self-auto">
+          <span className="inline-flex items-center gap-2 self-start rounded-full border border-white/15 bg-white/[0.05] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/65 transition-[background-color,color,box-shadow] duration-200 hover:border-white hover:bg-white hover:text-black hover:shadow-[0_0_0_1px_rgb(192_192_192_/_0.85),0_8px_24px_rgb(192_192_192_/_0.28)] sm:self-auto">
             <Play size={11} fill="currentColor" aria-hidden />
             Explore the signal
           </span>

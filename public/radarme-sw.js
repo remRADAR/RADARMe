@@ -1,7 +1,8 @@
-const CACHE_NAME = "radarme-app-v5";
+const CACHE_NAME = "radarme-app-v6";
 const STATIC_ASSETS = [
   "/",
   "/manifest.webmanifest",
+  "/favicon.ico",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/backgrounds/main-bg.webp",
