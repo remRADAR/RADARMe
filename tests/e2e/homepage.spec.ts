@@ -26,7 +26,7 @@ test.describe("homepage Framer frame", () => {
 
     const hero = page.locator(".framer-home-frame__hero");
     await expect(hero).toBeVisible();
-    await expect(hero.locator("figure.framer-home-frame__image img")).toHaveCount(47);
+    await expect(hero.locator("figure.framer-home-frame__image img")).toHaveCount(2);
     await expect(hero.locator("figure.framer-home-frame__image img").first()).toHaveJSProperty(
       "naturalWidth",
       1080,
@@ -98,7 +98,7 @@ test.describe("homepage Framer frame", () => {
 
     const cacheState = await page.evaluate(async () => {
       const registration = await navigator.serviceWorker.ready;
-      const cache = await caches.open("radarme-app-v4");
+      const cache = await caches.open("radarme-app-v5");
       const assets = await Promise.all(
         ["/media/framer-home/shutter-hero.jpg", "/backgrounds/main-bg.webp"].map(async (url) =>
           Boolean(await cache.match(url)),

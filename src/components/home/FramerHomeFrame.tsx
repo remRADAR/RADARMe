@@ -23,6 +23,9 @@ export function FramerHomeFrame() {
     return () => window.clearInterval(timer);
   }, []);
 
+  const activeImage = driveHeroImages[activeHero];
+  const nextImage = driveHeroImages[(activeHero + 1) % driveHeroImages.length];
+
   return (
     <section
       className="framer-home-frame rounded-[2rem] border border-white/10 shadow-[0_24px_80px_-32px_rgb(0_0_0_/_0.9)]"
@@ -30,11 +33,11 @@ export function FramerHomeFrame() {
     >
       <div className="framer-home-frame__hero" aria-label="RADARMe image showcase">
         <div className="framer-home-frame__slides" aria-live="polite">
-          {driveHeroImages.map((image, index) => (
+          {[activeImage, nextImage].map((image, index) => (
             <figure
               key={image.src}
-              className={`framer-home-frame__image${index === activeHero ? " is-active" : ""}`}
-              aria-hidden={index !== activeHero}
+              className={`framer-home-frame__image${index === 0 ? " is-active" : ""}`}
+              aria-hidden={index !== 0}
             >
               <img
                 src={image.src}
@@ -89,7 +92,7 @@ export function FramerHomeFrame() {
                 RADARMe
               </p>
               <p className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white/60">
-                The iNDUSTRYKit by REM
+                The iNDUSTRYKit
               </p>
             </div>
           </div>

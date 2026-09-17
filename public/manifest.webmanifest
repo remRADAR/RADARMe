@@ -1,7 +1,7 @@
 {
-  "name": "RADARMe: The iNDUSTRYKit",
+  "name": "RADARMe",
   "short_name": "RADARMe",
-  "description": "The premium operating system for music artists by RADARCharts.",
+  "description": "The iNDUSTRYKit.",
   "start_url": "/",
   "scope": "/",
   "id": "https://remradar-radarme.remradar.workers.dev/",

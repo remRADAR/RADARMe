@@ -89,21 +89,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover",
       },
-      { title: "RADARMe: The iNDUSTRYKit" },
+      { title: "RADARMe" },
       {
         name: "description",
-        content:
-          "RADARMe: The iNDUSTRYKit — the premium operating system for music artists by RADARCharts.",
+        content: "The iNDUSTRYKit.",
       },
       { name: "author", content: "RADARCharts by REM" },
       { name: "theme-color", content: "#0a0a0a" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { name: "apple-mobile-web-app-title", content: "RADARMe: The iNDUSTRYKit" },
-      { property: "og:title", content: "RADARMe: The iNDUSTRYKit" },
+      { name: "apple-mobile-web-app-title", content: "RADARMe" },
+      { property: "og:title", content: "RADARMe" },
       {
         property: "og:description",
-        content: "The premium operating system for music artists by RADARCharts.",
+        content: "The iNDUSTRYKit.",
       },
       { property: "og:url", content: "https://remradar-radarme.remradar.workers.dev/" },
       { property: "og:type", content: "website" },
@@ -116,10 +115,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:width", content: "1600" },
       { property: "og:image:height", content: "900" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "RADARMe: The iNDUSTRYKit" },
+      { name: "twitter:title", content: "RADARMe" },
       {
         name: "twitter:description",
-        content: "The premium operating system for music artists by RADARCharts.",
+        content: "The iNDUSTRYKit.",
       },
       {
         name: "twitter:image",

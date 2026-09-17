@@ -26,10 +26,10 @@ const AnnouncementRibbon = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RADARHub — RADARMe" },
+      { title: "RADARMe" },
       {
         name: "description",
-        content: "Your RADARHub — the command center of your artist career in RADARMe.",
+        content: "The iNDUSTRYKit — the command center of your artist career.",
       },
     ],
   }),
