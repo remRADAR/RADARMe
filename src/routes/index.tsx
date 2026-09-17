@@ -232,7 +232,7 @@ function MusicFirstStage() {
             ))}
           </div>
           <p className="mt-5 text-lg font-semibold">Moov Different</p>
-          <p className="text-xs text-muted-foreground">TELMAN · featured on RADARCharts</p>
+          <p className="text-xs text-muted-foreground">TELMAN · featured on RADARMe</p>
           <Link
             to="/network/playlists"
             className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-foreground px-3 text-xs font-semibold text-background"

@@ -81,7 +81,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </a>
 
       {!isImmersive && (
-        <aside className="glass-card fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-hairline bg-background/40 px-4 py-5 backdrop-blur-2xl lg:flex">
+        <aside className="glass-card fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-hairline bg-background/40 px-4 py-6 backdrop-blur-2xl lg:flex">
           <div className="flex items-center justify-between px-2">
             <Link
               to="/"
@@ -99,7 +99,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </button>
           </div>
 
-          <div className="mt-10 px-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          <div className="mt-9 px-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
             Ecosystem
           </div>
           <nav aria-label="Ecosystem" className="mt-3 flex flex-1 flex-col gap-1">
@@ -112,7 +112,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                   to={item.to}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "group flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-gold",
+                    "group flex items-center gap-3 rounded-2xl px-3 py-3.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-gold",
                     active
                       ? "bg-foreground text-background"
                       : "text-muted-foreground hover:bg-surface-2 hover:text-foreground",
@@ -139,7 +139,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="border-t border-hairline pt-3">
             <Link
               to="/profile"
-              className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-muted-foreground hover:bg-surface-2 hover:text-foreground focus-visible:outline-2 focus-visible:outline-gold"
+              className="flex items-center gap-3 rounded-2xl px-3 py-3.5 text-sm text-muted-foreground hover:bg-surface-2 hover:text-foreground focus-visible:outline-2 focus-visible:outline-gold"
             >
               <span className="grid size-8 place-items-center rounded-full bg-surface-2 text-xs font-semibold text-foreground">
                 AM
@@ -156,7 +156,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <div className={cn("h-full", !isImmersive && "lg:pl-64")}>
         {!isImmersive && (
-          <header className="glass-card sticky top-0 z-30 flex min-h-16 items-center justify-between rounded-none border-x-0 border-t-0 bg-background/40 px-4 backdrop-blur-2xl sm:px-6 lg:px-10">
+          <header className="glass-card sticky top-0 z-30 flex min-h-16 items-center justify-between rounded-none border-x-0 border-t-0 bg-background/40 px-4 backdrop-blur-2xl sm:px-7 lg:px-10">
             <div className="flex items-center gap-3">
               <Link
                 to="/"
@@ -192,7 +192,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Link
                 to="/intelligence/chat"
                 aria-label="Ask RADAR"
-                className="ml-1 hidden items-center gap-2 rounded-lg bg-foreground px-3 py-2 text-xs font-semibold text-background hover:opacity-90 focus-visible:outline-2 focus-visible:outline-gold sm:flex"
+                className="ml-1 hidden items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-xs font-semibold text-background hover:opacity-90 focus-visible:outline-2 focus-visible:outline-gold sm:flex"
               >
                 <Sparkles size={14} aria-hidden />
                 Ask RADAR
@@ -206,7 +206,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           className={cn(
             isImmersive
               ? "h-full w-full overflow-y-auto"
-              : "app-content-scroll mx-auto h-[calc(100dvh-4rem)] w-full max-w-[1440px] overflow-y-auto px-4 sm:px-6 lg:px-8",
+              : "app-content-scroll mx-auto h-[calc(100dvh-4rem)] w-full max-w-[1440px] overflow-y-auto px-4 sm:px-7 lg:px-10",
           )}
           style={{
             paddingBottom: isImmersive

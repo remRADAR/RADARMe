@@ -44,7 +44,7 @@ export function IntelPage({
       </div>
 
       <header
-        className="relative mx-auto flex max-w-screen-md items-center justify-between px-4"
+        className="relative mx-auto flex max-w-screen-md items-center justify-between px-4 sm:px-6"
         style={{ paddingTop: "calc(env(safe-area-inset-top) + 12px)" }}
       >
         <Link
@@ -63,7 +63,7 @@ export function IntelPage({
         <span aria-hidden className="h-11 w-11" />
       </header>
 
-      <div className="relative mx-auto max-w-screen-md px-4 pt-6 pb-32">
+      <div className="relative mx-auto max-w-screen-md px-4 pb-32 pt-6 sm:px-6">
         <div className="flex items-start gap-4 animate-hero-in">
           {icon && (
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-surface-2 text-gold hairline">
@@ -74,7 +74,7 @@ export function IntelPage({
             <p className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
               {eyebrow}
             </p>
-            <h1 className="mt-1 font-display text-[32px] font-semibold leading-[1.05] tracking-tight sm:text-4xl">
+            <h1 className="mt-1 font-display text-[clamp(2rem,7vw,2.75rem)] font-semibold leading-[0.98] tracking-[-0.045em]">
               {title}
             </h1>
             {kicker && (
@@ -87,7 +87,7 @@ export function IntelPage({
 
         {actions && <div className="mt-5 flex flex-wrap gap-2">{actions}</div>}
 
-        <div className="mt-8 space-y-6">{children}</div>
+        <div className="mt-8 space-y-6 sm:mt-10">{children}</div>
       </div>
     </div>
   );

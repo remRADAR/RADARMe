@@ -24,7 +24,7 @@ export function MotherPage({
 }) {
   return (
     <div className="motherland-scope -mx-4 pb-6 animate-page-in">
-      <div className="relative overflow-hidden px-4 pb-6 pt-2">
+      <div className="relative overflow-hidden px-4 pb-7 pt-2 sm:px-6">
         <span
           aria-hidden
           className="pointer-events-none absolute inset-x-0 -top-24 h-72 animate-bloom-drift"
@@ -53,7 +53,7 @@ export function MotherPage({
             {icon}
           </span>
           <div className="min-w-0 flex-1">
-            <h1 className="font-display text-3xl font-semibold leading-tight sm:text-4xl">
+            <h1 className="font-display text-[clamp(2rem,7vw,2.75rem)] font-semibold leading-[0.98] tracking-[-0.045em]">
               {title}
             </h1>
             <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
@@ -65,7 +65,7 @@ export function MotherPage({
         {actions && <div className="relative mt-5 flex flex-wrap gap-2">{actions}</div>}
       </div>
 
-      <div className="motherland-scope space-y-8 px-4 pt-2">{children}</div>
+      <div className="motherland-scope space-y-8 px-4 pt-2 sm:px-6">{children}</div>
     </div>
   );
 }

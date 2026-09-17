@@ -80,7 +80,7 @@ function NetworkHome() {
         </h1>
         <p className="relative mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
           Long-form journalism, artist spotlights, curated playlists and RADAR TV — the editorial
-          ecosystem behind the artists on RADARCharts.
+          ecosystem behind the artists on RADARMe.
         </p>
       </div>
 

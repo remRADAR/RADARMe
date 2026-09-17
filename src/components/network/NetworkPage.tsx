@@ -23,7 +23,7 @@ export function NetworkPage({
 }) {
   return (
     <div className="-mx-4 pb-6 animate-page-in">
-      <div className="relative overflow-hidden px-4 pb-6 pt-2">
+      <div className="relative overflow-hidden px-4 pb-7 pt-2 sm:px-6">
         <span
           aria-hidden
           className="pointer-events-none absolute -right-20 -top-16 h-56 w-56 rounded-full opacity-60"
@@ -47,7 +47,7 @@ export function NetworkPage({
             {icon}
           </span>
           <div className="min-w-0 flex-1">
-            <h1 className="font-display text-[32px] font-semibold leading-[1.05] tracking-tight sm:text-4xl">
+            <h1 className="font-display text-[clamp(2rem,7vw,2.75rem)] font-semibold leading-[0.98] tracking-[-0.045em]">
               {title}
             </h1>
             <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">{kicker}</p>
@@ -57,7 +57,7 @@ export function NetworkPage({
         {actions && <div className="relative mt-5 flex flex-wrap gap-2">{actions}</div>}
       </div>
 
-      <div className="space-y-8 px-4 pt-2">{children}</div>
+      <div className="space-y-8 px-4 pt-2 sm:px-6">{children}</div>
     </div>
   );
 }
