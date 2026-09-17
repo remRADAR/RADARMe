@@ -120,8 +120,8 @@ export function FramerOpening({ onComplete }: { onComplete: () => void }) {
         poster="/media/welcome/remradar-opening-poster.jpg"
         aria-hidden="true"
       >
-        <source src="/media/welcome/remradar-opening-lite.webm" type="video/webm" />
         <source src="/media/welcome/remradar-opening-lite.mp4" type="video/mp4" />
+        <source src="/media/welcome/remradar-opening-lite.webm" type="video/webm" />
       </video>
       <img
         className="framer-opening__poster"
