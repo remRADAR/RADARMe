@@ -20,7 +20,7 @@ test.describe("homepage Framer frame", () => {
     await expect(page.locator(".framer-home-frame__hero")).toBeVisible();
   });
 
-  test("renders the HD Drive image hero, wordmark, and ticker assets", async ({ page }) => {
+  test("renders the HD Drive image hero, brand band, and ticker assets", async ({ page }) => {
     await page.goto("/");
     await removeWelcomeLayer(page);
 
@@ -34,7 +34,9 @@ test.describe("homepage Framer frame", () => {
     await expect(page.locator(".framer-home-frame__artists")).toHaveCount(0);
     await expect(page.locator(".framer-home-frame__index")).toHaveCount(0);
     await expect(page.locator(".framer-home-frame__hero-cue")).toHaveCount(0);
-    await expect(page.locator(".framer-home-frame__wordmark")).toHaveText("RADARCharts");
+    await expect(page.locator(".framer-home-frame__brand-band")).toContainText(
+      "RADARMe / artist-first",
+    );
 
     const tickerImages = page.locator(".framer-home-frame__ticker-track img");
     await expect(tickerImages).toHaveCount(16);
@@ -96,7 +98,7 @@ test.describe("homepage Framer frame", () => {
 
     const cacheState = await page.evaluate(async () => {
       const registration = await navigator.serviceWorker.ready;
-      const cache = await caches.open("radarme-app-v2");
+      const cache = await caches.open("radarme-app-v3");
       const assets = await Promise.all(
         ["/media/framer-home/shutter-hero.jpg", "/backgrounds/main-bg.webp"].map(async (url) =>
           Boolean(await cache.match(url)),
@@ -133,7 +135,7 @@ test.describe("homepage Framer frame", () => {
 
     expect(bounds.left).toBeGreaterThanOrEqual(0);
     expect(bounds.right).toBeLessThanOrEqual(bounds.viewport);
-    await expect(page.locator(".framer-home-frame__wordmark")).toBeVisible();
+    await expect(page.locator(".framer-home-frame__brand-band")).toBeVisible();
     await expect(page.locator('nav[aria-label="Primary"]')).toBeVisible();
   });
 
@@ -146,14 +148,14 @@ test.describe("homepage Framer frame", () => {
     const reducedMotion = await page.evaluate(
       () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     );
-    const initialTransform = await track.evaluate((element) => getComputedStyle(element).transform);
-    await page.waitForTimeout(250);
-    const laterTransform = await track.evaluate((element) => getComputedStyle(element).transform);
 
     if (reducedMotion) {
-      expect(laterTransform).toBe(initialTransform);
+      await expect(track).toHaveCSS("animation-name", "none");
     } else {
-      expect(laterTransform).not.toBe(initialTransform);
+      await expect(track).toHaveCSS("animation-name", "framer-home-ticker");
+      await expect
+        .poll(() => track.evaluate((element) => getComputedStyle(element).transform))
+        .not.toBe("matrix(1, 0, 0, 1, 0, 0)");
     }
   });
 });

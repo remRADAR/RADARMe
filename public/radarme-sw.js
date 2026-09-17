@@ -1,4 +1,4 @@
-const CACHE_NAME = "radarme-app-v2";
+const CACHE_NAME = "radarme-app-v3";
 const STATIC_ASSETS = [
   "/",
   "/manifest.webmanifest",
@@ -29,6 +29,20 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin || !STATIC_ASSETS.includes(url.pathname)) return;
+
+  const isDocument = url.pathname === "/" || url.pathname === "/manifest.webmanifest";
+  if (isDocument) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          void caches.open(CACHE_NAME).then((cache) => cache.put(url.pathname, copy));
+          return response;
+        })
+        .catch(() => caches.match(url.pathname)),
+    );
+    return;
+  }
 
   event.respondWith(
     caches

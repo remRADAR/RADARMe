@@ -8,7 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { ThemeProvider } from "../lib/theme";
@@ -166,12 +166,16 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const [openingComplete, setOpeningComplete] = useState(pathname !== "/");
+  const initialPathname = useRef(pathname).current;
+  const [openingComplete, setOpeningComplete] = useState(initialPathname !== "/");
   const completeOpening = useCallback(() => setOpeningComplete(true), []);
 
   useEffect(() => {
     registerRadarMeServiceWorker();
   }, []);
+  useEffect(() => {
+    if (pathname !== "/") setOpeningComplete(true);
+  }, [pathname]);
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Home") return;
@@ -197,7 +201,7 @@ function RootComponent() {
     };
   }, [router]);
 
-  const showOpening = pathname === "/" && !openingComplete;
+  const showOpening = initialPathname === "/" && pathname === "/" && !openingComplete;
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
