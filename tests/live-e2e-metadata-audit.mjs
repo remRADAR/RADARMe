@@ -1,6 +1,6 @@
 import { chromium, devices } from "@playwright/test";
 
-const base = process.env.RADARME_URL || "https://radarme.vercel.app";
+const base = process.env.RADARME_URL || "https://remradar-radarme.remradar.workers.dev";
 const routes = [
   "/",
   "/radarmusic",

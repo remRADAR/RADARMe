@@ -32,13 +32,21 @@ export class ErrorBoundary extends Component<Props, State> {
           </p>
           <details className="mt-4 text-left text-xs text-muted-foreground">
             <summary className="cursor-pointer">Error details</summary>
-            <pre className="mt-2 max-h-32 overflow-auto whitespace-pre-wrap">{this.state.error.message}</pre>
+            <pre className="mt-2 max-h-32 overflow-auto whitespace-pre-wrap">
+              {this.state.error.message}
+            </pre>
           </details>
           <div className="mt-6 flex justify-center gap-2">
-            <button type="button" onClick={this.reset} className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
+            <button
+              type="button"
+              onClick={this.reset}
+              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+            >
               Try again
             </button>
-            <a href="/" className="rounded-md border border-input px-4 py-2 text-sm font-medium">Go home</a>
+            <a href="/" className="rounded-md border border-input px-4 py-2 text-sm font-medium">
+              Go home
+            </a>
           </div>
         </div>
       </div>

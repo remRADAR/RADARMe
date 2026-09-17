@@ -32,6 +32,6 @@ The home hero greeting was made hydration-safe. Its time-dependent greeting is n
 
 ## Known limitations
 
-The Framer source hostname was not DNS-resolvable during this audit, so exact live-site component parity beyond the supplied opening media and handoff cannot be claimed. The opening media is verified locally, but a deployed post-commit URL still needs a fresh browser pass after Vercel builds the new commit.
+The Framer source hostname was not DNS-resolvable during this audit, so exact live-site component parity beyond the supplied opening media and handoff cannot be claimed. The opening media is verified locally, and the authoritative deployment target is the Cloudflare Worker at `https://remradar-radarme.remradar.workers.dev/`.
 
 The existing `/welcome` authentication/onboarding entry screen remains separate by design. It is not replaced because it owns the account CTA flow; the Framer opening is the first-frame layer for the main application root.

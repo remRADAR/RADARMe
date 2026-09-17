@@ -20,16 +20,29 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
     alias: { "@": `${process.cwd()}/src` },
-    dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
+    dedupe: [
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+      "@tanstack/react-query",
+      "@tanstack/query-core",
+    ],
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "react-dom/client", "react/jsx-runtime", "react/jsx-dev-runtime"],
+    include: [
+      "react",
+      "react-dom",
+      "react-dom/client",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+    ],
     ignoreOutdatedRequests: true,
   },
   server: {
     host: "::",
     port: 8080,
     // Leading dots allow the preview/proxy host and all of its subdomains.
-    allowedHosts: [".manus.computer", ".vercel.app", ".netlify.app"],
+    allowedHosts: [".manus.computer", ".workers.dev"],
   },
 });

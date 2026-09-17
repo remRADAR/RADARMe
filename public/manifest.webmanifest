@@ -4,7 +4,7 @@
   "description": "The premium operating system for music artists by RADARCharts.",
   "start_url": "/",
   "scope": "/",
-  "id": "https://radarme.vercel.app/",
+  "id": "https://remradar-radarme.remradar.workers.dev/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",

@@ -1,6 +1,6 @@
 import { chromium, devices } from "@playwright/test";
 
-const url = process.env.RADARME_URL || "https://radarme.vercel.app/radarmusic";
+const url = process.env.RADARME_URL || "https://remradar-radarme.remradar.workers.dev/radarmusic";
 const browser = await chromium.launch({
   headless: true,
   executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || "/usr/bin/chromium",

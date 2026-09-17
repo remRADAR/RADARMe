@@ -8,7 +8,7 @@ const context = await browser.newContext({ ...devices["iPhone 13"], reducedMotio
 const page = await context.newPage();
 const errors = [];
 page.on("console", (message) => message.type() === "error" && errors.push(message.text()));
-await page.goto("https://radarme.vercel.app/radarmusic", {
+await page.goto("https://remradar-radarme.remradar.workers.dev/radarmusic", {
   waitUntil: "networkidle",
   timeout: 60000,
 });

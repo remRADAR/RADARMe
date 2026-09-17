@@ -105,11 +105,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         property: "og:description",
         content: "The premium operating system for music artists by RADARCharts.",
       },
-      { property: "og:url", content: "https://radarme.vercel.app/" },
+      { property: "og:url", content: "https://remradar-radarme.remradar.workers.dev/" },
       { property: "og:type", content: "website" },
       {
         property: "og:image",
-        content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg",
+        content:
+          "https://remradar-radarme.remradar.workers.dev/media/radar-assets/magazine-interview.jpg",
       },
       { property: "og:image:alt", content: "RADARMe artist interview in a recording studio" },
       { property: "og:image:width", content: "1600" },
@@ -122,7 +123,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         name: "twitter:image",
-        content: "https://radarme.vercel.app/media/radar-assets/magazine-interview.jpg",
+        content:
+          "https://remradar-radarme.remradar.workers.dev/media/radar-assets/magazine-interview.jpg",
       },
     ],
     links: [
@@ -134,7 +136,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap",
       },
       { rel: "manifest", href: "/manifest.webmanifest" },
-      { rel: "canonical", href: "https://radarme.vercel.app/" },
+      { rel: "canonical", href: "https://remradar-radarme.remradar.workers.dev/" },
       { rel: "icon", href: "/icons/favicon-32.png", type: "image/png", sizes: "32x32" },
       { rel: "icon", href: "/icons/favicon-16.png", type: "image/png", sizes: "16x16" },
       { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png", sizes: "180x180" },
