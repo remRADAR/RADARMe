@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const STORAGE_KEY = "radarme_welcome_seen";
-const DISPLAY_MS = 8000;
-const EXIT_MS = 1200;
+const DISPLAY_MS = 2800;
+const EXIT_MS = 500;
 const REDUCED_MOTION_EXIT_MS = 450;
-const SAFETY_TIMEOUT_MS = 2500;
+const SAFETY_TIMEOUT_MS = 1800;
 
 export function FramerOpening({ onComplete }: { onComplete: () => void }) {
   const [visible, setVisible] = useState(false);
@@ -120,8 +120,8 @@ export function FramerOpening({ onComplete }: { onComplete: () => void }) {
         poster="/media/welcome/remradar-opening-poster.jpg"
         aria-hidden="true"
       >
-        <source src="/media/welcome/remradar-opening.webm" type="video/webm" />
-        <source src="/media/welcome/remradar-opening.mp4" type="video/mp4" />
+        <source src="/media/welcome/remradar-opening-lite.webm" type="video/webm" />
+        <source src="/media/welcome/remradar-opening-lite.mp4" type="video/mp4" />
       </video>
       <img
         className="framer-opening__poster"

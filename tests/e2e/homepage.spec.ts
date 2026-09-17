@@ -98,7 +98,7 @@ test.describe("homepage Framer frame", () => {
 
     const cacheState = await page.evaluate(async () => {
       const registration = await navigator.serviceWorker.ready;
-      const cache = await caches.open("radarme-app-v3");
+      const cache = await caches.open("radarme-app-v4");
       const assets = await Promise.all(
         ["/media/framer-home/shutter-hero.jpg", "/backgrounds/main-bg.webp"].map(async (url) =>
           Boolean(await cache.match(url)),
