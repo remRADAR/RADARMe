@@ -70,6 +70,7 @@ export function AIBot({ playlistId = "PLZ_5O41VO5Mk", onMusicStateChange }: AIBo
         title="Tap to play RADAR music. Hold for RADAR intelligence."
       >
         <span className="radar-bot-header-face" aria-hidden="true">
+          <span className="radar-bot-aura" />
           <img
             className="radar-bot-gif"
             src="/media/radar-bot.gif"
